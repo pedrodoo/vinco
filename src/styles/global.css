@@ -1,4 +1,11 @@
 @import "tailwindcss";
+@font-face {
+    font-family: "AV-Estiana";
+    src: url("/fonts/AV-Estiana-VF.woff2") format("woff2-variations");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
 
 @theme {
   /* Colors */

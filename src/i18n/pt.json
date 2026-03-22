@@ -28,7 +28,11 @@
       "intro": "[Introdução à secção de contacto]"
     },
     "footer": {
-      "tagline": "[Tagline do footer]",
-      "rights": "© 2026 Vinco Estúdio. Todos os direitos reservados."
+     "tagline": "[Tagline do footer]",
+     "rights": "© 2026 Vinco Estúdio. Todos os direitos reservados.",
+     "email": "hello@vinco-studio.com",
+     "social": {
+      "instagram": "https://instagram.com/vincostudio",
+      "linkedin": "https://linkedin.com/company/vincostudio"
+     }
     }
-  }
