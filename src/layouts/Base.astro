@@ -1,0 +1,63 @@
+---
+import { useTranslations, getNavLinks } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+}
+
+const { title, description, locale } = Astro.props;
+const t = useTranslations(locale);
+const nav = getNavLinks(locale);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const altLocale = locale === 'pt' ? 'en' : 'pt';
+const altPath = locale === 'pt' ? `/en${Astro.url.pathname}` : Astro.url.pathname.replace('/en', '') || '/';
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang={altLocale} href={new URL(altPath, Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
+
+    <!-- Cormorant Garamond + Inter via Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- AV-Estiana: self-hosted, adicionar quando tiveres os ficheiros de fonte -->
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <a href={nav.home}>Vinco</a>
+        <ul>
+          <li><a href={nav.work}>{t.nav.work}</a></li>
+          <li><a href={nav.whatWeDo}>{t.nav['what-we-do']}</a></li>
+          <li><a href={nav.about}>{t.nav.about}</a></li>
+          <li><a href={nav.contact}>{t.nav.contact}</a></li>
+        </ul>
+        <a href={altPath}>{altLocale.toUpperCase()}</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <p>{t.footer.tagline}</p>
+      <p>{t.footer.rights}</p>
+    </footer>
+  </body>
+</html>

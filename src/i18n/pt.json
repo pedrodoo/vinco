@@ -1,0 +1,34 @@
+{
+    "nav": {
+      "work": "Trabalho",
+      "what-we-do": "O Que Fazemos",
+      "about": "Sobre",
+      "contact": "Contacto"
+    },
+    "home": {
+      "hero_title": "[Headline principal]",
+      "hero_subtitle": "[Subtítulo hero]",
+      "intro_title": "[Título secção intro]",
+      "intro_body": "[Texto intro]"
+    },
+    "work": {
+      "title": "Trabalho",
+      "intro": "[Introdução à secção de trabalho]"
+    },
+    "what-we-do": {
+      "title": "O Que Fazemos",
+      "intro": "[Introdução ao que fazemos]"
+    },
+    "about": {
+      "title": "Sobre",
+      "intro": "[Introdução sobre o estúdio]"
+    },
+    "contact": {
+      "title": "Contacto",
+      "intro": "[Introdução à secção de contacto]"
+    },
+    "footer": {
+      "tagline": "[Tagline do footer]",
+      "rights": "© 2026 Vinco Estúdio. Todos os direitos reservados."
+    }
+  }

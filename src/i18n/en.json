@@ -1,0 +1,34 @@
+{
+    "nav": {
+      "work": "Work",
+      "what-we-do": "What We Do",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "home": {
+      "hero_title": "[Main headline]",
+      "hero_subtitle": "[Hero subtitle]",
+      "intro_title": "[Intro section title]",
+      "intro_body": "[Intro text]"
+    },
+    "work": {
+      "title": "Work",
+      "intro": "[Work section intro]"
+    },
+    "what-we-do": {
+      "title": "What We Do",
+      "intro": "[What we do intro]"
+    },
+    "about": {
+      "title": "About",
+      "intro": "[Studio intro]"
+    },
+    "contact": {
+      "title": "Contact",
+      "intro": "[Contact section intro]"
+    },
+    "footer": {
+      "tagline": "[Footer tagline]",
+      "rights": "© 2026 Vinco Studio. All rights reserved."
+    }
+  }
