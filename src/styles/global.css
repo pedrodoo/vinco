@@ -65,6 +65,16 @@
   --duration-slow: 300ms;
 }
 
+@layer components {
+    .nav-link {
+      @apply text-xs tracking-wide font-body transition-opacity duration-150 hover:opacity-60;
+    }
+  
+    .footer-link {
+      @apply text-sm text-vinco-cream/70 hover:text-vinco-cream transition-colors duration-150;
+    }
+  }
+
 /* Base styles */
 @layer base {
   html {
