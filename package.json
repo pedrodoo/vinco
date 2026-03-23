@@ -8,8 +8,9 @@
   "scripts": {
     "tokens:build": "node scripts/build-tokens.mjs",
     "tokens:watch": "node --watch scripts/build-tokens.mjs",
-    "predev": "pnpm tokens:build",
-    "prebuild": "pnpm tokens:build",
+    "sync:copy": "node scripts/sync-copy.mjs",
+    "predev": "pnpm sync:copy && pnpm tokens:build",
+    "prebuild": "pnpm sync:copy && pnpm tokens:build",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",

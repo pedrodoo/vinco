@@ -49,36 +49,13 @@ const altPath = locale === 'pt'
         </a>
 
         <!-- Links (center) -->
-        <ul class="hidden md:flex items-center gap-8">
-          <li>
-            <a href={nav.work} class="nav-link">
-              <span class="text-vinco-black">{t.nav.work}</span>
-              <span class="text-vinco-brown-1 mx-1">/</span>
-              <span class="text-vinco-brown-1">{locale === 'pt' ? 'Work' : 'Trabalho'}</span>
-            </a>
-          </li>
-          <li>
-            <a href={nav.whatWeDo} class="nav-link">
-              <span class="text-vinco-black">{t.nav['what-we-do']}</span>
-              <span class="text-vinco-brown-1 mx-1">/</span>
-              <span class="text-vinco-brown-1">{locale === 'pt' ? 'What We Do' : 'O Que Fazemos'}</span>
-            </a>
-          </li>
-          <li>
-            <a href={nav.about} class="nav-link">
-              <span class="text-vinco-black">{t.nav.about}</span>
-              <span class="text-vinco-brown-1 mx-1">/</span>
-              <span class="text-vinco-brown-1">{locale === 'pt' ? 'About' : 'Sobre'}</span>
-            </a>
-          </li>
-          <li>
-            <a href={nav.contact} class="nav-link">
-              <span class="text-vinco-black">{t.nav.contact}</span>
-              <span class="text-vinco-brown-1 mx-1">/</span>
-              <span class="text-vinco-brown-1">{locale === 'pt' ? 'Contact' : 'Contacto'}</span>
-            </a>
-          </li>
-        </ul>
+ <!-- Links (center) -->
+    <ul class="hidden md:flex items-center gap-8">
+      <li><a href={nav.work} class="nav-link">{t.nav.work}</a></li>
+      <li><a href={nav.whatWeDo} class="nav-link">{t.nav['what-we-do']}</a></li>
+      <li><a href={nav.about} class="nav-link">{t.nav.about}</a></li>
+      <li><a href={nav.contact} class="nav-link">{t.nav.contact}</a></li>
+    </ul>
 
         <!-- Language toggle -->
         <a

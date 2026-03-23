@@ -34,7 +34,7 @@ const process = [
 >
 
   <!-- HERO -->
-  <section class="bg-vinco-cream px-8 py-24 md:py-36">
+  <section class="bg-vinco-cream px-8 pt-32 pb-24 md:pt-48 md:pb-36">
     <div class="max-w-[1440px] mx-auto">
       <div class="max-w-3xl">
         <h1 class="font-display text-vinco-black mb-6">
@@ -77,13 +77,13 @@ const process = [
   <section class="bg-vinco-black px-8 py-24">
     <div class="max-w-[1440px] mx-auto">
       <h2 class="font-display text-vinco-cream mb-12">{t.home.categories_title}</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-vinco-cream/10">
-        {categories.map((cat) => (
-          <div class="bg-vinco-black px-6 py-8">
-            <p class="text-vinco-cream text-sm">{cat}</p>
-          </div>
-        ))}
-      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 border-t border-l border-vinco-cream/10">
+  {categories.map((cat) => (
+    <div class="border-b border-r border-vinco-cream/10 px-6 py-8">
+      <p class="text-vinco-cream text-sm">{cat}</p>
+    </div>
+  ))}
+</div>
     </div>
   </section>
 
