@@ -1,0 +1,18 @@
+{
+  "$comment": "Component aliases for form controls.",
+  "component": {
+    "form": {
+      "input": {
+        "border": "var(--semantic-border-default)",
+        "radius": "var(--radius-md)",
+        "focus-ring": "var(--semantic-state-focus-ring)"
+      },
+      "label": {
+        "text": "var(--semantic-text-primary)"
+      },
+      "helper": {
+        "text": "var(--semantic-text-muted)"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$comment": "Core brand and utility colors.",
+  "color": {
+    "vinco": {
+      "cream": "#f0eddd",
+      "black": "#262626",
+      "brown-1": "#706a60",
+      "brown-2": "#524c43",
+      "burgundy": "#683542"
+    },
+    "utility": {
+      "white": "#ffffff",
+      "focus-ring": "#683542"
+    }
+  }
+}

@@ -6,17 +6,15 @@
     "contact": "Contacto"
   },
   "home": {
-    "home": {
-  "hero_title": "Do conceito ao produto.",
-  "hero_subtitle": "Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores para transformar ideias em objetos com rigor e intenção.",
-  "hero_cta": "Iniciar um projeto",
-  "work_title": "Trabalho selecionado",
-  "work_cta": "Ver todo o trabalho",
-  "categories_title": "O que desenvolvemos",
-  "process_title": "Como trabalhamos",
-  "cta_title": "Tens um projeto em mente?",
-  "cta_button": "Falar connosco"
-}
+    "hero_title": "Do conceito ao produto.",
+    "hero_subtitle": "Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores para transformar ideias em objetos com rigor e intenção.",
+    "hero_cta": "Iniciar um projeto",
+    "work_title": "Trabalho selecionado",
+    "work_cta": "Ver todo o trabalho",
+    "categories_title": "O que desenvolvemos",
+    "process_title": "Como trabalhamos",
+    "cta_title": "Tens um projeto em mente?",
+    "cta_button": "Falar connosco"
   },
   "work": {
     "title": "Trabalho",

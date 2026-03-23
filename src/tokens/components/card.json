@@ -1,0 +1,13 @@
+{
+  "$comment": "Component aliases for cards.",
+  "component": {
+    "card": {
+      "bg": "var(--semantic-surface-base)",
+      "border": "var(--semantic-border-default)",
+      "radius": "var(--radius-md)",
+      "shadow": "var(--shadow-card)",
+      "shadow-hover": "var(--shadow-card-hover)",
+      "padding": "var(--spacing-6)"
+    }
+  }
+}

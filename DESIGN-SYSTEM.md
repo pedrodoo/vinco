@@ -202,3 +202,22 @@ Respect `prefers-reduced-motion` at all times. Disable all non-essential motion.
 - Images: meaningful alt text. Decorative images marked as `aria-hidden`.
 - Forms: labels associated with inputs. Error messages descriptive.
 - Performance: responsive images, lazy-load below fold. Audit with Lighthouse. Target score >90.
+
+---
+
+## Token Maintenance Workflow
+
+Design tokens are managed with a hybrid model:
+- Source of truth: `src/tokens/**/*.json`
+- Generated output: `src/styles/tokens.generated.css`
+- Integration layer: `src/styles/global.css`
+
+### Update Process
+1. Edit token values in `src/tokens`.
+2. Run `pnpm tokens:build`.
+3. Validate visual output with `pnpm build` or `pnpm dev`.
+
+### Naming Convention
+- Nested token keys become kebab-case CSS custom properties.
+- Example: `semantic.surface.base` -> `--semantic-surface-base`
+- Existing legacy vars (`--color-vinco-*`, `--font-*`, etc.) remain stable for compatibility.

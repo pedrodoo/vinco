@@ -1,0 +1,17 @@
+{
+  "$comment": "Effects, radii, shadows, and depth layers.",
+  "radius": {
+    "sm": "4px",
+    "md": "8px"
+  },
+  "shadow": {
+    "card": "0 2px 8px rgba(0,0,0,0.08)",
+    "card-hover": "0 6px 16px rgba(0,0,0,0.12)"
+  },
+  "z-index": {
+    "base": "1",
+    "dropdown": "40",
+    "sticky": "50",
+    "modal": "100"
+  }
+}

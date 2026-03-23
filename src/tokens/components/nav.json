@@ -1,0 +1,18 @@
+{
+  "$comment": "Component aliases for navigation styles.",
+  "component": {
+    "nav": {
+      "link": {
+        "text": "var(--semantic-text-primary)",
+        "muted": "var(--semantic-text-muted)",
+        "hover-opacity": "0.6",
+        "active": "var(--semantic-action-primary)"
+      },
+      "bar": {
+        "bg": "var(--semantic-surface-base)",
+        "border": "var(--semantic-border-subtle)",
+        "z-index": "var(--z-index-sticky)"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$comment": "Semantic aliases mapped to core primitives.",
+  "semantic": {
+    "surface": {
+      "base": "var(--color-vinco-cream)",
+      "inverse": "var(--color-vinco-black)"
+    },
+    "text": {
+      "primary": "var(--color-vinco-black)",
+      "inverse": "var(--color-vinco-cream)",
+      "muted": "var(--color-vinco-brown-1)"
+    },
+    "border": {
+      "subtle": "color-mix(in oklab, var(--color-vinco-brown-1), transparent 80%)",
+      "default": "var(--color-vinco-brown-1)"
+    },
+    "action": {
+      "primary": "var(--color-vinco-burgundy)",
+      "primary-contrast": "var(--color-vinco-cream)"
+    },
+    "state": {
+      "focus-ring": "var(--color-utility-focus-ring)"
+    }
+  }
+}

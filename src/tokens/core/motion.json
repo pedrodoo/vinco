@@ -1,0 +1,11 @@
+{
+  "$comment": "Motion primitives and timing.",
+  "ease": {
+    "vinco": "cubic-bezier(0.2, 0.8, 0.2, 1)"
+  },
+  "duration": {
+    "fast": "150ms",
+    "base": "250ms",
+    "slow": "300ms"
+  }
+}

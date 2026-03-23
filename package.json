@@ -6,6 +6,10 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "tokens:build": "node scripts/build-tokens.mjs",
+    "tokens:watch": "node --watch scripts/build-tokens.mjs",
+    "predev": "pnpm tokens:build",
+    "prebuild": "pnpm tokens:build",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",

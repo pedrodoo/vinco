@@ -1,68 +1,11 @@
 @import "tailwindcss";
+@import "./tokens.generated.css";
 @font-face {
     font-family: "AV-Estiana";
     src: url("/fonts/AV-Estiana-VF.woff2") format("woff2-variations");
     font-weight: 100 900;
     font-style: normal;
-    font-display: swap;
-}
-
-@theme {
-  /* Colors */
-  --color-vinco-cream: #f0eddd;
-  --color-vinco-black: #262626;
-  --color-vinco-brown-1: #706a60;
-  --color-vinco-brown-2: #524c43;
-  --color-vinco-burgundy: #683542;
-
-  /* Typography */
-  --font-display: "AV-Estiana", sans-serif;
-  --font-editorial: "Cormorant Garamond", serif;
-  --font-body: "Inter", sans-serif;
-
-  /* Font sizes */
-  --font-size-h1: clamp(3rem, 5vw, 4rem);       /* 48–64px */
-  --font-size-h2: clamp(2rem, 3vw, 2.5rem);     /* 32–40px */
-  --font-size-h3: clamp(1.75rem, 2.5vw, 2rem);  /* 28–32px */
-  --font-size-h4: clamp(1.375rem, 2vw, 1.625rem); /* 22–26px */
-  --font-size-body: clamp(1rem, 1.2vw, 1.125rem); /* 16–18px */
-  --font-size-small: clamp(0.8125rem, 1vw, 0.875rem); /* 13–14px */
-
-  /* Line heights */
-  --line-height-display: 1.2;
-  --line-height-editorial: 1.3;
-  --line-height-body: 1.6;
-  --line-height-small: 1.5;
-
-  /* Letter spacing */
-  --letter-spacing-h1: -0.02em;
-  --letter-spacing-h2: -0.01em;
-
-  /* Spacing (8pt scale) */
-  --spacing-1: 0.25rem;  /* 4px */
-  --spacing-2: 0.5rem;   /* 8px */
-  --spacing-3: 0.75rem;  /* 12px */
-  --spacing-4: 1rem;     /* 16px */
-  --spacing-6: 1.5rem;   /* 24px */
-  --spacing-8: 2rem;     /* 32px */
-  --spacing-12: 3rem;    /* 48px */
-  --spacing-16: 4rem;    /* 64px */
-  --spacing-24: 6rem;    /* 96px */
-
-  /* Breakpoints */
-  --breakpoint-xs: 480px;
-  --breakpoint-sm: 768px;
-  --breakpoint-md: 1024px;
-  --breakpoint-lg: 1440px;
-
-  /* Max content width */
-  --container-content: 1440px;
-
-  /* Transitions */
-  --ease-vinco: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --duration-fast: 150ms;
-  --duration-base: 250ms;
-  --duration-slow: 300ms;
+    font-heading: swap;
 }
 
 @layer components {
@@ -86,14 +29,14 @@
   }
 
   h1 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: var(--font-size-h1);
     line-height: var(--line-height-display);
     letter-spacing: var(--letter-spacing-h1);
   }
 
   h2 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: var(--font-size-h2);
     line-height: var(--line-height-display);
     letter-spacing: var(--letter-spacing-h2);

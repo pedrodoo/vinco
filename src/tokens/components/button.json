@@ -1,0 +1,24 @@
+{
+  "$comment": "Component aliases for button variants.",
+  "component": {
+    "button": {
+      "primary": {
+        "bg": "var(--semantic-action-primary)",
+        "text": "var(--semantic-action-primary-contrast)",
+        "radius": "var(--radius-md)"
+      },
+      "secondary": {
+        "border": "var(--semantic-action-primary)",
+        "text": "var(--semantic-action-primary)",
+        "radius": "var(--radius-md)"
+      },
+      "focus": {
+        "ring": "var(--semantic-state-focus-ring)"
+      },
+      "padding": {
+        "y": "var(--spacing-3)",
+        "x": "var(--spacing-6)"
+      }
+    }
+  }
+}

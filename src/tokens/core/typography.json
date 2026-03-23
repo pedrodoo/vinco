@@ -1,0 +1,26 @@
+{
+  "$comment": "Typography primitives aligned with the VINCO design system.",
+  "font": {
+    "heading": "\"AV-Estiana\", sans-serif",
+    "editorial": "\"Cormorant Garamond\", serif",
+    "body": "\"Inter\", sans-serif",
+    "size": {
+      "h1": "clamp(3rem, 5vw, 4rem)",
+      "h2": "clamp(2rem, 3vw, 2.5rem)",
+      "h3": "clamp(1.75rem, 2.5vw, 2rem)",
+      "h4": "clamp(1.375rem, 2vw, 1.625rem)",
+      "body": "clamp(1rem, 1.2vw, 1.125rem)",
+      "small": "clamp(0.8125rem, 1vw, 0.875rem)"
+    }
+  },
+  "line-height": {
+    "display": "1.2",
+    "editorial": "1.3",
+    "body": "1.6",
+    "small": "1.5"
+  },
+  "letter-spacing": {
+    "h1": "-0.02em",
+    "h2": "-0.01em"
+  }
+}
