@@ -32,23 +32,26 @@ const process = [
   description="Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores."
   locale="pt"
 >
-
   <!-- HERO -->
-  <section class="bg-vinco-cream px-8 pt-32 pb-24 md:pt-48 md:pb-36">
-    <div class="max-w-[1440px] mx-auto">
-      <div class="max-w-3xl">
-        <h1 class="font-display text-vinco-black mb-6">
-          {t.home.hero_title}
-        </h1>
-        <p class="text-vinco-black/70 max-w-xl mb-10 text-lg leading-relaxed">
-          {t.home.hero_subtitle}
-        </p>
-        <a href={nav.contact} class="inline-block bg-vinco-burgundy text-vinco-cream text-sm tracking-wide px-8 py-4 hover:opacity-90 transition-opacity duration-150">
-          {t.home.hero_cta}
-        </a>
-      </div>
+<section class="bg-vinco-cream relative overflow-hidden">
+  <div class="max-w-[1440px] mx-auto px-8 pt-32 pb-24 md:pt-48 md:pb-36 relative z-10">
+    <div class="max-w-xl">
+      <h1 class="text-vinco-black mb-6">
+        {t.home.hero_title}
+      </h1>
+      <p class="text-vinco-black/70 mb-10 text-lg leading-relaxed">
+        {t.home.hero_subtitle}
+      </p>
+      <a href={nav.contact} class="inline-block bg-vinco-burgundy text-vinco-cream text-sm tracking-wide px-8 py-4 hover:opacity-90 transition-opacity duration-150">
+        {t.home.hero_cta}
+      </a>
     </div>
-  </section>
+  </div>
+  <div
+    class="absolute top-0 right-0 w-1/2 h-full opacity-10"
+    style="background-image: url('/images/patterns/pattern-cream.svg'); background-size: 300px; background-repeat: repeat;"
+  ></div>
+</section>
 
   <!-- FEATURED WORK -->
   <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
