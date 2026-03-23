@@ -1,39 +1,46 @@
 {
-    "nav": {
-      "work": "Trabalho",
-      "what-we-do": "O Que Fazemos",
-      "about": "Sobre",
-      "contact": "Contacto"
-    },
+  "nav": {
+    "work": "Trabalho",
+    "what-we-do": "O Que Fazemos",
+    "about": "Sobre",
+    "contact": "Contacto"
+  },
+  "home": {
     "home": {
-      "hero_title": "[Headline principal]",
-      "hero_subtitle": "[Subtítulo hero]",
-      "intro_title": "[Título secção intro]",
-      "intro_body": "[Texto intro]"
-    },
-    "work": {
-      "title": "Trabalho",
-      "intro": "[Introdução à secção de trabalho]"
-    },
-    "what-we-do": {
-      "title": "O Que Fazemos",
-      "intro": "[Introdução ao que fazemos]"
-    },
-    "about": {
-      "title": "Sobre",
-      "intro": "[Introdução sobre o estúdio]"
-    },
-    "contact": {
-      "title": "Contacto",
-      "intro": "[Introdução à secção de contacto]"
-    },
-    "footer": {
-      "tagline": "[Tagline do footer]",
-      "rights": "© 2026 Vinco Estúdio. Todos os direitos reservados.",
-      "email": "hello@vinco-studio.com",
-      "social": {
-        "instagram": "https://instagram.com/vincostudio",
-        "linkedin": "https://linkedin.com/company/vincostudio"
-      }
+  "hero_title": "Do conceito ao produto.",
+  "hero_subtitle": "Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores para transformar ideias em objetos com rigor e intenção.",
+  "hero_cta": "Iniciar um projeto",
+  "work_title": "Trabalho selecionado",
+  "work_cta": "Ver todo o trabalho",
+  "categories_title": "O que desenvolvemos",
+  "process_title": "Como trabalhamos",
+  "cta_title": "Tens um projeto em mente?",
+  "cta_button": "Falar connosco"
+}
+  },
+  "work": {
+    "title": "Trabalho",
+    "intro": "[Introdução à secção de trabalho]"
+  },
+  "what-we-do": {
+    "title": "O Que Fazemos",
+    "intro": "[Introdução ao que fazemos]"
+  },
+  "about": {
+    "title": "Sobre",
+    "intro": "[Introdução sobre o estúdio]"
+  },
+  "contact": {
+    "title": "Contacto",
+    "intro": "[Introdução à secção de contacto]"
+  },
+  "footer": {
+    "tagline": "[Tagline do footer]",
+    "rights": "© 2026 Vinco Estúdio. Todos os direitos reservados.",
+    "email": "hello@vinco-studio.com",
+    "social": {
+      "instagram": "https://instagram.com/vincostudio",
+      "linkedin": "https://linkedin.com/company/vincostudio"
     }
+  }
 }

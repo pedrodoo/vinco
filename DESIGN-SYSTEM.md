@@ -20,7 +20,7 @@ Usage rule: 60% cream, 30% black, 10% burgundy/browns.
 |---|---|---|
 | vinco-cream | `#f0eddd` | Primary background |
 | vinco-black | `#262626` | Primary text, dark sections |
-| vinco-brown-1 | `#706a60` | Accents, separators, EN language marker |
+| vinco-brown-1 | `#706a60` | Accents, separators |
 | vinco-brown-2 | `#524c43` | Secondary accents |
 | vinco-burgundy | `#683542` | Emphasis, CTAs, active states |
 
@@ -40,7 +40,7 @@ Usage rule: 60% cream, 30% black, 10% burgundy/browns.
 | Editorial | Cormorant Garamond | H3–H4. Serif with high stroke contrast. Subheadlines, section intros, pull quotes. |
 | UI & Body | Inter | Body, captions, labels, UI elements. Neutral, highly legible at screen sizes. |
 
-> Note: Confirm web license for AV-Estiana before development. Cormorant Garamond is available free via Google Fonts.
+> Note: AV-Estiana is self-hosted as a variable font (woff2). Cormorant Garamond and Inter are loaded via Google Fonts.
 
 ### Scale
 
@@ -57,20 +57,18 @@ Usage rule: 60% cream, 30% black, 10% burgundy/browns.
 
 ## Bilingual System (PT / EN)
 
-VINCO operates in PT and EN. The language approach is inline — PT and EN coexist visually rather than switching pages.
+VINCO operates in PT and EN. The language approach is route-based — each locale has its own URL and renders content entirely in that language.
 
-### Rules by content type
+- PT: `vinco-studio.com/` (default, no prefix)
+- EN: `vinco-studio.com/en/`
 
-**Headlines, CTAs, Navigation labels**
-Inline bilingual. PT in vinco-black (primary). EN in vinco-brown-1 (secondary). Same font, same size, differentiated by color. Separated by a 1px vinco-brown-1 vertical rule or a simple slash.
+### Rules
 
-Example: *Estúdio / Studio* — where "Estúdio" is vinco-black and "Studio" is vinco-brown-1.
+**All content — headlines, CTAs, nav, body, footer**
+Single language per route. No inline mixing. Each JSON file (`pt.json`, `en.json`) contains the full content for that locale.
 
-**Body copy**
-Language toggle in the nav. Single language displayed at a time. Inline bilingual at paragraph length is unreadable and unmaintainable.
-
-**Footer**
-Inline bilingual for tagline and key labels. Full footer links use toggle-controlled language.
+**Language toggle**
+Top-right in nav. Links to the equivalent page in the alternate locale.
 
 ---
 

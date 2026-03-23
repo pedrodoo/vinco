@@ -1,11 +1,116 @@
 ---
 import Base from '../layouts/Base.astro';
+import { useTranslations, getNavLinks } from '../i18n/utils';
+
+const locale = 'pt';
+const t = useTranslations(locale);
+const nav = getNavLinks(locale);
+
+const projects = [
+  { client: "Oceanário de Lisboa", category: "Merchandising institucional", year: "2024", slug: "oceanario" },
+  { client: "Fundação Oceano Azul", category: "Desenvolvimento de produto", year: "2024", slug: "fundacao-oceano-azul" },
+  { client: "SFMS", category: "Vestuário e acessórios", year: "2023", slug: "sfms" }
+];
+
+const categories = [
+  "Vestuário", "Acessórios", "Cerâmica", "Papelaria",
+  "Têxtil-lar", "Uniformes", "Merchandising", "Outros"
+];
+
+const process = [
+  { name: "Definição estratégica", desc: "Clarificamos o problema, o contexto e os objetivos antes de qualquer decisão formal." },
+  { name: "Desenvolvimento formal", desc: "Conceito, forma e função tomam forma através de iteração rigorosa." },
+  { name: "Seleção de materiais", desc: "Escolhemos materiais com critério — qualidade, origem e impacto." },
+  { name: "Sourcing", desc: "Identificamos e validamos os parceiros de produção certos para cada projeto." },
+  { name: "Acompanhamento de produção", desc: "Gerimos o processo produtivo do início ao fim, sem delegação de responsabilidade." },
+  { name: "Comunicação de marca", desc: "Asseguramos que o objeto chega ao mundo com a apresentação que merece." }
+];
 ---
 
 <Base
-  title="Vinco Estúdio"
-  description="[Descrição placeholder]"
+  title="Vinco Estúdio — Do conceito ao produto"
+  description="Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores."
   locale="pt"
 >
-  <h1>Homepage</h1>
+
+  <!-- HERO -->
+  <section class="bg-vinco-cream px-8 py-24 md:py-36">
+    <div class="max-w-[1440px] mx-auto">
+      <div class="max-w-3xl">
+        <h1 class="font-display text-vinco-black mb-6">
+          {t.home.hero_title}
+        </h1>
+        <p class="text-vinco-black/70 max-w-xl mb-10 text-lg leading-relaxed">
+          {t.home.hero_subtitle}
+        </p>
+        <a href={nav.contact} class="inline-block bg-vinco-burgundy text-vinco-cream text-sm tracking-wide px-8 py-4 hover:opacity-90 transition-opacity duration-150">
+          {t.home.hero_cta}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED WORK -->
+  <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
+    <div class="max-w-[1440px] mx-auto">
+      <div class="flex items-baseline justify-between mb-12">
+        <h2 class="font-display text-vinco-black">{t.home.work_title}</h2>
+        <a href={nav.work} class="text-sm text-vinco-brown-1 hover:text-vinco-burgundy transition-colors duration-150">
+          {t.home.work_cta} →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {projects.map((project) => (
+          <a href={`/trabalho/${project.slug}`} class="group block">
+            <div class="aspect-[4/3] bg-vinco-brown-1/10 mb-4 overflow-hidden">
+              <div class="w-full h-full group-hover:scale-[1.02] transition-transform duration-300" />
+            </div>
+            <p class="text-xs text-vinco-brown-1 mb-1">{project.category} — {project.year}</p>
+            <p class="text-vinco-black font-medium">{project.client}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="bg-vinco-black px-8 py-24">
+    <div class="max-w-[1440px] mx-auto">
+      <h2 class="font-display text-vinco-cream mb-12">{t.home.categories_title}</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-vinco-cream/10">
+        {categories.map((cat) => (
+          <div class="bg-vinco-black px-6 py-8">
+            <p class="text-vinco-cream text-sm">{cat}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="bg-vinco-cream px-8 py-24 border-t border-vinco-brown-1/20">
+    <div class="max-w-[1440px] mx-auto">
+      <h2 class="font-display text-vinco-black mb-12">{t.home.process_title}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {process.map((step, i) => (
+          <div class="border-t border-vinco-brown-1/30 pt-6">
+            <p class="text-xs text-vinco-brown-1 mb-3">0{i + 1}</p>
+            <p class="text-vinco-black font-medium mb-2">{step.name}</p>
+            <p class="text-sm text-vinco-black/60 leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="bg-vinco-black px-8 py-24">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <h2 class="font-display text-vinco-cream">{t.home.cta_title}</h2>
+      <a href={nav.contact} class="inline-block border border-vinco-cream text-vinco-cream text-sm tracking-wide px-8 py-4 hover:bg-vinco-cream hover:text-vinco-black transition-colors duration-150 whitespace-nowrap">
+        {t.home.cta_button}
+      </a>
+    </div>
+  </section>
+
 </Base>

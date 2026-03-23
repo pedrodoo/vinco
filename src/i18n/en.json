@@ -1,39 +1,46 @@
 {
-    "nav": {
-      "work": "Work",
-      "what-we-do": "What We Do",
-      "about": "About",
-      "contact": "Contact"
-    },
+  "nav": {
+    "work": "Work",
+    "what-we-do": "What We Do",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
     "home": {
-      "hero_title": "[Main headline]",
-      "hero_subtitle": "[Hero subtitle]",
-      "intro_title": "[Intro section title]",
-      "intro_body": "[Intro text]"
-    },
-    "work": {
-      "title": "Work",
-      "intro": "[Work section intro]"
-    },
-    "what-we-do": {
-      "title": "What We Do",
-      "intro": "[What we do intro]"
-    },
-    "about": {
-      "title": "About",
-      "intro": "[Studio intro]"
-    },
-    "contact": {
-      "title": "Contact",
-      "intro": "[Contact section intro]"
-    },
-    "footer": {
-     "tagline": "[Footer tagline]",
-     "rights": "© 2026 Vinco Studio. All rights reserved.",
-     "email": "hello@vinco-studio.com",
-     "social": {
+  "hero_title": "Concept to product.",
+  "hero_subtitle": "End-to-end product development studio. We work with brands, institutions and creators to transform ideas into objects with rigour and intention.",
+  "hero_cta": "Start a project",
+  "work_title": "Selected work",
+  "work_cta": "View all work",
+  "categories_title": "What we develop",
+  "process_title": "How we work",
+  "cta_title": "Have a project in mind?",
+  "cta_button": "Let's talk"
+}
+  },
+  "work": {
+    "title": "Work",
+    "intro": "[Work section intro]"
+  },
+  "what-we-do": {
+    "title": "What We Do",
+    "intro": "[What we do intro]"
+  },
+  "about": {
+    "title": "About",
+    "intro": "[Studio intro]"
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "[Contact section intro]"
+  },
+  "footer": {
+    "tagline": "[Footer tagline]",
+    "rights": "© 2026 Vinco Studio. All rights reserved.",
+    "email": "hello@vinco-studio.com",
+    "social": {
       "instagram": "https://instagram.com/vincostudio",
-     "linkedin": "https://linkedin.com/company/vincostudio"
-     }
+      "linkedin": "https://linkedin.com/company/vincostudio"
     }
+  }
 }
