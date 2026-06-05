@@ -3,17 +3,19 @@
 Edit this table to update website copy in both languages.
 Then run `pnpm sync:copy` to regenerate `pt.json` and `en.json`.
 
+Use `\n` inside a cell for an intentional line break in titles (each language can break differently).
+
 | key | pt | en |
 | --- | --- | --- |
 | nav.work | Trabalho | Work |
 | nav.what-we-do | O Que Fazemos | What We Do |
 | nav.about | Sobre | About |
 | nav.contact | Contacto | Contact |
-| home.hero_title | Do conceito \n ao produto. | Concept \n to product. |
+| home.hero_title | Do conceito\nao produto. | Concept\nto product. |
 | home.hero_subtitle | Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores para transformar ideias em objetos com rigor e intenção. | End-to-end product development studio. We work with brands, institutions and creators to transform ideas into objects with rigour and intention. |
 | home.hero_cta | Iniciar um projeto | Start a project |
 | home.work_title | Trabalho selecionado | Selected work |
-| home.work_cta | Ver todo o trabalho | View all work |l
+| home.work_cta | Ver todo o trabalho | View all work |
 | home.categories_title | O que desenvolvemos | What we develop |
 | home.process_title | Como trabalhamos | How we work |
 | home.cta_title | Tem um projeto em mente? | Have a project in mind? |

@@ -31,6 +31,10 @@ function parseTableRow(line) {
   };
 }
 
+function parseCopyValue(value) {
+  return value.replace(/\\n/g, '\n');
+}
+
 function setByDottedPath(target, dottedKey, value) {
   const segments = dottedKey.split('.');
   let cursor = target;
@@ -105,8 +109,8 @@ async function main() {
     }
 
     seenKeys.add(row.key);
-    setByDottedPath(ptJson, row.key, row.pt);
-    setByDottedPath(enJson, row.key, row.en);
+    setByDottedPath(ptJson, row.key, parseCopyValue(row.pt));
+    setByDottedPath(enJson, row.key, parseCopyValue(row.en));
   }
 
   await writeFile(ptPath, `${JSON.stringify(ptJson, null, 2)}\n`, 'utf8');

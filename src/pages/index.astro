@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import MultilineText from '../components/MultilineText.astro';
 import { useTranslations, getNavLinks } from '../i18n/utils';
 
 const locale = 'pt';
@@ -37,7 +38,7 @@ const process = [
   <div class="max-w-[1440px] mx-auto px-8 pt-32 pb-24 md:pt-48 md:pb-36 relative z-10">
     <div class="max-w-xl">
       <h1 class="text-vinco-black mb-6">
-        {t.home.hero_title}
+        <MultilineText text={t.home.hero_title} />
       </h1>
       <p class="text-vinco-black/70 mb-10 text-lg leading-relaxed">
         {t.home.hero_subtitle}
@@ -57,7 +58,7 @@ const process = [
   <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
     <div class="max-w-[1440px] mx-auto">
       <div class="flex items-baseline justify-between mb-12">
-        <h2 class="font-display text-vinco-black">{t.home.work_title}</h2>
+        <h2 class="font-display text-vinco-black"><MultilineText text={t.home.work_title} /></h2>
         <a href={nav.work} class="text-sm text-vinco-brown-1 hover:text-vinco-burgundy transition-colors duration-150">
           {t.home.work_cta} →
         </a>
@@ -79,7 +80,7 @@ const process = [
   <!-- CATEGORIES -->
   <section class="bg-vinco-black px-8 py-24">
     <div class="max-w-[1440px] mx-auto">
-      <h2 class="font-display text-vinco-cream mb-12">{t.home.categories_title}</h2>
+      <h2 class="font-display text-vinco-cream mb-12"><MultilineText text={t.home.categories_title} /></h2>
       <div class="grid grid-cols-2 md:grid-cols-4 border-t border-l border-vinco-cream/10">
   {categories.map((cat) => (
     <div class="border-b border-r border-vinco-cream/10 px-6 py-8">
@@ -93,7 +94,7 @@ const process = [
   <!-- PROCESS -->
   <section class="bg-vinco-cream px-8 py-24 border-t border-vinco-brown-1/20">
     <div class="max-w-[1440px] mx-auto">
-      <h2 class="font-display text-vinco-black mb-12">{t.home.process_title}</h2>
+      <h2 class="font-display text-vinco-black mb-12"><MultilineText text={t.home.process_title} /></h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {process.map((step, i) => (
           <div class="border-t border-vinco-brown-1/30 pt-6">
@@ -109,7 +110,7 @@ const process = [
   <!-- CTA FINAL -->
   <section class="bg-vinco-black px-8 py-24">
     <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-      <h2 class="font-display text-vinco-cream">{t.home.cta_title}</h2>
+      <h2 class="font-display text-vinco-cream"><MultilineText text={t.home.cta_title} /></h2>
       <a href={nav.contact} class="inline-block border border-vinco-cream text-vinco-cream text-sm tracking-wide px-8 py-4 hover:bg-vinco-cream hover:text-vinco-black transition-colors duration-150 whitespace-nowrap">
         {t.home.cta_button}
       </a>

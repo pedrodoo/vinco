@@ -1,0 +1,19 @@
+---
+import { splitCopyLines } from '../i18n/utils';
+
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+const lines = splitCopyLines(text);
+---
+
+{
+  lines.map((line, index) => (
+    <>
+      {index > 0 && <br />}
+      {line}
+    </>
+  ))
+}

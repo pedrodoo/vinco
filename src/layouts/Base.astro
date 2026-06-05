@@ -1,5 +1,5 @@
 ---
-import { useTranslations, getNavLinks } from '../i18n/utils';
+import { useTranslations, getNavLinks, getAlternateLocalePath } from '../i18n/utils';
 import type { Locale } from '../i18n/utils';
 import '../styles/global.css';
 
@@ -14,9 +14,7 @@ const t = useTranslations(locale);
 const nav = getNavLinks(locale);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const altLocale = locale === 'pt' ? 'en' : 'pt';
-const altPath = locale === 'pt'
-  ? `/en${Astro.url.pathname}`
-  : Astro.url.pathname.replace('/en', '') || '/';
+const altPath = getAlternateLocalePath(Astro.url.pathname, locale);
 ---
 
 <!doctype html>
