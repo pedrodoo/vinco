@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import MultilineText from './MultilineText.astro';
+import OptimizedImage from './OptimizedImage.astro';
+import founderPhoto from '../assets/images/about/fundadora.jpg';
+import {
+  useTranslations,
+  getNavLinks,
+  splitCopyParagraphs,
+  type Locale,
+} from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const nav = getNavLinks(locale);
+const siteName = locale === 'pt' ? 'Vinco Estúdio' : 'Vinco Studio';
+
+const studioParagraphs = splitCopyParagraphs(t.about.studio_body);
+const founderParagraphs = splitCopyParagraphs(t.about.founder_bio);
+---
+
+<Base
+  title={`${t.about.title} | ${siteName}`}
+  description={t.about.meta_description}
+  locale={locale}
+>
+  <section class="bg-vinco-cream relative overflow-hidden">
+    <div class="max-w-[1440px] mx-auto px-8 pt-32 pb-24 md:pt-48 md:pb-36 relative z-10">
+      <div class="max-w-2xl">
+        <h1 class="text-vinco-black mb-6">
+          <MultilineText text={t.about.title} />
+        </h1>
+        <p class="text-vinco-black/70 text-lg leading-relaxed">
+          {t.about.intro}
+        </p>
+      </div>
+    </div>
+    <div
+      class="absolute top-0 right-0 w-1/2 h-full opacity-10"
+      style="background-image: url('/images/patterns/pattern-cream.svg'); background-size: 300px; background-repeat: repeat;"
+    ></div>
+  </section>
+
+  <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
+    <div class="max-w-[1440px] mx-auto">
+      <h2 class="font-display text-vinco-black mb-8">
+        <MultilineText text={t.about.studio_title} />
+      </h2>
+      <div class="max-w-3xl space-y-6">
+        {studioParagraphs.map((paragraph) => (
+          <p class="text-lg text-vinco-black/70 leading-relaxed">{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-vinco-black px-8 py-24">
+    <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+      <div class="aspect-[3/4] overflow-hidden">
+        <OptimizedImage
+          src={founderPhoto}
+          alt={t.about.founder_photo_alt}
+          class="w-full h-full object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </div>
+      <div class="md:pt-8">
+        <h2 class="font-display text-vinco-cream mb-2">{t.about.founder_name}</h2>
+        <p class="text-sm text-vinco-cream/60 mb-8">{t.about.founder_role}</p>
+        <div class="space-y-6">
+          {founderParagraphs.map((paragraph) => (
+            <p class="text-vinco-cream/70 leading-relaxed">{paragraph}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-vinco-black border-t border-vinco-cream/10 px-8 py-24">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <h2 class="font-display text-vinco-cream">
+        <MultilineText text={t.home.cta_title} />
+      </h2>
+      <a
+        href={nav.contact}
+        class="inline-block border border-vinco-cream text-vinco-cream text-sm tracking-wide px-8 py-4 hover:bg-vinco-cream hover:text-vinco-black transition-colors duration-150 whitespace-nowrap"
+      >
+        {t.home.cta_button}
+      </a>
+    </div>
+  </section>
+</Base>

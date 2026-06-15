@@ -1,0 +1,81 @@
+---
+import { categories } from '../../data/work';
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  variant?: 'static' | 'linked' | 'interactive';
+  activeSlug?: string | null;
+  baseUrl?: string;
+  compact?: boolean;
+  theme?: 'dark' | 'light';
+}
+
+const {
+  locale,
+  variant = 'static',
+  activeSlug = null,
+  baseUrl = '',
+  compact = false,
+  theme = 'dark',
+} = Astro.props;
+
+const borderClass = theme === 'dark' ? 'border-vinco-cream/10' : 'border-vinco-brown-1/20';
+const textClass = theme === 'dark' ? 'text-vinco-cream' : 'text-vinco-black';
+const hoverClass = theme === 'dark' ? 'hover:bg-vinco-cream/5' : 'hover:bg-vinco-brown-1/5';
+const activeClass = theme === 'dark'
+  ? 'bg-vinco-cream/10 ring-1 ring-inset ring-vinco-burgundy/50'
+  : 'bg-vinco-brown-1/10 ring-1 ring-inset ring-vinco-burgundy/50';
+---
+
+<div
+  class:list={[
+    'grid border-t border-l',
+    compact ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-4',
+    borderClass,
+    variant === 'interactive' && 'category-filter-grid',
+  ]}
+  data-category-grid={variant === 'interactive' ? '' : undefined}
+>
+  {categories.map((cat) => {
+    const label = cat.label[locale];
+    const isActive = activeSlug === cat.slug;
+    const cellClass = [
+      'border-b border-r text-sm transition-colors duration-150',
+      borderClass,
+      textClass,
+      compact ? 'px-3 py-4' : 'px-6 py-8',
+      (variant === 'interactive' || variant === 'linked') && hoverClass,
+      variant === 'interactive' && 'cursor-pointer category-filter-cell',
+      variant === 'interactive' && isActive && activeClass,
+    ];
+
+    if (variant === 'linked') {
+      const href = `${baseUrl}?categoria=${cat.slug}`;
+      return (
+        <a href={href} class:list={cellClass}>
+          {label}
+        </a>
+      );
+    }
+
+    if (variant === 'interactive') {
+      return (
+        <button
+          type="button"
+          class:list={[cellClass, 'text-left w-full']}
+          data-category-slug={cat.slug}
+          aria-pressed={isActive ? 'true' : 'false'}
+        >
+          {label}
+        </button>
+      );
+    }
+
+    return (
+      <div class:list={cellClass}>
+        <p>{label}</p>
+      </div>
+    );
+  })}
+</div>

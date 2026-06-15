@@ -1,6 +1,7 @@
 {
   "nav": {
     "work": "Work",
+    "work-case-studies": "Case Studies",
     "what-we-do": "What We Do",
     "about": "About",
     "contact": "Contact"
@@ -18,7 +19,10 @@
   },
   "work": {
     "title": "Work",
-    "intro": "[Work section intro]"
+    "intro": "End-to-end projects where we transformed concepts into products with rigour and intention.",
+    "categories_intro": "Browse results by product category.",
+    "categories_all": "View all",
+    "categories_select": "Select a category"
   },
   "what-we-do": {
     "title": "What We Do",
@@ -26,7 +30,14 @@
   },
   "about": {
     "title": "About",
-    "intro": "[Studio intro]"
+    "intro": "Vinco is a creative and strategic consulting studio specializing in the comprehensive development of products. It partners with brands, institutions, and creators seeking to transform concepts into tangible, efficient, and sustainable solutions.",
+    "meta_description": "Meet Vinco Studio — end-to-end product development for brands, institutions and creators.",
+    "studio_title": "The studio",
+    "studio_body": "Vinco is an end-to-end product development studio. We work with brands, institutions and creators to take concepts from strategic definition through to production and final communication.\n\nWe believe every object should be conceived with intention — in its form, materials, process and the way it reaches the world. Our work spans apparel, accessories, ceramics, stationery, home textiles, uniforms and institutional merchandising.\n\nWe oversee every phase of the project without delegating responsibility: strategic definition, formal development, material selection, sourcing, production oversight and brand communication.",
+    "founder_name": "Sara Vicente",
+    "founder_role": "Founder, Vinco Studio",
+    "founder_bio": "The path began in communications, but fashion defined her direction. After graduating in Social Communication from Universidade Católica, she spent two years at a communications agency before deciding to specialize, moving to Paris to complete a Master's in Fashion Marketing & Management at ISEM.\nThe following ten years in Paris shaped her approach to work. As a product manager at internationally recognized brands including Joseph and Yves Saint Laurent, she developed a deep understanding of what it takes to bring a concept to life without losing its original intent. Working in a fast-paced environment, managing multiple stakeholders with no margin for error, that discipline became her way of working.\nIn 2019, she joined Burberry in London before returning to Portugal in 2021, where she began working as an independent consultant in product development for brands and creators. In 2026, she formalized that practice with the founding of Vinco Studio, to turn ideas into products that work, with method, clarity, and purpose.",
+    "founder_photo_alt": "Portrait of the founder of Vinco Studio"
   },
   "contact": {
     "title": "Contact",

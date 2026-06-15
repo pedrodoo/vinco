@@ -1,0 +1,114 @@
+---
+import ProjectCard from '../work/ProjectCard.astro';
+import CategoryGrid from '../work/CategoryGrid.astro';
+import { getFeaturedProjects } from '../../data/work';
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  workLabel: string;
+  caseStudiesLabel: string;
+  categoriesTitle: string;
+  workCta: string;
+  categoriesAll: string;
+  workUrl: string;
+  categoriesUrl: string;
+}
+
+const {
+  locale,
+  workLabel,
+  caseStudiesLabel,
+  categoriesTitle,
+  workCta,
+  categoriesAll,
+  workUrl,
+  categoriesUrl,
+} = Astro.props;
+
+const featuredProjects = getFeaturedProjects();
+---
+
+<li class="group relative" data-work-mega-menu>
+  <a
+    href={workUrl}
+    class="nav-link"
+    aria-haspopup="true"
+    aria-expanded="false"
+    data-mega-trigger
+  >
+    {workLabel}
+  </a>
+
+  <div
+    class="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible pointer-events-none
+           group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto
+           group-focus-within:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto
+           transition-all duration-150 z-40"
+    data-mega-panel
+  >
+    <div
+      class="w-[min(90vw,720px)] bg-vinco-cream border border-vinco-brown-1/20 shadow-[var(--shadow-card)]
+             grid grid-cols-2 divide-x divide-vinco-brown-1/20"
+    >
+      <!-- Case Studies -->
+      <div class="p-6">
+        <p class="text-xs tracking-widest uppercase text-vinco-brown-1 mb-4">
+          {caseStudiesLabel}
+        </p>
+        <div class="grid grid-cols-3 gap-3 mb-4">
+          {featuredProjects.map((project) => (
+            <ProjectCard project={project} locale={locale} variant="compact" />
+          ))}
+        </div>
+        <a href={workUrl} class="nav-sublink text-sm">
+          {workCta} →
+        </a>
+      </div>
+
+      <!-- O que desenvolvemos -->
+      <div class="p-6">
+        <p class="text-xs tracking-widest uppercase text-vinco-brown-1 mb-4">
+          {categoriesTitle}
+        </p>
+        <CategoryGrid
+          locale={locale}
+          variant="linked"
+          baseUrl={categoriesUrl}
+          compact
+          theme="light"
+        />
+        <a href={categoriesUrl} class="nav-sublink text-sm mt-4 inline-block">
+          {categoriesAll} →
+        </a>
+      </div>
+    </div>
+  </div>
+</li>
+
+<script>
+  document.querySelectorAll('[data-work-mega-menu]').forEach((menu) => {
+    const trigger = menu.querySelector('[data-mega-trigger]');
+    const panel = menu.querySelector('[data-mega-panel]');
+
+    if (!trigger || !panel) return;
+
+    function setExpanded(expanded: boolean) {
+      trigger!.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    }
+
+    menu.addEventListener('mouseenter', () => setExpanded(true));
+    menu.addEventListener('mouseleave', () => setExpanded(false));
+    menu.addEventListener('focusin', () => setExpanded(true));
+    menu.addEventListener('focusout', (e) => {
+      if (!menu.contains(e.relatedTarget as Node)) setExpanded(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.matches(':hover, :focus-within')) {
+        setExpanded(false);
+        (trigger as HTMLElement).focus();
+      }
+    });
+  });
+</script>

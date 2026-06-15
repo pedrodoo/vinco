@@ -16,6 +16,10 @@
     .footer-link {
       @apply text-sm text-vinco-cream/70 hover:text-vinco-cream transition-colors duration-150;
     }
+
+    .nav-sublink {
+      @apply text-vinco-brown-1 hover:text-vinco-burgundy transition-colors duration-150;
+    }
   }
 
 /* Base styles */

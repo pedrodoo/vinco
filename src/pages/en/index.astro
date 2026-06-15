@@ -1,22 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
 import MultilineText from '../../components/MultilineText.astro';
+import ProjectCard from '../../components/work/ProjectCard.astro';
+import CategoryGrid from '../../components/work/CategoryGrid.astro';
 import { useTranslations, getNavLinks } from '../../i18n/utils';
+import { getFeaturedProjects } from '../../data/work';
 
 const locale = 'en';
 const t = useTranslations(locale);
 const nav = getNavLinks(locale);
-
-const projects = [
-  { client: "Oceanário de Lisboa", category: "Institutional merchandising", year: "2024", slug: "oceanario" },
-  { client: "Fundação Oceano Azul", category: "Product development", year: "2024", slug: "fundacao-oceano-azul" },
-  { client: "SFMS", category: "Apparel and accessories", year: "2023", slug: "sfms" }
-];
-
-const categories = [
-  "Apparel", "Accessories", "Ceramics", "Stationery",
-  "Home textiles", "Uniforms", "Merchandising", "Other"
-];
+const projects = getFeaturedProjects();
 
 const process = [
   { name: "Strategic definition", desc: "We clarify the problem, context and objectives before any formal decision." },
@@ -64,14 +57,8 @@ const process = [
         </a>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {projects.map((project) => (
-          <a href={`/en/work/${project.slug}`} class="group block">
-            <div class="aspect-[4/3] bg-vinco-brown-1/10 mb-4 overflow-hidden">
-              <div class="w-full h-full group-hover:scale-[1.02] transition-transform duration-300" />
-            </div>
-            <p class="text-xs text-vinco-brown-1 mb-1">{project.category} — {project.year}</p>
-            <p class="text-vinco-black font-medium">{project.client}</p>
-          </a>
+        {projects.map((project, index) => (
+          <ProjectCard project={project} locale={locale} staggerIndex={index} />
         ))}
       </div>
     </div>
@@ -81,13 +68,7 @@ const process = [
   <section class="bg-vinco-black px-8 py-24">
     <div class="max-w-[1440px] mx-auto">
       <h2 class="font-display text-vinco-cream mb-12"><MultilineText text={t.home.categories_title} /></h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 border-t border-l border-vinco-cream/10">
-        {categories.map((cat) => (
-          <div class="border-b border-r border-vinco-cream/10 px-6 py-8">
-            <p class="text-vinco-cream text-sm">{cat}</p>
-          </div>
-        ))}
-      </div>
+      <CategoryGrid locale={locale} variant="static" />
     </div>
   </section>
 

@@ -1,0 +1,56 @@
+---
+import OptimizedImage from '../OptimizedImage.astro';
+import ProjectSlideshow from '../ProjectSlideshow.astro';
+import type { Project } from '../../data/work';
+import type { Locale } from '../../i18n/utils';
+import { getProjectGallery, getProjectPath } from '../../data/work';
+
+interface Props {
+  project: Project;
+  locale: Locale;
+  variant?: 'default' | 'compact';
+  staggerIndex?: number;
+}
+
+const { project, locale, variant = 'default', staggerIndex = 0 } = Astro.props;
+const href = getProjectPath(project.slug, locale);
+const categoryLabel = project.category[locale];
+const gallery = getProjectGallery(project);
+---
+
+<a href={href} class:list={['group block', variant === 'compact' && 'min-w-0']}>
+  <div
+    class:list={[
+      'bg-vinco-brown-1/10 overflow-hidden',
+      variant === 'default' ? 'aspect-[4/3] mb-4' : 'aspect-[4/3] mb-2',
+    ]}
+  >
+    {gallery.length > 1 ? (
+      <ProjectSlideshow
+        images={gallery}
+        alt={project.client}
+        staggerIndex={staggerIndex}
+      />
+    ) : gallery.length === 1 ? (
+      <OptimizedImage
+        src={gallery[0]}
+        alt={project.client}
+        class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+        sizes={variant === 'compact' ? '200px' : '(max-width: 768px) 100vw, 33vw'}
+      />
+    ) : (
+      <div class="w-full h-full group-hover:scale-[1.02] transition-transform duration-300" />
+    )}
+  </div>
+  <p class:list={['text-vinco-brown-1 mb-1', variant === 'compact' ? 'text-[10px]' : 'text-xs']}>
+    {categoryLabel} — {project.year}
+  </p>
+  <p
+    class:list={[
+      'text-vinco-black font-medium',
+      variant === 'compact' ? 'text-xs truncate' : '',
+    ]}
+  >
+    {project.client}
+  </p>
+</a>

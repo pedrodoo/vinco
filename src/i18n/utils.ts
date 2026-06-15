@@ -14,10 +14,16 @@ export function splitCopyLines(text: string): string[] {
   return text.split('\n');
 }
 
+/** Splits copy on blank lines produced by `\n\n` in copy.md. */
+export function splitCopyParagraphs(text: string): string[] {
+  return text.split(/\n\n+/).filter(Boolean);
+}
+
 const routeMap = {
   pt: {
     home: '/',
     work: '/trabalho',
+    workWhatWeDevelop: '/trabalho/o-que-desenvolvemos',
     whatWeDo: '/o-que-fazemos',
     about: '/sobre',
     contact: '/contacto',
@@ -25,6 +31,7 @@ const routeMap = {
   en: {
     home: '/en/',
     work: '/en/work',
+    workWhatWeDevelop: '/en/work/what-we-develop',
     whatWeDo: '/en/what-we-do',
     about: '/en/about',
     contact: '/en/contact',
@@ -38,6 +45,7 @@ export function getNavLinks(locale: Locale) {
 const pathPairs: [string, string][] = [
   ['/', '/en/'],
   ['/trabalho', '/en/work'],
+  ['/trabalho/o-que-desenvolvemos', '/en/work/what-we-develop'],
   ['/o-que-fazemos', '/en/what-we-do'],
   ['/sobre', '/en/about'],
   ['/contacto', '/en/contact'],

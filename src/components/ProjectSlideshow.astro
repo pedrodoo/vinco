@@ -1,0 +1,258 @@
+---
+import OptimizedImage from './OptimizedImage.astro';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  images: ImageMetadata[];
+  alt: string;
+  staggerIndex?: number;
+}
+
+const { images, alt, staggerIndex = 0 } = Astro.props;
+const canAnimate = images.length > 1;
+---
+
+<div
+  class="project-slideshow relative w-full h-full group-hover:scale-[1.02] transition-transform duration-300"
+  data-slideshow={canAnimate ? '' : undefined}
+  data-stagger={staggerIndex}
+  data-alt={alt}
+>
+  {images.map((src, i) => (
+    <div
+      class:list={['slideshow-slide', i === 0 && 'is-active']}
+      data-slide={i}
+      aria-hidden={i !== 0 ? 'true' : undefined}
+    >
+      <OptimizedImage
+        src={src}
+        alt={i === 0 ? alt : ''}
+        class="w-full h-full object-cover"
+        sizes="(max-width: 768px) 100vw, 33vw"
+        loading={i === 0 ? 'eager' : 'lazy'}
+        priority={i === 0}
+      />
+    </div>
+  ))}
+</div>
+
+<style>
+  .slideshow-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+    transition:
+      opacity 900ms var(--ease-vinco),
+      transform 900ms var(--ease-vinco);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .slideshow-slide.is-active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .slideshow-slide.is-leaving {
+    z-index: 2;
+  }
+
+  .slideshow-slide.t-fade.is-entering {
+    opacity: 0;
+  }
+
+  .slideshow-slide.t-fade.is-entering.is-active {
+    opacity: 1;
+  }
+
+  .slideshow-slide.t-fade.is-leaving:not(.is-active) {
+    opacity: 0;
+  }
+
+  .slideshow-slide.t-slide-right.is-entering {
+    opacity: 0;
+    transform: translate3d(8%, 0, 0);
+  }
+
+  .slideshow-slide.t-slide-right.is-entering.is-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .slideshow-slide.t-slide-right.is-leaving:not(.is-active) {
+    opacity: 0;
+    transform: translate3d(-8%, 0, 0);
+  }
+
+  .slideshow-slide.t-slide-bottom.is-entering {
+    opacity: 0;
+    transform: translate3d(0, 8%, 0);
+  }
+
+  .slideshow-slide.t-slide-bottom.is-entering.is-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .slideshow-slide.t-slide-bottom.is-leaving:not(.is-active) {
+    opacity: 0;
+    transform: translate3d(0, -8%, 0);
+  }
+
+  .slideshow-slide.t-slide-left.is-entering {
+    opacity: 0;
+    transform: translate3d(-8%, 0, 0);
+  }
+
+  .slideshow-slide.t-slide-left.is-entering.is-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .slideshow-slide.t-slide-left.is-leaving:not(.is-active) {
+    opacity: 0;
+    transform: translate3d(8%, 0, 0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slideshow-slide {
+      transition: none;
+    }
+  }
+</style>
+
+{canAnimate && (
+  <script>
+    const INTERVAL = 4000;
+    const DURATION = 900;
+    const STAGGER_DELAY = 1200;
+    const TRANSITIONS = ['fade', 'slide-right', 'slide-bottom', 'slide-left'] as const;
+
+    function initSlideshow(root: HTMLElement) {
+      const slides = Array.from(root.querySelectorAll<HTMLElement>('[data-slide]'));
+      if (slides.length <= 1) return;
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reducedMotion) return;
+
+      const staggerIndex = parseInt(root.dataset.stagger ?? '0', 10);
+      const alt = root.dataset.alt ?? '';
+
+      let current = 0;
+      let transitionIndex = staggerIndex;
+      let running = false;
+      let paused = false;
+      let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+      function clearTimer() {
+        if (timeoutId !== null) {
+          clearTimeout(timeoutId);
+          timeoutId = null;
+        }
+      }
+
+      function updateAria(slide: HTMLElement, isVisible: boolean) {
+        slide.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+        const img = slide.querySelector('img');
+        if (img) img.alt = isVisible ? alt : '';
+      }
+
+      function transition(from: HTMLElement, to: HTMLElement, type: string) {
+        const typeClass = `t-${type}`;
+
+        to.classList.add('is-entering', typeClass);
+        from.classList.add('is-leaving', typeClass);
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            to.classList.add('is-active');
+            from.classList.remove('is-active');
+            updateAria(to, true);
+            updateAria(from, false);
+          });
+        });
+
+        window.setTimeout(() => {
+          from.classList.remove('is-leaving', typeClass);
+          to.classList.remove('is-entering', typeClass);
+        }, DURATION);
+      }
+
+      function advance() {
+        const next = (current + 1) % slides.length;
+        const type = TRANSITIONS[transitionIndex % TRANSITIONS.length];
+        transitionIndex += 1;
+        transition(slides[current], slides[next], type);
+        current = next;
+      }
+
+      function scheduleNext(delay: number) {
+        clearTimer();
+        timeoutId = window.setTimeout(() => {
+          if (!paused && running) {
+            advance();
+            scheduleNext(INTERVAL);
+          }
+        }, delay);
+      }
+
+      function reset() {
+        slides.forEach((slide, i) => {
+          slide.className = 'slideshow-slide';
+          if (i === 0) slide.classList.add('is-active');
+          updateAria(slide, i === 0);
+        });
+        current = 0;
+        transitionIndex = staggerIndex;
+      }
+
+      function start() {
+        if (running) return;
+        running = true;
+        scheduleNext(staggerIndex * STAGGER_DELAY);
+      }
+
+      function stop() {
+        running = false;
+        paused = false;
+        clearTimer();
+        reset();
+      }
+
+      function pause() {
+        paused = true;
+        clearTimer();
+      }
+
+      function resume() {
+        if (!running) return;
+        paused = false;
+        scheduleNext(INTERVAL);
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) start();
+            else stop();
+          });
+        },
+        { threshold: 0.2 },
+      );
+
+      observer.observe(root);
+
+      const pauseTarget = root.closest('a') ?? root;
+      pauseTarget.addEventListener('mouseenter', pause);
+      pauseTarget.addEventListener('mouseleave', resume);
+    }
+
+    function initAll() {
+      document.querySelectorAll<HTMLElement>('[data-slideshow]').forEach(initSlideshow);
+    }
+
+    initAll();
+    document.addEventListener('astro:page-load', initAll);
+  </script>
+)}

@@ -1,6 +1,7 @@
 {
   "nav": {
     "work": "Trabalho",
+    "work-case-studies": "Case Studies",
     "what-we-do": "O Que Fazemos",
     "about": "Sobre",
     "contact": "Contacto"
@@ -11,14 +12,17 @@
     "hero_cta": "Iniciar um projeto",
     "work_title": "Trabalho selecionado",
     "work_cta": "Ver todo o trabalho",
-    "categories_title": "O que desenvolvemos",
+    "categories_title": "O que fazemos",
     "process_title": "Como trabalhamos",
     "cta_title": "Tem um projeto em mente?",
     "cta_button": "Falar connosco"
   },
   "work": {
     "title": "Trabalho",
-    "intro": "[Introdução à secção de trabalho]"
+    "intro": "Projetos end-to-end em que transformámos conceitos em produtos com rigor e intenção.",
+    "categories_intro": "Explore os resultados por categoria de produto.",
+    "categories_all": "Ver tudo",
+    "categories_select": "Seleccione uma categoria"
   },
   "what-we-do": {
     "title": "O Que Fazemos",
@@ -26,7 +30,14 @@
   },
   "about": {
     "title": "Sobre",
-    "intro": "[Introdução sobre o estúdio]"
+    "intro": "O Vinco é um estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores para levar conceitos desde a definição estratégica até à produção e comunicação final.",
+    "meta_description": "Conheça o Vinco Estúdio — desenvolvimento de produto end-to-end para marcas, instituições e criadores.",
+    "studio_title": "O estúdio",
+    "studio_body": "\n\nAcreditamos que cada objeto deve ser pensado com intenção — na forma, nos materiais, no processo e na forma como chega ao mundo. O nosso trabalho abrange vestuário, acessórios, cerâmica, papelaria, têxtil-lar, uniformes e merchandising institucional.\n\nAcompanhamos cada fase do projeto sem delegar responsabilidade: definição estratégica, desenvolvimento formal, seleção de materiais, sourcing, acompanhamento de produção e comunicação de marca.",
+    "founder_name": "Sara Vicente",
+    "founder_role": "Fundadora, Vinco Estúdio",
+    "founder_bio": "Começou o seu percurso em comunicação, mas foi a moda que definiu a sua direção. Depois de se formar em Comunicação Social na Universidade Católica, trabalhou dois anos numa agência antes de decidir aprofundar a sua especialização. Mudou-se para Paris para concluir um Master em Fashion Marketing & Management no ISEM.\n\nOs dez anos seguintes em Paris moldaram a sua abordagem ao trabalho. Trabalhou como gestora de produto em marcas de referência internacional como a Joseph e a Yves Saint Laurent, onde aprendeu que rigor, detalhe e coerência entre conceito e execução não são opcionais, são a base de tudo. Num sector exigente, com múltiplos interlocutores e sem margem para erro, essa disciplina tornou-se o seu método de trabalho.\n\nEm 2019, integrou a Burberry em Londres, antes de regressar a Portugal em 2021, onde começou a prestar consultoria independente em desenvolvimento de produto a marcas e criadores. Em 2026, formalizou essa prática com a criação do Vinco Studio, para transformar ideias em produtos que funcionam, com método, clareza e intenção.",
+    "founder_photo_alt": "Retrato da fundadora do Vinco Estúdio"
   },
   "contact": {
     "title": "Contacto",
