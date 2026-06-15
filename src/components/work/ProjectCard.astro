@@ -3,7 +3,7 @@ import OptimizedImage from '../OptimizedImage.astro';
 import ProjectSlideshow from '../ProjectSlideshow.astro';
 import type { Project } from '../../data/work';
 import type { Locale } from '../../i18n/utils';
-import { getProjectGallery, getProjectPath } from '../../data/work';
+import { getProjectGallery, getProjectPath, formatProjectPeriod } from '../../data/work';
 
 interface Props {
   project: Project;
@@ -43,7 +43,7 @@ const gallery = getProjectGallery(project);
     )}
   </div>
   <p class:list={['text-vinco-brown-1 mb-1', variant === 'compact' ? 'text-[10px]' : 'text-xs']}>
-    {categoryLabel} — {project.year}
+    {categoryLabel} — {formatProjectPeriod(project.period, locale)}
   </p>
   <p
     class:list={[

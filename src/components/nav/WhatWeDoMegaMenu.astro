@@ -1,0 +1,52 @@
+---
+import CategoryGrid from '../work/CategoryGrid.astro';
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  label: string;
+  categoriesTitle: string;
+  categoriesAll: string;
+  categoriesUrl: string;
+}
+
+const { locale, label, categoriesTitle, categoriesAll, categoriesUrl } = Astro.props;
+---
+
+<li class="group relative" data-mega-menu>
+  <a
+    href={categoriesUrl}
+    class="nav-link"
+    aria-haspopup="true"
+    aria-expanded="false"
+    data-mega-trigger
+  >
+    {label}
+  </a>
+
+  <div
+    class="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible pointer-events-none
+           group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto
+           group-focus-within:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto
+           transition-all duration-150 z-40"
+    data-mega-panel
+  >
+    <div
+      class="w-[min(90vw,480px)] bg-vinco-cream border border-vinco-brown-1/20 shadow-[var(--shadow-card)] p-8"
+    >
+      <p class="text-xs tracking-widest uppercase text-vinco-brown-1 mb-4">
+        {categoriesTitle}
+      </p>
+      <CategoryGrid
+        locale={locale}
+        variant="linked"
+        baseUrl={categoriesUrl}
+        compact
+        theme="light"
+      />
+      <a href={categoriesUrl} class="nav-sublink text-sm mt-4 inline-block">
+        {categoriesAll} →
+      </a>
+    </div>
+  </div>
+</li>

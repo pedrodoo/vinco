@@ -23,7 +23,6 @@ const routeMap = {
   pt: {
     home: '/',
     work: '/trabalho',
-    workWhatWeDevelop: '/trabalho/o-que-desenvolvemos',
     whatWeDo: '/o-que-fazemos',
     about: '/sobre',
     contact: '/contacto',
@@ -31,7 +30,6 @@ const routeMap = {
   en: {
     home: '/en/',
     work: '/en/work',
-    workWhatWeDevelop: '/en/work/what-we-develop',
     whatWeDo: '/en/what-we-do',
     about: '/en/about',
     contact: '/en/contact',
@@ -45,7 +43,6 @@ export function getNavLinks(locale: Locale) {
 const pathPairs: [string, string][] = [
   ['/', '/en/'],
   ['/trabalho', '/en/work'],
-  ['/trabalho/o-que-desenvolvemos', '/en/work/what-we-develop'],
   ['/o-que-fazemos', '/en/what-we-do'],
   ['/sobre', '/en/about'],
   ['/contacto', '/en/contact'],
@@ -56,7 +53,9 @@ export function getAlternateLocalePath(pathname: string, locale: Locale): string
     ? pathname.slice(0, -1)
     : pathname;
 
-  for (const [ptPath, enPath] of pathPairs) {
+  for (const [ptPath, enPath] of [...pathPairs].sort(
+    (a, b) => Math.max(b[0].length, b[1].length) - Math.max(a[0].length, a[1].length),
+  )) {
     if (locale === 'pt') {
       if (normalized === ptPath || normalized.startsWith(`${ptPath}/`)) {
         return normalized.replace(ptPath, enPath.replace(/\/$/, '')) || enPath;

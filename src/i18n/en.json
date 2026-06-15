@@ -10,7 +10,7 @@
     "hero_title": "Concept\nto product.",
     "hero_subtitle": "End-to-end product development studio. We work with brands, institutions and creators to transform ideas into objects with rigour and intention.",
     "hero_cta": "Start a project",
-    "work_title": "Selected work",
+    "work_title": "Case Studies",
     "work_cta": "View all work",
     "categories_title": "What we develop",
     "process_title": "How we work",
@@ -19,8 +19,28 @@
   },
   "work": {
     "title": "Work",
-    "intro": "End-to-end projects where we transformed concepts into products with rigour and intention.",
+    "intro": "At Studio Vinco, every project is a journey — from concept to execution. We work side-by-side with brands and creators, tailoring our approach to their specific needs.",
     "categories_intro": "Browse results by product category.",
+    "cases": {
+      "oceanario": {
+        "title": "OCEANÁRIO DE LISBOA",
+        "description": "Since 2021, we have developed and managed the merchandising offer at the Oceanário de Lisboa store. A portfolio of around 800 references across multiple categories — from stationery, textiles to souvenirs and gifting.\n\nA long-term project that demands both creative vision and operational rigour: from product conception to lifecycle management of each reference, with a commitment to sustainable practices. From the very beginning, Vinco has contributed to the steady growth of the business — which in 2025 surpassed 2 million euros in annual sales."
+      },
+      "foa": {
+        "title": "FUNDAÇÃO OCEANO AZUL",
+        "description": "Design and production of a versatile unisex uniform, developed to accompany the diversity of contexts in which the Foundation operates — from international United Nations commissions and conferences such as the United Nations Ocean Conference, to maritime missions and explorations like the Goringe expedition.\n\nVinco managed the entire process as the single point of contact between design teams, suppliers and logistics partners — preventing information loss, ensuring quality control and reactive responses, with a final result that met expectations and was delivered within the required timelines."
+      },
+      "sfms": {
+        "title": "SOCIEDADE FRANCISCO MANUEL DOS SANTOS"
+      },
+      "seathefuture": {
+        "title": "SEATHEFUTURE",
+        "description": "Product development for SEATHEFUTURE — from concept to execution, with a focus on sustainability and brand communication."
+      },
+      "lx3": {
+        "title": "LX3"
+      }
+    },
     "categories_all": "View all",
     "categories_select": "Select a category"
   },
@@ -41,7 +61,16 @@
   },
   "contact": {
     "title": "Contact",
-    "intro": "[Contact section intro]"
+    "intro": "Have a project in mind? Send us a message or reach us directly by email.",
+    "meta_description": "Contact Vinco Studio — send a message or email hello@vinco-studio.com.",
+    "form_contact_label": "Email or phone",
+    "form_contact_placeholder": "your@email.com or +351 ...",
+    "form_message_label": "Message",
+    "form_message_placeholder": "Tell us about your project...",
+    "form_submit": "Send message",
+    "form_subject": "Message from Vinco website",
+    "direct_title": "Direct email",
+    "direct_text": "Prefer to write directly? Email us at"
   },
   "footer": {
     "tagline": "[Footer tagline]",

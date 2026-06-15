@@ -2,6 +2,7 @@
 import { useTranslations, getNavLinks, getAlternateLocalePath } from '../i18n/utils';
 import type { Locale } from '../i18n/utils';
 import WorkMegaMenu from '../components/nav/WorkMegaMenu.astro';
+import WhatWeDoMegaMenu from '../components/nav/WhatWeDoMegaMenu.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -58,16 +59,23 @@ const altPath = getAlternateLocalePath(Astro.url.pathname, locale);
         locale={locale}
         workLabel={t.nav.work}
         caseStudiesLabel={t.nav['work-case-studies']}
-        categoriesTitle={t.home.categories_title}
         workCta={t.home.work_cta}
-        categoriesAll={t.work.categories_all}
         workUrl={nav.work}
-        categoriesUrl={nav.workWhatWeDevelop}
       />
-      <li><a href={nav.whatWeDo} class="nav-link">{t.nav['what-we-do']}</a></li>
+      <WhatWeDoMegaMenu
+        locale={locale}
+        label={t.nav['what-we-do']}
+        categoriesTitle={t.home.categories_title}
+        categoriesAll={t.work.categories_all}
+        categoriesUrl={nav.whatWeDo}
+      />
       <li><a href={nav.about} class="nav-link">{t.nav.about}</a></li>
       <li><a href={nav.contact} class="nav-link">{t.nav.contact}</a></li>
     </ul>
+
+    <script>
+      import '../components/nav/mega-menu.ts';
+    </script>
 
         <!-- Language toggle -->
         <a

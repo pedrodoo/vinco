@@ -20,6 +20,27 @@
     .nav-sublink {
       @apply text-vinco-brown-1 hover:text-vinco-burgundy transition-colors duration-150;
     }
+
+    .form-label {
+      @apply block text-sm text-vinco-black mb-2;
+      color: var(--component-form-label-text);
+    }
+
+    .form-input,
+    .form-textarea {
+      @apply w-full bg-transparent text-vinco-black text-sm px-4 py-3 outline-none transition-shadow duration-150;
+      border: 1px solid var(--component-form-input-border);
+      border-radius: var(--component-form-input-radius);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      box-shadow: 0 0 0 2px var(--component-form-input-focus-ring);
+    }
+
+    .form-textarea {
+      @apply resize-y min-h-[140px];
+    }
   }
 
 /* Base styles */

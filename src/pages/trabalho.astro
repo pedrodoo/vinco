@@ -1,13 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import MultilineText from '../components/MultilineText.astro';
-import ProjectCard from '../components/work/ProjectCard.astro';
+import CaseStudySection from '../components/work/CaseStudySection.astro';
 import { useTranslations } from '../i18n/utils';
-import { getAllProjects } from '../data/work';
+import { getCaseStudies, getCaseStudyCopyKey, getProjectGallery, formatProjectPeriod } from '../data/work';
 
 const locale = 'pt';
 const t = useTranslations(locale);
-const projects = getAllProjects();
+const caseStudies = getCaseStudies();
+const caseCopyByKey = t.work.cases;
 ---
 
 <Base
@@ -17,16 +18,32 @@ const projects = getAllProjects();
 >
   <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
     <div class="max-w-[1440px] mx-auto">
-      <div class="mb-12 max-w-2xl">
+      <div class="mb-16 max-w-2xl">
         <h1 class="font-display text-vinco-black mb-4">
           <MultilineText text={t.home.work_title} />
         </h1>
         <p class="text-vinco-black/70 leading-relaxed">{t.work.intro}</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {projects.map((project) => (
-          <ProjectCard project={project} locale={locale} />
-        ))}
+      <div>
+        {
+          caseStudies.map((project) => {
+            const copyKey = getCaseStudyCopyKey(project.slug);
+            const caseCopy = copyKey
+              ? caseCopyByKey[copyKey as keyof typeof caseCopyByKey]
+              : undefined;
+
+            return (
+              <CaseStudySection
+                title={caseCopy?.title ?? project.client}
+                tag={project.category[locale]}
+                period={formatProjectPeriod(project.period, locale)}
+                description={caseCopy?.description ?? ''}
+                gallery={getProjectGallery(project)}
+                imageAlt={caseCopy?.title ?? project.client}
+              />
+            );
+          })
+        }
       </div>
     </div>
   </section>

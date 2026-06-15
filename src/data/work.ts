@@ -16,10 +16,15 @@ import sfmsApparel2 from '../assets/VESTUÁRIO/IMG_1439.jpg';
 import sfmsApparel3 from '../assets/VESTUÁRIO/IMG_1426.jpg';
 import sfmsApparel4 from '../assets/VESTUÁRIO/20210520_OCEANARIO4603.jpg';
 
+export type ProjectPeriod =
+  | { type: 'single'; year: string }
+  | { type: 'since'; year: string }
+  | { type: 'range'; from: string; to: string };
+
 export interface Project {
   client: string;
   category: { pt: string; en: string };
-  year: string;
+  period: ProjectPeriod;
   slug: string;
   featured: boolean;
   image?: ImageMetadata;
@@ -40,8 +45,8 @@ export interface CategoryItem {
 export const projects: Project[] = [
   {
     client: 'Oceanário de Lisboa',
-    category: { pt: 'Merchandising institucional', en: 'Institutional merchandising' },
-    year: '2024',
+    category: { pt: 'Merchandising', en: 'Merchandising' },
+    period: { type: 'since', year: '2021' },
     slug: 'oceanario',
     featured: true,
     image: oceanarioImage,
@@ -49,19 +54,33 @@ export const projects: Project[] = [
   },
   {
     client: 'Fundação Oceano Azul',
-    category: { pt: 'Desenvolvimento de produto', en: 'Product development' },
-    year: '2024',
+    category: { pt: 'Farda institucional', en: 'Institutional uniform' },
+    period: { type: 'single', year: '2024' },
     slug: 'fundacao-oceano-azul',
     featured: true,
     gallery: [foaUniform1, foaUniform2, foaUniform3, foaUniform4],
   },
   {
-    client: 'SFMS',
-    category: { pt: 'Vestuário e acessórios', en: 'Apparel and accessories' },
-    year: '2023',
+    client: 'Sociedade Francisco Manuel dos Santos',
+    category: { pt: 'Gifting institucional', en: 'Institutional gifting' },
+    period: { type: 'since', year: '2023' },
     slug: 'sfms',
     featured: true,
     gallery: [sfmsApparel1, sfmsApparel2, sfmsApparel3, sfmsApparel4],
+  },
+  {
+    client: 'SEATHEFUTURE',
+    category: { pt: 'Vestuário & Comunicação de Marca', en: 'Apparel & Brand Communication' },
+    period: { type: 'single', year: '2023 - 2025' },
+    slug: 'seathefuture',
+    featured: false,
+  },
+  {
+    client: 'LX3',
+    category: { pt: 'Desenvolvimento de Produto', en: 'Product development' },
+    period: { type: 'single', year: '2024' },
+    slug: 'lx3',
+    featured: false,
   },
 ];
 
@@ -122,6 +141,33 @@ export function getProjectGallery(project: Project): ImageMetadata[] {
 
 export function getAllProjects(): Project[] {
   return projects;
+}
+
+export function getCaseStudies(): Project[] {
+  return projects;
+}
+
+const caseStudySlugToCopyKey: Record<string, string> = {
+  oceanario: 'oceanario',
+  'fundacao-oceano-azul': 'foa',
+  sfms: 'sfms',
+  seathefuture: 'seathefuture',
+  lx3: 'lx3',
+};
+
+export function getCaseStudyCopyKey(slug: string): string | undefined {
+  return caseStudySlugToCopyKey[slug];
+}
+
+export function formatProjectPeriod(period: ProjectPeriod, locale: Locale): string {
+  switch (period.type) {
+    case 'single':
+      return period.year;
+    case 'since':
+      return locale === 'pt' ? `desde ${period.year}` : `since ${period.year}`;
+    case 'range':
+      return `${period.from} – ${period.to}`;
+  }
 }
 
 export function getCategoryLabel(slug: string, locale: Locale): string {

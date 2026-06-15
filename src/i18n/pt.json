@@ -10,17 +10,37 @@
     "hero_title": "Do conceito\nao produto.",
     "hero_subtitle": "Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores para transformar ideias em objetos com rigor e intenção.",
     "hero_cta": "Iniciar um projeto",
-    "work_title": "Trabalho selecionado",
+    "work_title": "Case Studies",
     "work_cta": "Ver todo o trabalho",
     "categories_title": "O que fazemos",
     "process_title": "Como trabalhamos",
     "cta_title": "Tem um projeto em mente?",
-    "cta_button": "Falar connosco"
+    "cta_button": "Fale connosco"
   },
   "work": {
     "title": "Trabalho",
-    "intro": "Projetos end-to-end em que transformámos conceitos em produtos com rigor e intenção.",
+    "intro": "No Estúdio Vinco, cada projeto é uma viagem — do conceito à execução. Trabalhamos lado a lado com marcas e criadores, ajustando a nossa abordagem às suas necessidades específicas.",
     "categories_intro": "Explore os resultados por categoria de produto.",
+    "cases": {
+      "oceanario": {
+        "title": "OCEANÁRIO DE LISBOA",
+        "description": "Desde 2021 que desenvolvemos e gerimos a oferta de merchandising da loja do Oceanário de Lisboa. Um portefólio com cerca de 800 referências, distribuído por múltiplas categorias: desde estacionário, têxtil, souvenirs até gifting.\n\nUm projeto de longa duração que exige tanto visão criativa como rigor operacional: da conceção do produto à gestão do ciclo de vida de cada referência, com compromisso com práticas sustentáveis. Desde o início, a Vinco tem contribuído para o crescimento contínuo do negócio — que em 2025 ultrapassou os 2 milhões de euros em vendas anuais."
+      },
+      "foa": {
+        "title": "FUNDAÇÃO OCEANO AZUL",
+        "description": "Conceção e produção de uma farda unissexo polivalente, desenvolvida para acompanhar a diversidade de contextos em que a Fundação está presente — de comissões internacionais das Nações Unidas e conferências como a United Nations Ocean Conference, a missões e explorações marítimas como a do Goringe.\n\nA Vinco geriu o processo de ponta a ponta como interlocutor único entre equipas de design, fornecedores e transportadores — evitando perdas de informação, garantindo controlo de qualidade e respostas reativas, com um resultado final à altura das expectativas e dentro dos timings exigidos."
+      },
+      "sfms": {
+        "title": "SOCIEDADE FRANCISCO MANUEL DOS SANTOS"
+      },
+      "seathefuture": {
+        "title": "SEATHEFUTURE",
+        "description": "Desenvolvimento de produto para a SEATHEFUTURE — do conceito à execução, com foco na sustentabilidade e na comunicação de marca."
+      },
+      "lx3": {
+        "title": "LX3"
+      }
+    },
     "categories_all": "Ver tudo",
     "categories_select": "Seleccione uma categoria"
   },
@@ -41,7 +61,16 @@
   },
   "contact": {
     "title": "Contacto",
-    "intro": "[Introdução à secção de contacto]"
+    "intro": "Tem um projeto em mente? Envie-nos uma mensagem ou contacte-nos directamente por email.",
+    "meta_description": "Contacte o Vinco Estúdio — envie uma mensagem ou escreva para hello@vinco-studio.com.",
+    "form_contact_label": "Email ou telefone",
+    "form_contact_placeholder": "o seu@email.com ou +351 ...",
+    "form_message_label": "Mensagem",
+    "form_message_placeholder": "Conte-nos sobre o seu projeto...",
+    "form_submit": "Enviar mensagem",
+    "form_subject": "Mensagem do website Vinco",
+    "direct_title": "Email directo",
+    "direct_text": "Prefere escrever directamente? Envie-nos um email para"
   },
   "footer": {
     "tagline": "[Tagline do footer]",

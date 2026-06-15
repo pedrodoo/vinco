@@ -1,0 +1,125 @@
+---
+import Base from '../layouts/Base.astro';
+import MultilineText from './MultilineText.astro';
+import { useTranslations, type Locale } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const siteName = locale === 'pt' ? 'Vinco Estúdio' : 'Vinco Studio';
+const contactLabel = locale === 'pt' ? 'Contacto' : 'Contact';
+---
+
+<Base
+  title={`${t.contact.title} | ${siteName}`}
+  description={t.contact.meta_description}
+  locale={locale}
+>
+  <section class="bg-vinco-cream relative overflow-hidden">
+    <div class="max-w-[1440px] mx-auto px-8 pt-32 pb-24 md:pt-48 md:pb-36 relative z-10">
+      <div class="max-w-2xl">
+        <h1 class="text-vinco-black mb-6">
+          <MultilineText text={t.contact.title} />
+        </h1>
+        <p class="text-vinco-black/70 text-lg leading-relaxed">
+          {t.contact.intro}
+        </p>
+      </div>
+    </div>
+    <div
+      class="absolute top-0 right-0 w-1/2 h-full opacity-10"
+      style="background-image: url('/images/patterns/pattern-cream.svg'); background-size: 300px; background-repeat: repeat;"
+    ></div>
+  </section>
+
+  <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
+    <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+      <form
+        id="contact-form"
+        class="space-y-6"
+        data-email={t.footer.email}
+        data-subject={t.contact.form_subject}
+        data-contact-label={contactLabel}
+      >
+        <div>
+          <label for="contact" class="form-label">
+            {t.contact.form_contact_label}
+          </label>
+          <input
+            type="text"
+            id="contact"
+            name="contact"
+            class="form-input"
+            placeholder={t.contact.form_contact_placeholder}
+            required
+            aria-required="true"
+            autocomplete="email tel"
+          />
+        </div>
+
+        <div>
+          <label for="message" class="form-label">
+            {t.contact.form_message_label}
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            class="form-textarea"
+            placeholder={t.contact.form_message_placeholder}
+            rows="5"
+            required
+            aria-required="true"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="inline-block bg-vinco-burgundy text-vinco-cream text-sm tracking-wide px-8 py-4 hover:opacity-90 transition-opacity duration-150"
+        >
+          {t.contact.form_submit}
+        </button>
+      </form>
+
+      <div class="md:pt-2">
+        <h2 class="font-display text-vinco-black mb-4">
+          {t.contact.direct_title}
+        </h2>
+        <p class="text-vinco-black/70 leading-relaxed mb-4">
+          {t.contact.direct_text}
+        </p>
+        <a
+          href={`mailto:${t.footer.email}`}
+          class="text-vinco-burgundy hover:opacity-70 transition-opacity duration-150 text-lg"
+        >
+          {t.footer.email}
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const email = form.dataset.email ?? '';
+    const subject = form.dataset.subject ?? '';
+    const contactLabel = form.dataset.contactLabel ?? 'Contact';
+
+    const contactInput = form.elements.namedItem('contact') as HTMLInputElement;
+    const messageInput = form.elements.namedItem('message') as HTMLTextAreaElement;
+
+    const contact = contactInput.value.trim();
+    const message = messageInput.value.trim();
+
+    const body = `${contactLabel}: ${contact}\n\n${message}`;
+    const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailto;
+  });
+</script>
