@@ -186,5 +186,5 @@ export function getCategoryBySlug(slug: string): Category | undefined {
 }
 
 export function getProjectPath(slug: string, locale: Locale): string {
-  return locale === 'pt' ? `/trabalho/${slug}` : `/en/work/${slug}`;
+  return locale === 'pt' ? `/trabalho#${slug}` : `/en/work#${slug}`;
 }

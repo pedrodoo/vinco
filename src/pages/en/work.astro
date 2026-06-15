@@ -34,6 +34,7 @@ const caseCopyByKey = t.work.cases;
 
             return (
               <CaseStudySection
+                id={project.slug}
                 title={caseCopy?.title ?? project.client}
                 tag={project.category[locale]}
                 period={formatProjectPeriod(project.period, locale)}
