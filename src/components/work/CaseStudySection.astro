@@ -13,7 +13,7 @@ interface Props {
 }
 
 const { id, title, tag, period, description, gallery = [], imageAlt = title } = Astro.props;
-const images = gallery.slice(0, 6);
+const images = gallery.slice(0, 3);
 ---
 
 <section id={id} class="scroll-mt-16 border-t border-vinco-brown-1/20 pt-16 md:pt-24 first:border-t-0 first:pt-0">

@@ -21,7 +21,7 @@
   },
   "work": {
     "title": "Trabalho",
-    "intro": "No Estúdio Vinco, cada projeto é uma viagem — do conceito à execução. Trabalhamos lado a lado com marcas e criadores, ajustando a nossa abordagem às suas necessidades específicas.",
+    "intro": "No Estúdio Vinco, cada projeto é uma viagem — do conceito à execução.\nTrabalhamos lado a lado com marcas e criadores, ajustando a nossa abordagem às suas necessidades específicas.",
     "categories_intro": "Explore os resultados por categoria de produto.",
     "cases": {
       "oceanario": {
@@ -77,7 +77,7 @@
     "direct_text": "Prefere escrever directamente? Envie-nos um email para"
   },
   "footer": {
-    "tagline": "[Tagline do footer]",
+    "tagline": "Design to Production Studio\nPerfection is personal",
     "rights": "© 2026 Vinco Estúdio. Todos os direitos reservados.",
     "email": "hello@vinco-studio.com",
     "social": {

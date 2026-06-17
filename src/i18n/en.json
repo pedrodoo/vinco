@@ -21,7 +21,7 @@
   },
   "work": {
     "title": "Work",
-    "intro": "At Studio Vinco, every project is a journey — from concept to execution. We work side-by-side with brands and creators, tailoring our approach to their specific needs.",
+    "intro": "At Studio Vinco, every project is a journey — from concept to execution.\nWe work side-by-side with brands and creators, tailoring our approach to their specific needs.",
     "categories_intro": "Browse results by product category.",
     "cases": {
       "oceanario": {
@@ -77,7 +77,7 @@
     "direct_text": "Prefer to write directly? Email us at"
   },
   "footer": {
-    "tagline": "[Footer tagline]",
+    "tagline": "Design to Production Studio\nPerfection is personal",
     "rights": "© 2026 Vinco Studio. All rights reserved.",
     "email": "hello@vinco-studio.com",
     "social": {

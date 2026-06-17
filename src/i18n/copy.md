@@ -24,7 +24,7 @@ Use `\n` inside a cell for an intentional line break in titles (each language ca
 | home.cta_title | Tem um projeto em mente? | Have a project in mind? |
 | home.cta_button | Fale connosco | Let's talk |
 | work.title | Trabalho | Work |
-| work.intro | No Estúdio Vinco, cada projeto é uma viagem — do conceito à execução. Trabalhamos lado a lado com marcas e criadores, ajustando a nossa abordagem às suas necessidades específicas. | At Studio Vinco, every project is a journey — from concept to execution. We work side-by-side with brands and creators, tailoring our approach to their specific needs. |
+| work.intro | No Estúdio Vinco, cada projeto é uma viagem — do conceito à execução.\nTrabalhamos lado a lado com marcas e criadores, ajustando a nossa abordagem às suas necessidades específicas. | At Studio Vinco, every project is a journey — from concept to execution.\nWe work side-by-side with brands and creators, tailoring our approach to their specific needs. |
 | work.categories_intro | Explore os resultados por categoria de produto. | Browse results by product category. |
 | work.cases.oceanario.title | OCEANÁRIO DE LISBOA | OCEANÁRIO DE LISBOA |
 | work.cases.oceanario.description | Desde 2021 que desenvolvemos e gerimos a oferta de merchandising da loja do Oceanário de Lisboa. Um portefólio com cerca de 800 referências, distribuído por múltiplas categorias: desde estacionário, têxtil, souvenirs até gifting.\n\nUm projeto de longa duração que exige tanto visão criativa como rigor operacional: da conceção do produto à gestão do ciclo de vida de cada referência, com compromisso com práticas sustentáveis. Desde o início, a Vinco tem contribuído para o crescimento contínuo do negócio — que em 2025 ultrapassou os 2 milhões de euros em vendas anuais. | Since 2021, we have developed and managed the merchandising offer at the Oceanário de Lisboa store. A portfolio of around 800 references across multiple categories — from stationery, textiles to souvenirs and gifting.\n\nA long-term project that demands both creative vision and operational rigour: from product conception to lifecycle management of each reference, with a commitment to sustainable practices. From the very beginning, Vinco has contributed to the steady growth of the business — which in 2025 surpassed 2 million euros in annual sales.|
@@ -60,7 +60,7 @@ Use `\n` inside a cell for an intentional line break in titles (each language ca
 | contact.form_subject | Mensagem do website Vinco | Message from Vinco website |
 | contact.direct_title | Email directo | Direct email |
 | contact.direct_text | Prefere escrever directamente? Envie-nos um email para | Prefer to write directly? Email us at |
-| footer.tagline | [Tagline do footer] | [Footer tagline] |
+| footer.tagline | Design to Production Studio\nPerfection is personal | Design to Production Studio\nPerfection is personal |
 | footer.rights | © 2026 Vinco Estúdio. Todos os direitos reservados. | © 2026 Vinco Studio. All rights reserved. |
 | footer.email | hello@vinco-studio.com | hello@vinco-studio.com |
 | footer.social.instagram | https://instagram.com/vincostudio | https://instagram.com/vincostudio |
