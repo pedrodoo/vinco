@@ -7,8 +7,8 @@ Use `\n` inside a cell for an intentional line break in titles (each language ca
 
 | key | pt | en |
 | --- | --- | --- |
-| nav.work | Trabalho | Work |
-| nav.work-case-studies | Case Studies | Case Studies |
+| nav.work | Trabalho | Projects |
+| nav.work-case-studies | Projectos | Projects |
 | nav.what-we-do | O Que Fazemos | What We Do |
 | nav.about | Sobre | About |
 | nav.contact | Contacto | Contact |
