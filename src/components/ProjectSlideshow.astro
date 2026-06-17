@@ -6,9 +6,19 @@ interface Props {
   images: ImageMetadata[];
   alt: string;
   staggerIndex?: number;
+  trigger?: 'visible' | 'hover';
+  interval?: number;
+  sizes?: string;
 }
 
-const { images, alt, staggerIndex = 0 } = Astro.props;
+const {
+  images,
+  alt,
+  staggerIndex = 0,
+  trigger = 'visible',
+  interval = 4000,
+  sizes = '(max-width: 768px) 100vw, 33vw',
+} = Astro.props;
 const canAnimate = images.length > 1;
 ---
 
@@ -17,6 +27,8 @@ const canAnimate = images.length > 1;
   data-slideshow={canAnimate ? '' : undefined}
   data-stagger={staggerIndex}
   data-alt={alt}
+  data-trigger={trigger}
+  data-interval={interval}
 >
   {images.map((src, i) => (
     <div
@@ -28,7 +40,7 @@ const canAnimate = images.length > 1;
         src={src}
         alt={i === 0 ? alt : ''}
         class="w-full h-full object-cover"
-        sizes="(max-width: 768px) 100vw, 33vw"
+        sizes={sizes}
         loading={i === 0 ? 'eager' : 'lazy'}
         priority={i === 0}
       />
@@ -124,18 +136,23 @@ const canAnimate = images.length > 1;
 
 {canAnimate && (
   <script>
-    const INTERVAL = 4000;
+    const DEFAULT_INTERVAL = 4000;
     const DURATION = 900;
     const STAGGER_DELAY = 1200;
     const TRANSITIONS = ['fade', 'slide-right', 'slide-bottom', 'slide-left'] as const;
 
     function initSlideshow(root: HTMLElement) {
+      if (root.dataset.slideshowInit === 'true') return;
+      root.dataset.slideshowInit = 'true';
+
       const slides = Array.from(root.querySelectorAll<HTMLElement>('[data-slide]'));
       if (slides.length <= 1) return;
 
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reducedMotion) return;
 
+      const trigger = root.dataset.trigger ?? 'visible';
+      const interval = parseInt(root.dataset.interval ?? String(DEFAULT_INTERVAL), 10);
       const staggerIndex = parseInt(root.dataset.stagger ?? '0', 10);
       const alt = root.dataset.alt ?? '';
 
@@ -192,7 +209,7 @@ const canAnimate = images.length > 1;
         timeoutId = window.setTimeout(() => {
           if (!paused && running) {
             advance();
-            scheduleNext(INTERVAL);
+            scheduleNext(interval);
           }
         }, delay);
       }
@@ -207,10 +224,11 @@ const canAnimate = images.length > 1;
         transitionIndex = staggerIndex;
       }
 
-      function start() {
+      function start(initialDelay = staggerIndex * STAGGER_DELAY) {
         if (running) return;
         running = true;
-        scheduleNext(staggerIndex * STAGGER_DELAY);
+        paused = false;
+        scheduleNext(initialDelay);
       }
 
       function stop() {
@@ -228,7 +246,17 @@ const canAnimate = images.length > 1;
       function resume() {
         if (!running) return;
         paused = false;
-        scheduleNext(INTERVAL);
+        scheduleNext(interval);
+      }
+
+      const hoverTarget = root.closest('a') ?? root;
+
+      if (trigger === 'hover') {
+        if (!window.matchMedia('(hover: hover)').matches) return;
+
+        hoverTarget.addEventListener('mouseenter', () => start(0));
+        hoverTarget.addEventListener('mouseleave', stop);
+        return;
       }
 
       const observer = new IntersectionObserver(
@@ -243,9 +271,8 @@ const canAnimate = images.length > 1;
 
       observer.observe(root);
 
-      const pauseTarget = root.closest('a') ?? root;
-      pauseTarget.addEventListener('mouseenter', pause);
-      pauseTarget.addEventListener('mouseleave', resume);
+      hoverTarget.addEventListener('mouseenter', pause);
+      hoverTarget.addEventListener('mouseleave', resume);
     }
 
     function initAll() {

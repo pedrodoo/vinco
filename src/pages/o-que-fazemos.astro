@@ -1,16 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import MultilineText from '../components/MultilineText.astro';
-import CategoryFilter from '../components/work/CategoryFilter.astro';
-import { useTranslations, getNavLinks } from '../i18n/utils';
-import { getCategoryBySlug } from '../data/work';
+import CategoryNav from '../components/work/CategoryNav.astro';
+import CategorySection from '../components/work/CategorySection.astro';
+import { useTranslations } from '../i18n/utils';
+import { categories, getCategoryItems } from '../data/work';
 
 const locale = 'pt';
 const t = useTranslations(locale);
-const nav = getNavLinks(locale);
-
-const rawSlug = Astro.url.searchParams.get('categoria');
-const activeSlug = rawSlug && getCategoryBySlug(rawSlug) ? rawSlug : null;
 ---
 
 <Base
@@ -27,11 +24,37 @@ const activeSlug = rawSlug && getCategoryBySlug(rawSlug) ? rawSlug : null;
         <p class="text-vinco-cream/70 leading-relaxed">{t.work.categories_intro}</p>
       </div>
 
-      <CategoryFilter
-        locale={locale}
-        activeSlug={activeSlug}
-        baseUrl={nav.whatWeDo}
-      />
+      <CategoryNav categories={categories} locale={locale} />
+
+      <div>
+        {
+          categories.map((cat) => (
+            <CategorySection
+              slug={cat.slug}
+              label={cat.label[locale]}
+              items={getCategoryItems(cat.slug)}
+              locale={locale}
+            />
+          ))
+        }
+      </div>
     </div>
   </section>
 </Base>
+
+<script>
+  function scrollToHash() {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+
+    const target = document.getElementById(hash);
+    if (!target) return;
+
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  scrollToHash();
+  window.addEventListener('hashchange', scrollToHash);
+</script>

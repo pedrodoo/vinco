@@ -1,0 +1,24 @@
+---
+import type { Category } from '../../data/work';
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  categories: Category[];
+  locale: Locale;
+  theme?: 'dark' | 'light';
+}
+
+const { categories, locale, theme = 'dark' } = Astro.props;
+
+const linkClass = theme === 'light'
+  ? 'text-xs tracking-wide px-3 py-1 border border-vinco-brown-1/30 text-vinco-brown-1 hover:border-vinco-burgundy/50 hover:text-vinco-burgundy transition-colors duration-150 rounded-full'
+  : 'text-xs tracking-wide px-3 py-1 border border-vinco-cream/20 text-vinco-cream/70 hover:border-vinco-cream/50 hover:text-vinco-cream transition-colors duration-150 rounded-full';
+---
+
+<nav class="flex flex-wrap gap-2 mb-12" aria-label={locale === 'pt' ? 'Categorias' : 'Categories'}>
+  {categories.map((cat) => (
+    <a href={`#${cat.slug}`} class={linkClass}>
+      {cat.label[locale]}
+    </a>
+  ))}
+</nav>

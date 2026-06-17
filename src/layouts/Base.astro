@@ -1,6 +1,8 @@
 ---
 import { useTranslations, getNavLinks, getAlternateLocalePath } from '../i18n/utils';
 import type { Locale } from '../i18n/utils';
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import WorkMegaMenu from '../components/nav/WorkMegaMenu.astro';
 import WhatWeDoMegaMenu from '../components/nav/WhatWeDoMegaMenu.astro';
 import '../styles/global.css';
@@ -9,14 +11,28 @@ interface Props {
   title: string;
   description: string;
   locale: Locale;
+  ogImage?: ImageMetadata;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, locale } = Astro.props;
+const { title, description, locale, ogImage, jsonLd } = Astro.props;
 const t = useTranslations(locale);
 const nav = getNavLinks(locale);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const altLocale = locale === 'pt' ? 'en' : 'pt';
 const altPath = getAlternateLocalePath(Astro.url.pathname, locale);
+
+let ogImageUrl: string | undefined;
+if (ogImage) {
+  const optimized = await getImage({
+    src: ogImage,
+    width: 1200,
+    height: 630,
+    fit: 'cover',
+    format: 'jpg',
+  });
+  ogImageUrl = new URL(optimized.src, Astro.site ?? Astro.url).href;
+}
 ---
 
 <!doctype html>
@@ -26,6 +42,18 @@ const altPath = getAlternateLocalePath(Astro.url.pathname, locale);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {ogImageUrl && (
+      <>
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={ogImageUrl} />
+      </>
+    )}
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang={altLocale} href={new URL(altPath, Astro.site)} />
     <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
@@ -99,9 +127,16 @@ const altPath = getAlternateLocalePath(Astro.url.pathname, locale);
 
         <div class="flex flex-col md:flex-row justify-between gap-12">
 
-          <!-- Tagline -->
+          <!-- Logo + Tagline -->
           <div class="max-w-xs">
-            <p class="font-heading text-lg tracking-tight text-vinco-cream">
+            <a href={nav.home} class="block mb-6">
+              <img
+                src="/images/vinco-logo.svg"
+                alt="Vinco Estúdio"
+                class="h-6 w-auto brightness-0 invert"
+              />
+            </a>
+            <p class="font-heading text-lg tracking-tight text-vinco-cream whitespace-pre-line">
               {t.footer.tagline}
             </p>
           </div>

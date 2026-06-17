@@ -1,0 +1,125 @@
+---
+import OptimizedImage from '../OptimizedImage.astro';
+import { getCategoryPath, getCategoryPreviewImages } from '../../data/work';
+import type { Category } from '../../data/work';
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  category: Category;
+  locale: Locale;
+}
+
+const { category, locale } = Astro.props;
+const label = category.label[locale];
+const href = getCategoryPath(category.slug, locale);
+const previewImages = getCategoryPreviewImages(category.slug, 3);
+const stackImages = previewImages;
+const primaryImage = previewImages[0];
+---
+
+<a
+  href={href}
+  class="category-home-card group relative z-0 block overflow-visible border-b border-r border-vinco-cream/10
+         text-vinco-cream px-6 py-8 hover:z-10 hover:bg-vinco-cream/5 transition-colors duration-150"
+  aria-label={label}
+>
+  <div class="category-home-card-row relative flex items-center min-h-28 overflow-visible gap-6">
+    <p class="text-sm shrink-0">{label}</p>
+  {
+    primaryImage && (
+      <>
+        <div class="ml-auto shrink-0 md:hidden w-28 aspect-square self-center overflow-hidden bg-vinco-cream/5">
+          <OptimizedImage
+            src={primaryImage}
+            alt={label}
+            class="w-full h-full object-cover"
+            sizes="112px"
+            widths={[112, 224]}
+            loading="lazy"
+          />
+        </div>
+
+        {
+          stackImages.length > 0 && (
+            <div
+              class="category-home-card-media hidden md:block flex-1 min-w-0 relative self-stretch min-h-28"
+              style={`--stack-count: ${stackImages.length}`}
+            >
+              <div class="category-stack absolute inset-0 overflow-visible pointer-events-none">
+                {stackImages.map((src, index) => {
+                  const depth = stackImages.length - 1 - index;
+                  return (
+                    <div
+                      class="category-stack-square absolute overflow-hidden bg-vinco-cream/5 shadow-sm"
+                      style={`--stack-depth: ${depth}; --stack-z: ${index + 1};`}
+                    >
+                      <OptimizedImage
+                        src={src}
+                        alt={depth === 0 ? label : ''}
+                        class="w-full h-full object-cover"
+                        sizes="112px"
+                        widths={[112, 224]}
+                        loading="lazy"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )
+        }
+      </>
+    )
+  }
+  </div>
+</a>
+
+<style>
+  .category-home-card-media {
+    container-type: inline-size;
+    --rest-offset: 6px;
+    --stack-gap: 22px;
+    --square-size: 7rem;
+  }
+
+  .category-stack-square {
+    z-index: var(--stack-z);
+    top: 50%;
+    right: 0;
+    width: var(--square-size);
+    height: auto;
+    aspect-ratio: 1;
+    transform: translate3d(calc(var(--stack-depth) * -1 * var(--rest-offset)), -50%, 0);
+    transition:
+      transform 300ms var(--ease-vinco),
+      width 300ms var(--ease-vinco);
+  }
+
+  .category-home-card:hover .category-home-card-media {
+    --square-size: calc(
+      (100cqw - (var(--stack-count) - 1) * var(--stack-gap)) / var(--stack-count)
+    );
+  }
+
+  .category-home-card:hover .category-stack {
+    --stack-step: calc(var(--square-size) + var(--stack-gap));
+  }
+
+  .category-home-card:hover .category-stack-square {
+    transform: translate3d(calc(var(--stack-depth) * -1 * var(--stack-step)), -50%, 0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .category-stack-square {
+      transition: none;
+    }
+
+    .category-home-card:hover .category-home-card-media {
+      --square-size: 7rem;
+    }
+
+    .category-home-card:hover .category-stack-square {
+      transform: translate3d(calc(var(--stack-depth) * -1 * var(--rest-offset)), -50%, 0);
+    }
+  }
+</style>

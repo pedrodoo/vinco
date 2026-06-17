@@ -2,29 +2,30 @@
 import Base from '../../layouts/Base.astro';
 import MultilineText from '../../components/MultilineText.astro';
 import ProjectCard from '../../components/work/ProjectCard.astro';
-import CategoryGrid from '../../components/work/CategoryGrid.astro';
+import CategoryHomeGrid from '../../components/work/CategoryHomeGrid.astro';
+import ProcessSection from '../../components/home/ProcessSection.astro';
 import { useTranslations, getNavLinks } from '../../i18n/utils';
-import { getFeaturedProjects } from '../../data/work';
+import { getFeaturedProjects, getDefaultOgImage } from '../../data/work';
+import { getProcessSteps } from '../../data/process';
 
 const locale = 'en';
 const t = useTranslations(locale);
 const nav = getNavLinks(locale);
 const projects = getFeaturedProjects();
-
-const process = [
-  { name: "Strategic definition", desc: "We clarify the problem, context and objectives before any formal decision." },
-  { name: "Formal development", desc: "Concept, form and function take shape through rigorous iteration." },
-  { name: "Material selection", desc: "We choose materials with care — quality, origin and impact." },
-  { name: "Sourcing", desc: "We identify and validate the right production partners for each project." },
-  { name: "Production oversight", desc: "We manage the production process from start to finish, without delegating responsibility." },
-  { name: "Brand communication", desc: "We ensure the object reaches the world with the presentation it deserves." }
-];
 ---
 
 <Base
   title="Vinco Studio — Concept to product"
   description="End-to-end product development studio. We work with brands, institutions and creators."
   locale="en"
+  ogImage={getDefaultOgImage()}
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Vinco Studio',
+    url: 'https://vinco-studio.com',
+    description: 'End-to-end product development studio.',
+  }}
 >
   <!-- HERO -->
   <section class="bg-vinco-cream relative overflow-hidden">
@@ -67,26 +68,21 @@ const process = [
   <!-- CATEGORIES -->
   <section class="bg-vinco-black px-8 py-24">
     <div class="max-w-[1440px] mx-auto">
-      <h2 class="font-display text-vinco-cream mb-12"><MultilineText text={t.home.categories_title} /></h2>
-      <CategoryGrid locale={locale} variant="static" />
+      <CategoryHomeGrid
+        locale={locale}
+        title={t.home.categories_title}
+        ctaLabel={t.home.categories_cta}
+        ctaUrl={nav.whatWeDo}
+      />
     </div>
   </section>
 
   <!-- PROCESS -->
-  <section class="bg-vinco-cream px-8 py-24 border-t border-vinco-brown-1/20">
-    <div class="max-w-[1440px] mx-auto">
-      <h2 class="font-display text-vinco-black mb-12"><MultilineText text={t.home.process_title} /></h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {process.map((step, i) => (
-          <div class="border-t border-vinco-brown-1/30 pt-6">
-            <p class="text-xs text-vinco-brown-1 mb-3">0{i + 1}</p>
-            <p class="text-vinco-black font-medium mb-2">{step.name}</p>
-            <p class="text-sm text-vinco-black/60 leading-relaxed">{step.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <ProcessSection
+    title={t.home.process_title}
+    subtitle={t.home.process_subtitle}
+    steps={getProcessSteps(locale)}
+  />
 
   <!-- CTA FINAL -->
   <section class="bg-vinco-black px-8 py-24">

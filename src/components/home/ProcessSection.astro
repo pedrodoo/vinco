@@ -1,0 +1,280 @@
+---
+import MultilineText from '../MultilineText.astro';
+import type { ProcessStep } from '../../data/process';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  steps: ProcessStep[];
+}
+
+const { title, subtitle, steps } = Astro.props;
+
+/** Clock positions: 12h, 2h, 4h, 6h, 8h, 10h */
+const STEP_ANGLES = [-90, -30, 30, 90, 150, 210] as const;
+
+type LabelAlign = 'top' | 'right' | 'bottom' | 'left';
+
+const LABEL_ALIGN: LabelAlign[] = ['top', 'right', 'right', 'bottom', 'left', 'left'];
+
+const RING_RADIUS = 168;
+const CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
+---
+
+<section
+  class="process-section bg-vinco-cream px-8 py-32 lg:py-36 border-t border-vinco-brown-1/20"
+  data-process-section
+  aria-label={title}
+>
+  <div class="max-w-[1440px] mx-auto">
+    <div class="lg:grid lg:grid-cols-[minmax(0,20rem)_auto] lg:gap-x-14 lg:gap-y-0 lg:items-start">
+      <header class="mb-12 lg:mb-0 lg:sticky lg:top-32 lg:max-w-sm shrink-0 relative z-10">
+        <h2 class="font-display text-vinco-black mb-4">
+          <MultilineText text={title} />
+        </h2>
+        <p class="text-sm text-vinco-black/60 leading-relaxed max-w-sm">
+          {subtitle}
+        </p>
+      </header>
+
+      <!-- Desktop circular diagram -->
+      <div class="hidden lg:block shrink-0 overflow-visible lg:pl-48">
+      <div class="process-diagram relative w-[480px] max-w-full aspect-square">
+        <svg
+          class="absolute inset-0 w-full h-full"
+          viewBox="0 0 400 400"
+          fill="none"
+          aria-hidden="true"
+        >
+          <circle
+            class="process-ring"
+            cx="200"
+            cy="200"
+            r={RING_RADIUS}
+            stroke="currentColor"
+            stroke-width="1"
+            style={`--circumference: ${CIRCUMFERENCE}`}
+          />
+        </svg>
+
+        {steps.map((step, i) => {
+          const angle = STEP_ANGLES[i];
+          const align = LABEL_ALIGN[i];
+          const num = String(i + 1).padStart(2, '0');
+          return (
+            <>
+              <div
+                class="process-node absolute flex items-center justify-center w-8 h-8 rounded-full border border-vinco-black text-[10px] text-vinco-black bg-vinco-cream"
+                style={`--angle: ${angle}deg; --i: ${i}`}
+                aria-hidden="true"
+              >
+                {num}
+              </div>
+              <div
+                class:list={[
+                  'process-label absolute w-56 max-w-none',
+                  align === 'top' && 'process-label--top',
+                  align === 'right' && 'process-label--right',
+                  align === 'bottom' && 'process-label--bottom',
+                  align === 'left' && 'process-label--left',
+                ]}
+                style={`--angle: ${angle}deg; --i: ${i}`}
+              >
+                <p class="text-sm font-medium text-vinco-black mb-2 leading-snug">{step.name}</p>
+                <p class="text-[13px] text-vinco-black/70 leading-relaxed">{step.desc}</p>
+              </div>
+            </>
+          );
+        })}
+      </div>
+      </div>
+
+      <!-- Mobile / tablet timeline -->
+      <ol class="process-timeline lg:hidden relative pl-8 space-y-10">
+        <div class="absolute left-[11px] top-2 bottom-2 w-px bg-vinco-brown-1/30" aria-hidden="true"></div>
+        {steps.map((step, i) => {
+          const num = String(i + 1).padStart(2, '0');
+          return (
+            <li class="process-timeline-item relative" style={`--i: ${i}`}>
+              <span
+                class="process-timeline-node absolute -left-8 top-0 flex items-center justify-center w-6 h-6 rounded-full border border-vinco-black text-[10px] text-vinco-black bg-vinco-cream"
+                aria-hidden="true"
+              >
+                {num}
+              </span>
+              <p class="text-sm font-medium text-vinco-black mb-1">{step.name}</p>
+              <p class="text-sm text-vinco-black/60 leading-relaxed">{step.desc}</p>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-ring {
+    color: var(--color-vinco-black);
+    stroke-dasharray: var(--circumference);
+    stroke-dashoffset: var(--circumference);
+    transition: stroke-dashoffset 800ms var(--ease-vinco);
+  }
+
+  .process-diagram {
+    --ring-radius: 42%;
+    --node-radius: var(--ring-radius);
+    /* Anchor labels just outside the ring; uniform gap on all sides */
+    --label-radius: 48%;
+    --label-gap: 8px;
+  }
+
+  .process-node {
+    left: calc(50% + cos(var(--angle)) * var(--node-radius));
+    top: calc(50% + sin(var(--angle)) * var(--node-radius));
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    transition:
+      opacity 400ms var(--ease-vinco),
+      transform 400ms var(--ease-vinco);
+    transition-delay: calc(600ms + var(--i) * 80ms);
+    z-index: 2;
+  }
+
+  .process-label {
+    left: calc(50% + cos(var(--angle)) * var(--label-radius));
+    top: calc(50% + sin(var(--angle)) * var(--label-radius));
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(16px);
+    transition:
+      opacity 450ms var(--ease-vinco),
+      transform 450ms var(--ease-vinco);
+    transition-delay: calc(700ms + var(--i) * 100ms);
+  }
+
+  .process-label--top {
+    transform: translate(-50%, -100%) translateY(var(--label-gap));
+  }
+
+  .process-label--bottom {
+    transform: translate(-50%, 0) translateY(calc(-1 * var(--label-gap)));
+  }
+
+  .process-label--right {
+    transform: translate(0, -50%) translateX(var(--label-gap));
+    text-align: left;
+  }
+
+  .process-label--left {
+    transform: translate(-100%, -50%) translateX(calc(-1 * var(--label-gap)));
+    text-align: right;
+  }
+
+  .process-timeline-item {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 450ms var(--ease-vinco),
+      transform 450ms var(--ease-vinco);
+    transition-delay: calc(200ms + var(--i) * 100ms);
+  }
+
+  .process-section.is-visible .process-ring {
+    stroke-dashoffset: 0;
+  }
+
+  .process-section.is-visible .process-node {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .process-section.is-visible .process-label {
+    opacity: 1;
+  }
+
+  .process-section.is-visible .process-label--top {
+    transform: translate(-50%, -100%) translateY(var(--label-gap));
+  }
+
+  .process-section.is-visible .process-label--bottom {
+    transform: translate(-50%, 0) translateY(calc(-1 * var(--label-gap)));
+  }
+
+  .process-section.is-visible .process-label--right {
+    transform: translate(0, -50%) translateX(var(--label-gap));
+  }
+
+  .process-section.is-visible .process-label--left {
+    transform: translate(-100%, -50%) translateX(calc(-1 * var(--label-gap)));
+  }
+
+  .process-section.is-visible .process-timeline-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .process-ring {
+      stroke-dashoffset: 0;
+      transition: none;
+    }
+
+    .process-node,
+    .process-label,
+    .process-timeline-item {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .process-section.is-visible .process-node {
+      transform: translate(-50%, -50%);
+    }
+
+    .process-section.is-visible .process-label--top {
+      transform: translate(-50%, -100%) translateY(var(--label-gap));
+    }
+
+    .process-section.is-visible .process-label--bottom {
+      transform: translate(-50%, 0) translateY(calc(-1 * var(--label-gap)));
+    }
+
+    .process-section.is-visible .process-label--right {
+      transform: translate(0, -50%) translateX(var(--label-gap));
+    }
+
+    .process-section.is-visible .process-label--left {
+      transform: translate(-100%, -50%) translateX(calc(-1 * var(--label-gap)));
+    }
+  }
+</style>
+
+<script>
+  function initProcessSections() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll('[data-process-section]').forEach((section) => {
+      if (section.classList.contains('is-visible')) return;
+
+      if (reducedMotion) {
+        section.classList.add('is-visible');
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      observer.observe(section);
+    });
+  }
+
+  initProcessSections();
+  document.addEventListener('astro:page-load', initProcessSections);
+</script>

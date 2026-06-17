@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "sea-the-future": "seathefuture",
+    "sociedade-francisco-manuel-dos-santos": "sfms"
+  },
+  "categories": {
+    "acessorios-bijuteria": "acessorios",
+    "brand-colateral": "outros",
+    "ceramica-vidro": "ceramica"
+  },
+  "clients": {
+    "Fundação Oceano Azul": "fundacao-oceano-azul",
+    "Oceanário de Lisboa": "oceanario"
+  }
+}

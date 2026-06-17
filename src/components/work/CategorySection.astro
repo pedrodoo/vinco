@@ -1,0 +1,40 @@
+---
+import OptimizedImage from '../OptimizedImage.astro';
+import type { CategoryItem } from '../../data/work';
+import { getCategoryItemAlt } from '../../data/work';
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  slug: string;
+  label: string;
+  items: CategoryItem[];
+  locale: Locale;
+}
+
+const { slug, label, items, locale } = Astro.props;
+---
+
+<section
+  id={slug}
+  class="scroll-mt-16 border-t border-vinco-cream/10 pt-16 md:pt-24 first:border-t-0 first:pt-0"
+>
+  <h2 class="font-display text-vinco-cream mb-8">{label}</h2>
+  {
+    items.length > 0 ? (
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {items.map((item) => (
+          <div class="aspect-square bg-vinco-cream/5 overflow-hidden">
+            <OptimizedImage
+              src={item.src}
+              alt={getCategoryItemAlt(item, locale)}
+              class="w-full h-full object-cover"
+              sizes="(max-width: 768px) 50vw, 25vw"
+            />
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p class="text-vinco-cream/60 text-sm">—</p>
+    )
+  }
+</section>

@@ -1,20 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import type { Locale } from '../i18n/utils';
-
-import oceanarioImage from '../assets/images/work/oceanario/produto-7749.jpg';
-import oceanarioMerch1 from '../assets/MERCHANDISING/DSCF8212.jpg';
-import oceanarioMerch2 from '../assets/MERCHANDISING/DSCF8165.jpg';
-import oceanarioMerch3 from '../assets/MERCHANDISING/_MG_1379.jpg';
-
-import foaUniform1 from '../assets/UNIFORMES/Fundação Oceano Azul/BEST/32228e15-d242-4c92-84e8-6dc35bf0d3a8.JPG';
-import foaUniform2 from '../assets/UNIFORMES/Fundação Oceano Azul/BEST/efabaf8d-cbd5-49aa-8b9b-e9922aa3c764.JPG';
-import foaUniform3 from '../assets/UNIFORMES/Fundação Oceano Azul/BEST/OUTRAS FOTOS/3ef09c7e-5939-482a-998b-987bfa5cb9e2.JPG';
-import foaUniform4 from '../assets/UNIFORMES/Fundação Oceano Azul/BEST/OUTRAS FOTOS/b92db0d9-6e03-4f15-ade8-2c9048ab8a4b.JPG';
-
-import sfmsApparel1 from '../assets/VESTUÁRIO/_MG_1311.jpg';
-import sfmsApparel2 from '../assets/VESTUÁRIO/IMG_1439.jpg';
-import sfmsApparel3 from '../assets/VESTUÁRIO/IMG_1426.jpg';
-import sfmsApparel4 from '../assets/VESTUÁRIO/20210520_OCEANARIO4603.jpg';
+import { getImageAlt } from './image-meta';
 
 export type ProjectPeriod =
   | { type: 'single'; year: string }
@@ -34,23 +20,28 @@ export interface Project {
 export interface Category {
   slug: string;
   label: { pt: string; en: string };
-  assetFolder: string;
 }
 
 export interface CategoryItem {
   src: ImageMetadata;
-  alt: string;
+  assetPath: string;
 }
 
-export const projects: Project[] = [
+interface ProjectDef {
+  client: string;
+  category: { pt: string; en: string };
+  period: ProjectPeriod;
+  slug: string;
+  featured: boolean;
+}
+
+const PROJECT_DEFS: ProjectDef[] = [
   {
     client: 'Oceanário de Lisboa',
     category: { pt: 'Merchandising', en: 'Merchandising' },
     period: { type: 'since', year: '2021' },
     slug: 'oceanario',
     featured: true,
-    image: oceanarioImage,
-    gallery: [oceanarioImage, oceanarioMerch1, oceanarioMerch2, oceanarioMerch3],
   },
   {
     client: 'Fundação Oceano Azul',
@@ -58,7 +49,6 @@ export const projects: Project[] = [
     period: { type: 'single', year: '2024' },
     slug: 'fundacao-oceano-azul',
     featured: true,
-    gallery: [foaUniform1, foaUniform2, foaUniform3, foaUniform4],
   },
   {
     client: 'Sociedade Francisco Manuel dos Santos',
@@ -66,7 +56,6 @@ export const projects: Project[] = [
     period: { type: 'since', year: '2023' },
     slug: 'sfms',
     featured: true,
-    gallery: [sfmsApparel1, sfmsApparel2, sfmsApparel3, sfmsApparel4],
   },
   {
     client: 'SEATHEFUTURE',
@@ -85,46 +74,102 @@ export const projects: Project[] = [
 ];
 
 export const categories: Category[] = [
-  { slug: 'vestuario', label: { pt: 'Vestuário', en: 'Apparel' }, assetFolder: 'VESTUÁRIO' },
-  { slug: 'acessorios', label: { pt: 'Acessórios', en: 'Accessories' }, assetFolder: 'ACESSÓRIOS & BIJUTERIA' },
-  { slug: 'ceramica', label: { pt: 'Cerâmica', en: 'Ceramics' }, assetFolder: 'CERÂMICA & VIDRO' },
-  { slug: 'papelaria', label: { pt: 'Papelaria', en: 'Stationery' }, assetFolder: 'PAPELARIA' },
-  { slug: 'textil-lar', label: { pt: 'Têxtil-lar', en: 'Home textiles' }, assetFolder: 'TEXTIL-LAR' },
-  { slug: 'uniformes', label: { pt: 'Uniformes', en: 'Uniforms' }, assetFolder: 'UNIFORMES' },
-  { slug: 'merchandising', label: { pt: 'Merchandising', en: 'Merchandising' }, assetFolder: 'MERCHANDISING' },
-  { slug: 'outros', label: { pt: 'Outros', en: 'Other' }, assetFolder: 'BRAND COLLATERAL' },
+  { slug: 'vestuario', label: { pt: 'Vestuário', en: 'Apparel' } },
+  { slug: 'swimwear', label: { pt: 'Swimwear', en: 'Swimwear' } },
+  { slug: 'acessorios', label: { pt: 'Acessórios', en: 'Accessories' } },
+  { slug: 'ceramica', label: { pt: 'Cerâmica', en: 'Ceramics' } },
+  { slug: 'papelaria', label: { pt: 'Papelaria', en: 'Stationery' } },
+  { slug: 'textil-lar', label: { pt: 'Têxtil-lar', en: 'Home textiles' } },
+  { slug: 'uniformes', label: { pt: 'Uniformes', en: 'Uniforms' } },
+  { slug: 'merchandising', label: { pt: 'Merchandising', en: 'Merchandising' } },
+  { slug: 'outros', label: { pt: 'Outros', en: 'Other' } },
 ];
 
-const imageModules = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/**/*.{jpg,jpeg,png,JPG,JPEG}',
+const projectModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/projects/**/*.jpg',
   { eager: true },
 );
 
-const IMAGE_EXT = /\.(jpe?g|png)$/i;
+const categoryModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/categories/**/*.jpg',
+  { eager: true },
+);
 
-function getTopFolder(path: string): string | null {
-  const match = path.match(/\/assets\/([^/]+)\//);
-  return match ? match[1] : null;
+interface ProjectImages {
+  hero?: ImageMetadata;
+  gallery: ImageMetadata[];
 }
 
-function filenameFromPath(path: string): string {
-  return path.split('/').pop()?.replace(IMAGE_EXT, '') ?? 'Product';
+function assetPathFromModulePath(modulePath: string): string {
+  return modulePath.replace(/^(\.\.\/assets\/)/, '').replace(/\\/g, '/');
 }
 
-const itemsByFolder = new Map<string, CategoryItem[]>();
+function buildProjectImages(): Map<string, ProjectImages> {
+  const bySlug = new Map<string, ProjectImages>();
 
-for (const [path, mod] of Object.entries(imageModules)) {
-  if (path.includes('/images/')) continue;
-
-  const folder = getTopFolder(path);
-  if (!folder) continue;
-
-  const items = itemsByFolder.get(folder) ?? [];
-  items.push({
+  const entries = Object.entries(projectModules).map(([modulePath, mod]) => ({
+    modulePath,
+    assetPath: assetPathFromModulePath(modulePath),
     src: mod.default,
-    alt: filenameFromPath(path),
+    fileName: modulePath.split('/').pop() ?? '',
+  }));
+
+  entries.sort((a, b) => a.fileName.localeCompare(b.fileName));
+
+  for (const entry of entries) {
+    const slugMatch = entry.assetPath.match(/^projects\/([^/]+)\//);
+    if (!slugMatch) continue;
+
+    const slug = slugMatch[1];
+    const bucket = bySlug.get(slug) ?? { gallery: [] };
+
+    if (entry.fileName === 'hero.jpg') {
+      bucket.hero = entry.src;
+    } else {
+      bucket.gallery.push(entry.src);
+    }
+
+    bySlug.set(slug, bucket);
+  }
+
+  return bySlug;
+}
+
+function buildProjects(): Project[] {
+  const imagesBySlug = buildProjectImages();
+
+  return PROJECT_DEFS.map((def) => {
+    const images = imagesBySlug.get(def.slug);
+    if (!images?.hero) {
+      return { ...def };
+    }
+
+    const gallery = [images.hero, ...images.gallery];
+    return {
+      ...def,
+      image: images.hero,
+      gallery,
+    };
   });
-  itemsByFolder.set(folder, items);
+}
+
+export const projects: Project[] = buildProjects();
+
+const itemsByCategory = new Map<string, CategoryItem[]>();
+
+for (const [modulePath, mod] of Object.entries(categoryModules)) {
+  const assetPath = assetPathFromModulePath(modulePath);
+  const slugMatch = assetPath.match(/^categories\/([^/]+)\//);
+  if (!slugMatch) continue;
+
+  const slug = slugMatch[1];
+  const items = itemsByCategory.get(slug) ?? [];
+  items.push({ src: mod.default, assetPath });
+  itemsByCategory.set(slug, items);
+}
+
+for (const items of itemsByCategory.values()) {
+  items.sort((a, b) => a.assetPath.localeCompare(b.assetPath));
 }
 
 const categoryBySlug = new Map(categories.map((c) => [c.slug, c]));
@@ -176,9 +221,11 @@ export function getCategoryLabel(slug: string, locale: Locale): string {
 }
 
 export function getCategoryItems(slug: string): CategoryItem[] {
-  const category = categoryBySlug.get(slug);
-  if (!category) return [];
-  return itemsByFolder.get(category.assetFolder) ?? [];
+  return itemsByCategory.get(slug) ?? [];
+}
+
+export function getCategoryItemAlt(item: CategoryItem, locale: Locale): string {
+  return getImageAlt(item.assetPath, locale);
 }
 
 export function getCategoryBySlug(slug: string): Category | undefined {
@@ -187,4 +234,18 @@ export function getCategoryBySlug(slug: string): Category | undefined {
 
 export function getProjectPath(slug: string, locale: Locale): string {
   return locale === 'pt' ? `/trabalho#${slug}` : `/en/work#${slug}`;
+}
+
+export function getCategoryPath(slug: string, locale: Locale): string {
+  return locale === 'pt' ? `/o-que-fazemos#${slug}` : `/en/what-we-do#${slug}`;
+}
+
+export function getCategoryPreviewImages(slug: string, limit = 5): ImageMetadata[] {
+  return getCategoryItems(slug)
+    .slice(0, limit)
+    .map((item) => item.src);
+}
+
+export function getDefaultOgImage(): ImageMetadata | undefined {
+  return getFeaturedProjects().find((p) => p.image)?.image;
 }

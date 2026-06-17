@@ -10,6 +10,7 @@
     "tokens:watch": "node --watch scripts/build-tokens.mjs",
     "sync:copy": "node scripts/sync-copy.mjs",
     "optimize:image": "node scripts/optimize-image.mjs",
+    "optimize:batch": "node scripts/optimize-batch.mjs",
     "predev": "pnpm sync:copy && pnpm tokens:build",
     "prebuild": "pnpm sync:copy && pnpm tokens:build",
     "dev": "astro dev",
@@ -19,7 +20,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.0.8",
+    "astro": "^6.4.7",
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {

@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import MultilineText from '../components/MultilineText.astro';
 import CaseStudySection from '../components/work/CaseStudySection.astro';
 import { useTranslations } from '../i18n/utils';
-import { getCaseStudies, getCaseStudyCopyKey, getProjectGallery, formatProjectPeriod } from '../data/work';
+import { getCaseStudies, getCaseStudyCopyKey, getProjectGallery, formatProjectPeriod, getDefaultOgImage } from '../data/work';
 
 const locale = 'pt';
 const t = useTranslations(locale);
@@ -15,6 +15,7 @@ const caseCopyByKey = t.work.cases;
   title={`${t.work.title} | Vinco Estúdio`}
   description={t.work.intro}
   locale={locale}
+  ogImage={getDefaultOgImage()}
 >
   <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
     <div class="max-w-[1440px] mx-auto">
