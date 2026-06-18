@@ -3,5 +3,7 @@ dist/
 .astro/
 _incoming/
 .DS_Store
+**/.DS_Store
+public/images-manifest.json
 .cursor/
 *.log
