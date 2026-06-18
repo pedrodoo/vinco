@@ -1,0 +1,45 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  href: string;
+}
+
+const { id, label, href } = Astro.props;
+const panelId = `accordion-panel-${id}`;
+---
+
+<li class="border-b border-vinco-brown-1/20" data-nav-accordion>
+  <div class="flex items-center justify-between py-4">
+    <a href={href} class="text-sm tracking-wide font-body hover:opacity-60 transition-opacity duration-150">
+      {label}
+    </a>
+    <button
+      type="button"
+      class="p-2 -mr-2 text-vinco-brown-1 hover:text-vinco-burgundy transition-colors duration-150"
+      aria-expanded="false"
+      aria-controls={panelId}
+      data-accordion-toggle
+    >
+      <svg
+        class="w-4 h-4 transition-transform duration-200"
+        data-accordion-icon
+        viewBox="0 0 16 16"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        aria-hidden="true"
+      >
+        <path d="M4 6l4 4 4-4" />
+      </svg>
+      <span class="sr-only">{label}</span>
+    </button>
+  </div>
+  <div
+    id={panelId}
+    class="hidden pb-4"
+    data-accordion-panel
+  >
+    <slot />
+  </div>
+</li>

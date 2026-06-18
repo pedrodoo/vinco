@@ -12,6 +12,8 @@ Use `\n` inside a cell for an intentional line break in titles (each language ca
 | nav.what-we-do | O Que Fazemos | What We Do |
 | nav.about | Sobre | About |
 | nav.contact | Contacto | Contact |
+| nav.menu_open | Abrir menu | Open menu |
+| nav.menu_close | Fechar menu | Close menu |
 | home.hero_title | Do conceito\nao produto. | Concept\nto product. |
 | home.hero_subtitle | Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores para transformar ideias em objetos com rigor e intenção. | End-to-end product development studio. We work with brands, institutions and creators to transform ideas into objects with rigour and intention. |
 | home.hero_cta | Iniciar um projeto | Start a project |
@@ -37,9 +39,6 @@ Use `\n` inside a cell for an intentional line break in titles (each language ca
 | work.cases.lx3.title | LX3 | LX3 |
 | work.cases.lx3.description | Consultoria no desenvolvimento de produto e construção de imagem da LX3 no momento do seu relançamento. Um acompanhamento transversal à marca: coleção de banho, vestuário complementar, packaging e suportes de marca, com direção e acompanhamento de sessão fotográfica.\n\nAVinco funcionou como braço operacional da fundadora — assimilando a direção criativa da marca e traduzindo-a em produto, packaging e linguagem visual coerentes entre categorias, gerindo todo o desenvolvimento e logística para que ela se pudesse concentrar inteiramente no design.| Product development and brand image consultancy for LX3 at the moment of its relaunch. A cross-category approach to the brand: bath collection, complementary apparel, packaging and brand materials, with art direction and oversight of the photo shoot.\n\nVinco acted as the operational arm of the founder — absorbing the brand's creative direction and translating it into coherent product, packaging and visual language across categories, managing all development and logistics so she could focus entirely on design.|
 | work.categories_all | Ver tudo | View all |
-| work.categories_select | Seleccione uma categoria | Select a category |
-| what-we-do.title | O Que Fazemos | What We Do |
-| what-we-do.intro | [Introdução ao que fazemos] | [What we do intro] |
 | about.title | Sobre | About |
 | about.intro | O Vinco é um estúdio de desenvolvimento de produto end-to-end.\n\nTrabalhamos com marcas, instituições e criadores para levar conceitos desde a definição estratégica até à produção e comunicação final. | Vinco is a creative and strategic consulting studio specializing in the comprehensive development of products. It partners with brands, institutions, and creators seeking to transform concepts into tangible, efficient, and sustainable solutions.|
 | about.meta_description | Conheça o Vinco Estúdio — desenvolvimento de produto end-to-end para marcas, instituições e criadores. | Meet Vinco Studio — end-to-end product development for brands, institutions and creators. |

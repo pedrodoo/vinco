@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CaseStudySection from '../../components/work/CaseStudySection.astro';
 import { useTranslations } from '../../i18n/utils';
-import { getCaseStudies, getCaseStudyCopyKey, getProjectGallery, formatProjectPeriod, getDefaultOgImage } from '../../data/work';
+import { getCaseStudies, getCaseStudyCopyKey, getCaseStudyGallery, formatProjectPeriod, getDefaultOgImage } from '../../data/work';
 
 const locale = 'en';
 const t = useTranslations(locale);
@@ -36,7 +36,7 @@ const caseCopyByKey = t.work.cases;
                 tag={project.category[locale]}
                 period={formatProjectPeriod(project.period, locale)}
                 description={caseCopy?.description ?? ''}
-                gallery={getProjectGallery(project)}
+                gallery={getCaseStudyGallery(project)}
                 imageAlt={caseCopy?.title ?? project.client}
               />
             );

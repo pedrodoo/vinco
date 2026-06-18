@@ -15,6 +15,7 @@ export interface Project {
   featured: boolean;
   image?: ImageMetadata;
   gallery?: ImageMetadata[];
+  caseStudyGallery?: ImageMetadata[];
 }
 
 export interface Category {
@@ -33,6 +34,7 @@ interface ProjectDef {
   period: ProjectPeriod;
   slug: string;
   featured: boolean;
+  caseStudyGalleryFiles?: string[];
 }
 
 const PROJECT_DEFS: ProjectDef[] = [
@@ -49,6 +51,11 @@ const PROJECT_DEFS: ProjectDef[] = [
     period: { type: 'single', year: '2024' },
     slug: 'fundacao-oceano-azul',
     featured: true,
+    caseStudyGalleryFiles: [
+      'gallery-01-chatgpt-image-apr-24-2026-at-01-30-23-pm.jpg',
+      'gallery-03-chatgpt-image-apr-24-2026-at-03-14-38-pm.jpg',
+      'gallery-04-chatgpt-image-apr-24-2026-at-03-32-41-pm.jpg',
+    ],
   },
   {
     client: 'Sociedade Francisco Manuel dos Santos',
@@ -98,6 +105,7 @@ const categoryModules = import.meta.glob<{ default: ImageMetadata }>(
 interface ProjectImages {
   hero?: ImageMetadata;
   gallery: ImageMetadata[];
+  byFileName: Map<string, ImageMetadata>;
 }
 
 function assetPathFromModulePath(modulePath: string): string {
@@ -121,7 +129,9 @@ function buildProjectImages(): Map<string, ProjectImages> {
     if (!slugMatch) continue;
 
     const slug = slugMatch[1];
-    const bucket = bySlug.get(slug) ?? { gallery: [] };
+    const bucket = bySlug.get(slug) ?? { gallery: [], byFileName: new Map() };
+
+    bucket.byFileName.set(entry.fileName, entry.src);
 
     if (entry.fileName === 'hero.jpg') {
       bucket.hero = entry.src;
@@ -145,10 +155,15 @@ function buildProjects(): Project[] {
     }
 
     const gallery = [images.hero, ...images.gallery];
+    const caseStudyGallery = def.caseStudyGalleryFiles
+      ?.map((fileName) => images.byFileName.get(fileName))
+      .filter((src): src is ImageMetadata => Boolean(src));
+
     return {
       ...def,
       image: images.hero,
       gallery,
+      ...(caseStudyGallery?.length ? { caseStudyGallery } : {}),
     };
   });
 }
@@ -184,8 +199,9 @@ export function getProjectGallery(project: Project): ImageMetadata[] {
   return [];
 }
 
-export function getAllProjects(): Project[] {
-  return projects;
+export function getCaseStudyGallery(project: Project): ImageMetadata[] {
+  if (project.caseStudyGallery?.length) return project.caseStudyGallery;
+  return getProjectGallery(project);
 }
 
 export function getCaseStudies(): Project[] {
@@ -226,10 +242,6 @@ export function getCategoryItems(slug: string): CategoryItem[] {
 
 export function getCategoryItemAlt(item: CategoryItem, locale: Locale): string {
   return getImageAlt(item.assetPath, locale);
-}
-
-export function getCategoryBySlug(slug: string): Category | undefined {
-  return categoryBySlug.get(slug);
 }
 
 export function getProjectPath(slug: string, locale: Locale): string {

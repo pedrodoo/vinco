@@ -1,0 +1,163 @@
+---
+import NavAccordion from './NavAccordion.astro';
+import ProjectCard from '../work/ProjectCard.astro';
+import CategoryGrid from '../work/CategoryGrid.astro';
+import { getFeaturedProjects } from '../../data/work';
+import type { Locale } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  workUrl: string;
+  whatWeDoUrl: string;
+  aboutUrl: string;
+  contactUrl: string;
+  workLabel: string;
+  whatWeDoLabel: string;
+  aboutLabel: string;
+  contactLabel: string;
+  workCta: string;
+  categoriesAll: string;
+  menuOpenLabel: string;
+  menuCloseLabel: string;
+  altPath: string;
+  altLocale: string;
+}
+
+const {
+  locale,
+  workUrl,
+  whatWeDoUrl,
+  aboutUrl,
+  contactUrl,
+  workLabel,
+  whatWeDoLabel,
+  aboutLabel,
+  contactLabel,
+  workCta,
+  categoriesAll,
+  menuOpenLabel,
+  menuCloseLabel,
+  altPath,
+  altLocale,
+} = Astro.props;
+
+const featuredProjects = getFeaturedProjects();
+const drawerId = 'mobile-nav-drawer';
+---
+
+<div data-mobile-nav>
+  <button
+    type="button"
+    class="p-2 -mr-2 text-vinco-brown-1 hover:text-vinco-burgundy transition-colors duration-150"
+    aria-expanded="false"
+    aria-controls={drawerId}
+    data-mobile-nav-toggle
+  >
+    <span class="sr-only">{menuOpenLabel}</span>
+    <svg
+      class="w-5 h-5"
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      aria-hidden="true"
+    >
+      <path d="M3 5h14M3 10h14M3 15h14" />
+    </svg>
+  </button>
+
+  <div
+    class="fixed inset-0 z-[60] bg-vinco-black/40 opacity-0 invisible pointer-events-none transition-opacity duration-200"
+    data-mobile-nav-overlay
+    aria-hidden="true"
+  ></div>
+
+  <aside
+    id={drawerId}
+    class="fixed top-0 right-0 z-[70] h-full w-[min(100vw,360px)] bg-vinco-cream border-l border-vinco-brown-1/20
+           translate-x-full transition-transform duration-200 ease-out flex flex-col"
+    role="dialog"
+    aria-modal="true"
+    aria-label={menuOpenLabel}
+    data-mobile-nav-drawer
+  >
+    <div class="flex items-center justify-between px-8 h-16 border-b border-vinco-brown-1/20 shrink-0">
+      <span class="text-xs tracking-widest uppercase text-vinco-brown-1">Menu</span>
+      <button
+        type="button"
+        class="p-2 -mr-2 text-vinco-brown-1 hover:text-vinco-burgundy transition-colors duration-150"
+        data-mobile-nav-close
+      >
+        <span class="sr-only">{menuCloseLabel}</span>
+        <svg
+          class="w-5 h-5"
+          viewBox="0 0 20 20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path d="M5 5l10 10M15 5L5 15" />
+        </svg>
+      </button>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto px-8 py-4">
+      <ul>
+        <NavAccordion id="work" label={workLabel} href={workUrl}>
+          <div class="grid grid-cols-2 gap-3 mb-4">
+            {featuredProjects.map((project) => (
+              <ProjectCard project={project} locale={locale} variant="compact" />
+            ))}
+          </div>
+          <a href={workUrl} class="nav-sublink text-sm">
+            {workCta} →
+          </a>
+        </NavAccordion>
+
+        <NavAccordion id="what-we-do" label={whatWeDoLabel} href={whatWeDoUrl}>
+          <CategoryGrid
+            locale={locale}
+            variant="linked"
+            baseUrl={whatWeDoUrl}
+            compact
+            theme="light"
+          />
+          <a href={whatWeDoUrl} class="nav-sublink text-sm mt-4 inline-block">
+            {categoriesAll} →
+          </a>
+        </NavAccordion>
+
+        <li class="border-b border-vinco-brown-1/20">
+          <a
+            href={aboutUrl}
+            class="block py-4 text-sm tracking-wide font-body hover:opacity-60 transition-opacity duration-150"
+          >
+            {aboutLabel}
+          </a>
+        </li>
+        <li class="border-b border-vinco-brown-1/20">
+          <a
+            href={contactUrl}
+            class="block py-4 text-sm tracking-wide font-body hover:opacity-60 transition-opacity duration-150"
+          >
+            {contactLabel}
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="px-8 py-6 border-t border-vinco-brown-1/20 shrink-0">
+      <a
+        href={altPath}
+        class="text-xs tracking-widest uppercase text-vinco-brown-1 hover:text-vinco-burgundy transition-colors duration-150"
+      >
+        {altLocale.toUpperCase()}
+      </a>
+    </div>
+  </aside>
+</div>
+
+<script>
+  import './mobile-nav.ts';
+</script>

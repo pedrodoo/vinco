@@ -1,5 +1,6 @@
 ---
 import MultilineText from './MultilineText.astro';
+import { splitCopyParagraphs } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -9,7 +10,7 @@ interface Props {
 
 const { title, intro, variant = 'cream' } = Astro.props;
 
-const introParagraphs = Array.isArray(intro) ? intro : [intro];
+const introParagraphs = Array.isArray(intro) ? intro : splitCopyParagraphs(intro);
 
 const sectionClass =
   variant === 'cream'
@@ -22,12 +23,23 @@ const headingClass =
 const introClass =
   variant === 'cream' ? 'text-vinco-black/70 leading-relaxed' : 'text-vinco-cream/70 leading-relaxed';
 
-const patternOpacity = variant === 'cream' ? 'opacity-10' : 'opacity-[0.07]';
+const patternClass =
+  variant === 'cream' ? 'opacity-10' : 'opacity-20';
+
+const patternUrl =
+  variant === 'cream'
+    ? '/images/patterns/pattern-cream.svg'
+    : '/images/patterns/pattern-dark.svg';
 ---
 
-<section class={`${sectionClass} px-8 py-24 relative overflow-hidden`}>
-  <div class="max-w-[1440px] mx-auto relative z-10">
-    <div class="max-w-2xl">
+<section class={`${sectionClass} relative px-8 py-24 min-h-[22rem] md:min-h-[24rem] overflow-hidden`}>
+  <div
+    class={`absolute top-0 right-0 w-1/2 h-full hidden md:block pointer-events-none ${patternClass}`}
+    style={`background-image: url('${patternUrl}'); background-size: 300px; background-repeat: repeat;`}
+    aria-hidden="true"
+  ></div>
+  <div class="max-w-[1440px] mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2">
+    <div class="max-w-2xl md:max-w-none md:pr-12">
       <h1 class={headingClass}>
         <MultilineText text={title} />
       </h1>
@@ -42,9 +54,4 @@ const patternOpacity = variant === 'cream' ? 'opacity-10' : 'opacity-[0.07]';
       </div>
     </div>
   </div>
-  <div
-    class={`absolute top-0 right-0 w-1/2 h-full ${patternOpacity}`}
-    style="background-image: url('/images/patterns/pattern-cream.svg'); background-size: 300px; background-repeat: repeat;"
-    aria-hidden="true"
-  ></div>
 </section>

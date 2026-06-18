@@ -4,7 +4,9 @@
     "work-case-studies": "Projetos",
     "what-we-do": "O Que Fazemos",
     "about": "Sobre",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "menu_open": "Abrir menu",
+    "menu_close": "Fechar menu"
   },
   "home": {
     "hero_title": "Do conceito\nao produto.",
@@ -45,12 +47,7 @@
         "description": "Consultoria no desenvolvimento de produto e construção de imagem da LX3 no momento do seu relançamento. Um acompanhamento transversal à marca: coleção de banho, vestuário complementar, packaging e suportes de marca, com direção e acompanhamento de sessão fotográfica.\n\nAVinco funcionou como braço operacional da fundadora — assimilando a direção criativa da marca e traduzindo-a em produto, packaging e linguagem visual coerentes entre categorias, gerindo todo o desenvolvimento e logística para que ela se pudesse concentrar inteiramente no design."
       }
     },
-    "categories_all": "Ver tudo",
-    "categories_select": "Seleccione uma categoria"
-  },
-  "what-we-do": {
-    "title": "O Que Fazemos",
-    "intro": "[Introdução ao que fazemos]"
+    "categories_all": "Ver tudo"
   },
   "about": {
     "title": "Sobre",

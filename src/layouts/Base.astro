@@ -5,6 +5,7 @@ import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import WorkMegaMenu from '../components/nav/WorkMegaMenu.astro';
 import WhatWeDoMegaMenu from '../components/nav/WhatWeDoMegaMenu.astro';
+import MobileNav from '../components/nav/MobileNav.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -80,8 +81,7 @@ if (ogImage) {
           />
         </a>
 
-        <!-- Links (center) -->
- <!-- Links (center) -->
+        <!-- Links (desktop) -->
     <ul class="hidden md:flex items-center gap-8">
       <WorkMegaMenu
         locale={locale}
@@ -105,13 +105,34 @@ if (ogImage) {
       import '../components/nav/mega-menu.ts';
     </script>
 
-        <!-- Language toggle -->
-        <a
-          href={altPath}
-          class="text-xs tracking-widest uppercase text-vinco-brown-1 hover:text-vinco-burgundy transition-colors duration-150"
-        >
-          {altLocale.toUpperCase()}
-        </a>
+        <!-- Mobile menu + language toggle -->
+        <div class="flex items-center gap-4">
+          <div class="md:hidden">
+            <MobileNav
+              locale={locale}
+              workUrl={nav.work}
+              whatWeDoUrl={nav.whatWeDo}
+              aboutUrl={nav.about}
+              contactUrl={nav.contact}
+              workLabel={t.nav.work}
+              whatWeDoLabel={t.nav['what-we-do']}
+              aboutLabel={t.nav.about}
+              contactLabel={t.nav.contact}
+              workCta={t.home.work_cta}
+              categoriesAll={t.work.categories_all}
+              menuOpenLabel={t.nav.menu_open}
+              menuCloseLabel={t.nav.menu_close}
+              altPath={altPath}
+              altLocale={altLocale}
+            />
+          </div>
+          <a
+            href={altPath}
+            class="text-xs tracking-widest uppercase text-vinco-brown-1 hover:text-vinco-burgundy transition-colors duration-150"
+          >
+            {altLocale.toUpperCase()}
+          </a>
+        </div>
 
       </nav>
     </header>
@@ -128,17 +149,14 @@ if (ogImage) {
         <div class="flex flex-col md:flex-row justify-between gap-12">
 
           <!-- Logo + Tagline -->
-          <div class="max-w-xs">
-            <a href={nav.home} class="block mb-6">
+          <div class="max-w-40">
+            <a href={nav.home} class="block">
               <img
-                src="/images/vinco-logo.svg"
-                alt="Vinco Estúdio"
-                class="h-6 w-auto brightness-0 invert"
+                src="/images/Logo_Vertical_W.svg"
+                alt={t.footer.tagline.replace('\n', '. ')}
+                class="w-full h-auto brightness-0 invert"
               />
             </a>
-            <p class="font-heading text-lg tracking-tight text-vinco-cream whitespace-pre-line">
-              {t.footer.tagline}
-            </p>
           </div>
 
           <!-- Nav links -->
