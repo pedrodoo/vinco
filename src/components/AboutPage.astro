@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
 import MultilineText from './MultilineText.astro';
 import OptimizedImage from './OptimizedImage.astro';
 import founderPhoto from '../assets/about/fundadora.jpg';
@@ -29,25 +30,7 @@ const founderParagraphs = splitCopyParagraphs(t.about.founder_bio);
   description={t.about.meta_description}
   locale={locale}
 >
-  <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24 relative overflow-hidden">
-    <div class="max-w-[1440px] mx-auto relative z-10">
-      <div class="max-w-2xl">
-        <h1 class="font-display text-vinco-black mb-4">
-          <MultilineText text={t.about.title} />
-        </h1>
-        <div class="space-y-6">
-          {introParagraphs.map((paragraph) => (
-            <p class="text-vinco-black/70 leading-relaxed">{paragraph}</p>
-          ))}
-        </div>
-      </div>
-    </div>
-    <div
-      class="absolute top-0 right-0 w-1/2 h-full opacity-10"
-      style="background-image: url('/images/patterns/pattern-cream.svg'); background-size: 300px; background-repeat: repeat;"
-      aria-hidden="true"
-    ></div>
-  </section>
+  <PageHero variant="cream" title={t.about.title} intro={introParagraphs} />
 
   <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
     <div class="max-w-[1440px] mx-auto">

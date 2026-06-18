@@ -1,7 +1,7 @@
 {
   "nav": {
-    "work": "Trabalho",
-    "work-case-studies": "Projectos",
+    "work": "Projetos",
+    "work-case-studies": "Projetos",
     "what-we-do": "O Que Fazemos",
     "about": "Sobre",
     "contact": "Contacto"
@@ -10,7 +10,7 @@
     "hero_title": "Do conceito\nao produto.",
     "hero_subtitle": "Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores para transformar ideias em objetos com rigor e intenção.",
     "hero_cta": "Iniciar um projeto",
-    "work_title": "Projectos",
+    "work_title": "Projetos",
     "work_cta": "Todos os projectos",
     "categories_title": "O que fazemos",
     "categories_cta": "Todas as categorias",

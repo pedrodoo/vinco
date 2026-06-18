@@ -1,0 +1,50 @@
+---
+import MultilineText from './MultilineText.astro';
+
+interface Props {
+  title: string;
+  intro: string | string[];
+  variant?: 'cream' | 'dark';
+}
+
+const { title, intro, variant = 'cream' } = Astro.props;
+
+const introParagraphs = Array.isArray(intro) ? intro : [intro];
+
+const sectionClass =
+  variant === 'cream'
+    ? 'bg-vinco-cream border-t border-vinco-brown-1/20'
+    : 'bg-vinco-black border-t border-vinco-cream/10';
+
+const headingClass =
+  variant === 'cream' ? 'font-display text-vinco-black mb-4' : 'font-display text-vinco-cream mb-4';
+
+const introClass =
+  variant === 'cream' ? 'text-vinco-black/70 leading-relaxed' : 'text-vinco-cream/70 leading-relaxed';
+
+const patternOpacity = variant === 'cream' ? 'opacity-10' : 'opacity-[0.07]';
+---
+
+<section class={`${sectionClass} px-8 py-24 relative overflow-hidden`}>
+  <div class="max-w-[1440px] mx-auto relative z-10">
+    <div class="max-w-2xl">
+      <h1 class={headingClass}>
+        <MultilineText text={title} />
+      </h1>
+      <div class="space-y-6">
+        {
+          introParagraphs.map((paragraph) => (
+            <p class={introClass}>
+              <MultilineText text={paragraph} />
+            </p>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <div
+    class={`absolute top-0 right-0 w-1/2 h-full ${patternOpacity}`}
+    style="background-image: url('/images/patterns/pattern-cream.svg'); background-size: 300px; background-repeat: repeat;"
+    aria-hidden="true"
+  ></div>
+</section>

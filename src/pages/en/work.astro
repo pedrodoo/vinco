@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import MultilineText from '../../components/MultilineText.astro';
+import PageHero from '../../components/PageHero.astro';
 import CaseStudySection from '../../components/work/CaseStudySection.astro';
 import { useTranslations } from '../../i18n/utils';
 import { getCaseStudies, getCaseStudyCopyKey, getProjectGallery, formatProjectPeriod, getDefaultOgImage } from '../../data/work';
@@ -17,16 +17,10 @@ const caseCopyByKey = t.work.cases;
   locale={locale}
   ogImage={getDefaultOgImage()}
 >
+  <PageHero variant="cream" title={t.home.work_title} intro={t.work.intro} />
+
   <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
     <div class="max-w-[1440px] mx-auto">
-      <div class="mb-16 max-w-2xl">
-        <h1 class="font-display text-vinco-black mb-4">
-          <MultilineText text={t.home.work_title} />
-        </h1>
-        <p class="text-vinco-black/70 leading-relaxed">
-          <MultilineText text={t.work.intro} />
-        </p>
-      </div>
       <div>
         {
           caseStudies.map((project) => {
