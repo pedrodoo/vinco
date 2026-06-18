@@ -32,19 +32,6 @@ const founderParagraphs = splitCopyParagraphs(t.about.founder_bio);
 >
   <PageHero variant="cream" title={t.about.title} intro={introParagraphs} />
 
-  <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
-    <div class="max-w-[1440px] mx-auto">
-      <h2 class="font-display text-vinco-black mb-8">
-        <MultilineText text={t.about.studio_title} />
-      </h2>
-      <div class="max-w-3xl space-y-6">
-        {studioParagraphs.map((paragraph) => (
-          <p class="text-lg text-vinco-black/70 leading-relaxed">{paragraph}</p>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <section class="bg-vinco-black px-8 py-24">
     <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
       <div class="aspect-[3/4] overflow-hidden">
@@ -63,6 +50,19 @@ const founderParagraphs = splitCopyParagraphs(t.about.founder_bio);
             <p class="text-vinco-cream/70 leading-relaxed">{paragraph}</p>
           ))}
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
+    <div class="max-w-[1440px] mx-auto">
+      <h2 class="font-display text-vinco-black mb-8">
+        <MultilineText text={t.about.studio_title} />
+      </h2>
+      <div class="max-w-3xl space-y-6">
+        {studioParagraphs.map((paragraph) => (
+          <p class="text-lg text-vinco-black/70 leading-relaxed">{paragraph}</p>
+        ))}
       </div>
     </div>
   </section>

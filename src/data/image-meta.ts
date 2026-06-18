@@ -45,7 +45,9 @@ const CATEGORY_LABELS: Record<string, { pt: string; en: string }> = {
   'textil-lar': { pt: 'Têxtil-lar', en: 'Home textiles' },
   uniformes: { pt: 'Uniformes', en: 'Uniforms' },
   merchandising: { pt: 'Merchandising', en: 'Merchandising' },
-  outros: { pt: 'Outros', en: 'Other' },
+  outros: { pt: 'Sessão Fotográfica', en: 'Photo shoot' },
+  'design-grafico': { pt: 'Design Gráfico', en: 'Graphic design' },
+  packaging: { pt: 'Packaging', en: 'Packaging' },
 };
 
 function humanizeFilename(filename: string): string {

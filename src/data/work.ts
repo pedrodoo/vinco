@@ -89,7 +89,9 @@ export const categories: Category[] = [
   { slug: 'textil-lar', label: { pt: 'Têxtil-lar', en: 'Home textiles' } },
   { slug: 'uniformes', label: { pt: 'Uniformes', en: 'Uniforms' } },
   { slug: 'merchandising', label: { pt: 'Merchandising', en: 'Merchandising' } },
-  { slug: 'outros', label: { pt: 'Outros', en: 'Other' } },
+  { slug: 'outros', label: { pt: 'Sessão Fotográfica', en: 'Photo shoot' } },
+  { slug: 'design-grafico', label: { pt: 'Design Gráfico', en: 'Graphic design' } },
+  { slug: 'packaging', label: { pt: 'Packaging', en: 'Packaging' } },
 ];
 
 const projectModules = import.meta.glob<{ default: ImageMetadata }>(
@@ -112,6 +114,10 @@ function assetPathFromModulePath(modulePath: string): string {
   return modulePath.replace(/^(\.\.\/assets\/)/, '').replace(/\\/g, '/');
 }
 
+function emptyProjectImages(): ProjectImages {
+  return { gallery: [], byFileName: new Map() };
+}
+
 function buildProjectImages(): Map<string, ProjectImages> {
   const bySlug = new Map<string, ProjectImages>();
 
@@ -129,7 +135,7 @@ function buildProjectImages(): Map<string, ProjectImages> {
     if (!slugMatch) continue;
 
     const slug = slugMatch[1];
-    const bucket = bySlug.get(slug) ?? { gallery: [], byFileName: new Map() };
+    const bucket = bySlug.get(slug) ?? emptyProjectImages();
 
     bucket.byFileName.set(entry.fileName, entry.src);
 
