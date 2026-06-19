@@ -34,6 +34,22 @@ export const imageAlt: Record<string, { pt: string; en: string }> = {
     pt: 'Relatório de Impacto STF',
     en: 'STF Impact Report',
   },
+  'categories/packaging/seathefuture-envelope-visualizacao.png': {
+    pt: 'Packaging SEATHEFUTURE — envelope kraft sustentável',
+    en: 'SEATHEFUTURE packaging — sustainable kraft envelope',
+  },
+  'categories/packaging/lx3-packaging-mockup.png': {
+    pt: 'Packaging LX3 — saco, saquinho e cartão de agradecimento',
+    en: 'LX3 packaging — bag, pouch and thank-you card',
+  },
+  'categories/packaging/seathefuture-socks-header.png': {
+    pt: 'Packaging SEATHEFUTURE — header kraft para meias',
+    en: 'SEATHEFUTURE packaging — kraft header for socks',
+  },
+  'categories/packaging/seathefuture-keychain-header.png': {
+    pt: 'Packaging SEATHEFUTURE — header para porta-chaves',
+    en: 'SEATHEFUTURE packaging — keychain header card',
+  },
 };
 
 const PROJECT_LABELS: Record<string, { pt: string; en: string }> = {

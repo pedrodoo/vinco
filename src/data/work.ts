@@ -138,7 +138,7 @@ const projectModules = import.meta.glob<{ default: ImageMetadata }>(
 );
 
 const categoryModules = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/categories/**/*.jpg',
+  ['../assets/categories/**/*.jpg', '../assets/categories/**/*.png'],
   { eager: true },
 );
 
