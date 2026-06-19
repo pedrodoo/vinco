@@ -17,7 +17,7 @@ const caseCopyByKey = t.work.cases;
   locale={locale}
   ogImage={getDefaultOgImage()}
 >
-  <PageHero variant="cream" title={t.home.work_title} intro={t.work.intro} />
+  <PageHero title={t.home.work_title} intro={t.work.intro} />
 
   <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
     <div class="max-w-[1440px] mx-auto">
@@ -33,7 +33,7 @@ const caseCopyByKey = t.work.cases;
               <CaseStudySection
                 id={project.slug}
                 title={caseCopy?.title ?? project.client}
-                tag={project.category[locale]}
+                tags={project.tags.map((t) => t[locale])}
                 period={formatProjectPeriod(project.period, locale)}
                 description={caseCopy?.description ?? ''}
                 gallery={getCaseStudyGallery(project)}

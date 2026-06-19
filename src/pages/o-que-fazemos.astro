@@ -16,12 +16,11 @@ const t = useTranslations(locale);
   locale={locale}
 >
   <PageHero
-    variant="dark"
     title={t.home.categories_title}
     intro={t.work.categories_intro}
   />
 
-  <section class="bg-vinco-black px-8 pb-24">
+  <section class="bg-vinco-black px-8 py-24">
     <div class="max-w-[1440px] mx-auto">
       <CategoryNav categories={categories} locale={locale} />
 

@@ -7,3 +7,4 @@ _incoming/
 public/images-manifest.json
 .cursor/
 *.log
+*.preview.jpg

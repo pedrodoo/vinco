@@ -14,7 +14,7 @@ interface Props {
 
 const { project, locale, variant = 'default', staggerIndex = 0 } = Astro.props;
 const href = getProjectPath(project.slug, locale);
-const categoryLabel = project.category[locale];
+const categoryLabel = project.tags[0]?.[locale] ?? '';
 const gallery = getProjectGallery(project);
 ---
 

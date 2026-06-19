@@ -5,30 +5,32 @@ import OptimizedImage from '../OptimizedImage.astro';
 interface Props {
   id?: string;
   title: string;
-  tag: string;
+  tags: string[];
   period: string;
   description: string;
   gallery?: ImageMetadata[];
   imageAlt?: string;
 }
 
-const { id, title, tag, period, description, gallery = [], imageAlt = title } = Astro.props;
+const { id, title, tags, period, description, gallery = [], imageAlt = title } = Astro.props;
 const images = gallery.slice(0, 3);
 ---
 
 <section id={id} class="scroll-mt-16 border-t border-vinco-brown-1/20 pt-16 md:pt-24 first:border-t-0 first:pt-0">
   <div class="grid grid-cols-2 md:grid-cols-3 gap-4 gap-y-6">
-    <div class="col-span-2 order-2 md:order-1">
+    <div class="col-span-2 order-1 md:order-1">
+      <p class="text-xs tracking-widest uppercase text-vinco-brown-1 mb-3">
+        {period}
+      </p>
       <h2 class="font-display text-vinco-black mb-6">{title}</h2>
       <p class="text-vinco-black/70 leading-relaxed">{description}</p>
     </div>
-    <div class="col-span-2 md:col-span-1 order-1 md:order-2 flex h-full items-start mb-4 md:mb-0">
-      <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <span class="inline-flex text-xs tracking-wide px-3 py-1 border border-vinco-brown-1/30 text-vinco-brown-1 rounded-full">
+    <div class="col-span-2 md:col-span-1 order-2 md:order-2 flex flex-wrap items-start gap-x-3 gap-y-2.5 mb-4 md:mb-0">
+      {tags.map((tag) => (
+        <span class="inline-flex text-sm tracking-wide px-4 py-1.5 border border-vinco-brown-1/30 text-vinco-brown-1 rounded-full">
           {tag}
         </span>
-        <span class="text-xs text-vinco-brown-1">{period}</span>
-      </div>
+      ))}
     </div>
   </div>
   {

@@ -26,6 +26,14 @@ export const imageAlt: Record<string, { pt: string; en: string }> = {
     pt: 'Coleção LX3 — desenvolvimento de produto',
     en: 'LX3 collection — product development',
   },
+  'categories/design-grafico/stf-catalog.preview.jpg': {
+    pt: 'Catálogo STF',
+    en: 'STF Catalog',
+  },
+  'categories/design-grafico/stf-impact-report.preview.jpg': {
+    pt: 'Relatório de Impacto STF',
+    en: 'STF Impact Report',
+  },
 };
 
 const PROJECT_LABELS: Record<string, { pt: string; en: string }> = {

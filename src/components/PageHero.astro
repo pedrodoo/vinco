@@ -5,48 +5,28 @@ import { splitCopyParagraphs } from '../i18n/utils';
 interface Props {
   title: string;
   intro: string | string[];
-  variant?: 'cream' | 'dark';
 }
 
-const { title, intro, variant = 'cream' } = Astro.props;
+const { title, intro } = Astro.props;
 
 const introParagraphs = Array.isArray(intro) ? intro : splitCopyParagraphs(intro);
-
-const sectionClass =
-  variant === 'cream'
-    ? 'bg-vinco-cream border-t border-vinco-brown-1/20'
-    : 'bg-vinco-black border-t border-vinco-cream/10';
-
-const headingClass =
-  variant === 'cream' ? 'font-display text-vinco-black mb-4' : 'font-display text-vinco-cream mb-4';
-
-const introClass =
-  variant === 'cream' ? 'text-vinco-black/70 leading-relaxed' : 'text-vinco-cream/70 leading-relaxed';
-
-const patternClass =
-  variant === 'cream' ? 'opacity-10' : 'opacity-20';
-
-const patternUrl =
-  variant === 'cream'
-    ? '/images/patterns/pattern-cream.svg'
-    : '/images/patterns/pattern-dark.svg';
 ---
 
-<section class={`${sectionClass} relative px-8 py-24 min-h-[22rem] md:min-h-[24rem] overflow-hidden`}>
+<section class="bg-vinco-cream border-t border-vinco-brown-1/20 relative px-8 py-24 min-h-[22rem] md:min-h-[24rem] overflow-hidden">
   <div
-    class={`absolute top-0 right-0 w-1/2 h-full hidden md:block pointer-events-none ${patternClass}`}
-    style={`background-image: url('${patternUrl}'); background-size: 300px; background-repeat: repeat;`}
+    class="absolute top-0 right-0 w-1/2 h-full hidden md:block pointer-events-none opacity-10"
+    style="background-image: url('/images/patterns/pattern-cream.svg'); background-size: 300px; background-repeat: repeat;"
     aria-hidden="true"
   ></div>
   <div class="max-w-[1440px] mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2">
     <div class="max-w-2xl md:max-w-none md:pr-12">
-      <h1 class={headingClass}>
+      <h1 class="font-display text-vinco-black mb-4">
         <MultilineText text={title} />
       </h1>
       <div class="space-y-6">
         {
           introParagraphs.map((paragraph) => (
-            <p class={introClass}>
+            <p class="text-vinco-black/70 leading-relaxed">
               <MultilineText text={paragraph} />
             </p>
           ))

@@ -1,7 +1,8 @@
 ---
 import OptimizedImage from '../OptimizedImage.astro';
 import type { CategoryItem } from '../../data/work';
-import { getCategoryItemAlt } from '../../data/work';
+import { getCategoryItemAlt, getCategoryDocumentDownloadName } from '../../data/work';
+import { useTranslations } from '../../i18n/utils';
 import type { Locale } from '../../i18n/utils';
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const { slug, label, items, locale } = Astro.props;
+const t = useTranslations(locale);
 ---
 
 <section
@@ -21,17 +23,62 @@ const { slug, label, items, locale } = Astro.props;
   <h2 class="font-display text-vinco-cream mb-8">{label}</h2>
   {
     items.length > 0 ? (
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {items.map((item) => (
-          <div class="aspect-square bg-vinco-cream/5 overflow-hidden">
-            <OptimizedImage
-              src={item.src}
-              alt={getCategoryItemAlt(item, locale)}
-              class="w-full h-full object-cover"
-              sizes="(max-width: 768px) 50vw, 25vw"
-            />
-          </div>
-        ))}
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 gap-y-6">
+        {items.map((item) => {
+          const alt = getCategoryItemAlt(item, locale);
+
+          if (item.kind === 'document' && item.pdfUrl) {
+            const downloadName = getCategoryDocumentDownloadName(item);
+
+            return (
+              <article class="min-w-0">
+                <div class="aspect-square bg-vinco-cream/5 overflow-hidden relative group">
+                  <a
+                    href={item.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="block w-full h-full"
+                    aria-label={`${t.work.open_pdf}: ${alt}`}
+                  >
+                    <OptimizedImage
+                      src={item.src}
+                      alt={alt}
+                      class="w-full h-full object-cover"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                    <span
+                      class="absolute inset-0 flex items-center justify-center bg-vinco-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 motion-reduce:transition-none"
+                      aria-hidden="true"
+                    >
+                      <span class="text-vinco-cream text-xs tracking-widest uppercase px-4 py-2 border border-vinco-cream/40">
+                        {t.work.open_pdf}
+                      </span>
+                    </span>
+                  </a>
+                </div>
+                <p class="text-vinco-cream text-sm mt-2 truncate">{alt}</p>
+                <a
+                  href={item.pdfUrl}
+                  download={downloadName}
+                  class="inline-block text-vinco-cream/60 text-sm mt-1 hover:text-vinco-cream transition-colors duration-150"
+                >
+                  {t.work.download_pdf}
+                </a>
+              </article>
+            );
+          }
+
+          return (
+            <div class="aspect-square bg-vinco-cream/5 overflow-hidden">
+              <OptimizedImage
+                src={item.src}
+                alt={alt}
+                class="w-full h-full object-cover"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+            </div>
+          );
+        })}
       </div>
     ) : (
       <p class="text-vinco-cream/60 text-sm">—</p>

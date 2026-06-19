@@ -40,14 +40,16 @@
       },
       "seathefuture": {
         "title": "SEATHEFUTURE",
-        "description": "Desenvolvimento de produto para a SEATHEFUTURE — do conceito à execução, com foco na sustentabilidade e na comunicação de marca."
+        "description": "Consultoria em desenvolvimento de produto e imagem para a SeaTheFuture. Para além da criação de uma cápsula de vestuário, a Vinco coordenou a direção e produção da sessão fotográfica, participando igualmente na construção da identidade visual e comunicação da marca."
       },
       "lx3": {
         "title": "LX3",
         "description": "Consultoria no desenvolvimento de produto e construção de imagem da LX3 no momento do seu relançamento. Um acompanhamento transversal à marca: coleção de banho, vestuário complementar, packaging e suportes de marca, com direção e acompanhamento de sessão fotográfica.\n\nAVinco funcionou como braço operacional da fundadora — assimilando a direção criativa da marca e traduzindo-a em produto, packaging e linguagem visual coerentes entre categorias, gerindo todo o desenvolvimento e logística para que ela se pudesse concentrar inteiramente no design."
       }
     },
-    "categories_all": "Ver tudo"
+    "categories_all": "Ver tudo",
+    "open_pdf": "Abrir PDF",
+    "download_pdf": "Descarregar PDF"
   },
   "about": {
     "title": "Sobre",

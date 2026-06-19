@@ -9,7 +9,7 @@ export type ProjectPeriod =
 
 export interface Project {
   client: string;
-  category: { pt: string; en: string };
+  tags: { pt: string; en: string }[];
   period: ProjectPeriod;
   slug: string;
   featured: boolean;
@@ -24,13 +24,16 @@ export interface Category {
 }
 
 export interface CategoryItem {
+  kind: 'image' | 'document';
   src: ImageMetadata;
   assetPath: string;
+  pdfUrl?: string;
+  pdfAssetPath?: string;
 }
 
 interface ProjectDef {
   client: string;
-  category: { pt: string; en: string };
+  tags: { pt: string; en: string }[];
   period: ProjectPeriod;
   slug: string;
   featured: boolean;
@@ -40,14 +43,29 @@ interface ProjectDef {
 const PROJECT_DEFS: ProjectDef[] = [
   {
     client: 'Oceanário de Lisboa',
-    category: { pt: 'Merchandising', en: 'Merchandising' },
+    tags: [
+      { pt: 'Merchandising', en: 'Merchandising' },
+      { pt: 'Desenvolvimento de produto', en: 'Product development' },
+      { pt: 'Design', en: 'Design' },
+      { pt: 'Produção', en: 'Production' },
+      { pt: 'Sustentável', en: 'Sustainable' },
+      { pt: 'Vestuário', en: 'Apparel' },
+      { pt: 'Cerâmica', en: 'Ceramics' },
+      { pt: 'Papelaria', en: 'Stationery' },
+    ],
     period: { type: 'since', year: '2021' },
     slug: 'oceanario',
     featured: true,
   },
   {
     client: 'Fundação Oceano Azul',
-    category: { pt: 'Farda institucional', en: 'Institutional uniform' },
+    tags: [
+      { pt: 'Farda institucional', en: 'Institutional uniform' },
+      { pt: 'Vestuário', en: 'Apparel' },
+      { pt: 'Desenvolvimento de Produto', en: 'Product development' },
+      { pt: 'Acessórios', en: 'Accessories' },
+      { pt: 'Sourcing', en: 'Sourcing' },
+    ],
     period: { type: 'single', year: '2024' },
     slug: 'fundacao-oceano-azul',
     featured: true,
@@ -59,21 +77,41 @@ const PROJECT_DEFS: ProjectDef[] = [
   },
   {
     client: 'Sociedade Francisco Manuel dos Santos',
-    category: { pt: 'Gifting institucional', en: 'Institutional gifting' },
+    tags: [
+      { pt: 'Gifting institucional', en: 'Institutional gifting' },
+      { pt: 'Consultoria', en: 'Consulting' },
+      { pt: 'Coordenação', en: 'Coordination' },
+      { pt: 'Luxo', en: 'Luxury' },
+      { pt: 'Acessórios', en: 'Accessories' },
+    ],
     period: { type: 'since', year: '2023' },
     slug: 'sfms',
     featured: true,
   },
   {
     client: 'SEATHEFUTURE',
-    category: { pt: 'Vestuário & Comunicação de Marca', en: 'Apparel & Brand Communication' },
+    tags: [
+      { pt: 'Vestuário', en: 'Apparel' },
+      { pt: 'Comunicação de Marca', en: 'Brand communication' },
+      { pt: 'Produção', en: 'Production' },
+      { pt: 'Desenvolvimento de Produto', en: 'Product development' },
+      { pt: 'Shooting', en: 'Photo shoot' },
+      { pt: 'Packaging', en: 'Packaging' },
+    ],
     period: { type: 'single', year: '2023 - 2025' },
     slug: 'seathefuture',
     featured: false,
   },
   {
     client: 'LX3',
-    category: { pt: 'Desenvolvimento de Produto', en: 'Product development' },
+    tags: [
+      { pt: 'Desenvolvimento de Produto', en: 'Product development' },
+      { pt: 'Sourcing', en: 'Sourcing' },
+      { pt: 'Produção', en: 'Production' },
+      { pt: 'Swimwear', en: 'Swimwear' },
+      { pt: 'Shooting', en: 'Photo shoot' },
+      { pt: 'Packaging', en: 'Packaging' },
+    ],
     period: { type: 'single', year: '2024' },
     slug: 'lx3',
     featured: false,
@@ -102,6 +140,16 @@ const projectModules = import.meta.glob<{ default: ImageMetadata }>(
 const categoryModules = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/categories/**/*.jpg',
   { eager: true },
+);
+
+const categoryPreviewModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/categories/**/*.preview.jpg',
+  { eager: true },
+);
+
+const categoryPdfModules = import.meta.glob<string>(
+  '../assets/categories/**/*.pdf',
+  { eager: true, query: '?url', import: 'default' },
 );
 
 interface ProjectImages {
@@ -180,12 +228,48 @@ const itemsByCategory = new Map<string, CategoryItem[]>();
 
 for (const [modulePath, mod] of Object.entries(categoryModules)) {
   const assetPath = assetPathFromModulePath(modulePath);
+  if (assetPath.endsWith('.preview.jpg')) continue;
+
   const slugMatch = assetPath.match(/^categories\/([^/]+)\//);
   if (!slugMatch) continue;
 
   const slug = slugMatch[1];
   const items = itemsByCategory.get(slug) ?? [];
-  items.push({ src: mod.default, assetPath });
+  items.push({ kind: 'image', src: mod.default, assetPath });
+  itemsByCategory.set(slug, items);
+}
+
+const previewsByPdfBasename = new Map<string, { src: ImageMetadata; assetPath: string }>();
+
+for (const [modulePath, mod] of Object.entries(categoryPreviewModules)) {
+  const assetPath = assetPathFromModulePath(modulePath);
+  const match = assetPath.match(/^categories\/([^/]+)\/(.+)\.preview\.jpg$/);
+  if (!match) continue;
+
+  const [, slug, basename] = match;
+  previewsByPdfBasename.set(`${slug}/${basename}`, {
+    src: mod.default,
+    assetPath,
+  });
+}
+
+for (const [modulePath, pdfUrl] of Object.entries(categoryPdfModules)) {
+  const pdfAssetPath = assetPathFromModulePath(modulePath);
+  const match = pdfAssetPath.match(/^categories\/([^/]+)\/(.+)\.pdf$/i);
+  if (!match) continue;
+
+  const [, slug, basename] = match;
+  const preview = previewsByPdfBasename.get(`${slug}/${basename}`);
+  if (!preview) continue;
+
+  const items = itemsByCategory.get(slug) ?? [];
+  items.push({
+    kind: 'document',
+    src: preview.src,
+    assetPath: preview.assetPath,
+    pdfUrl,
+    pdfAssetPath,
+  });
   itemsByCategory.set(slug, items);
 }
 
@@ -248,6 +332,11 @@ export function getCategoryItems(slug: string): CategoryItem[] {
 
 export function getCategoryItemAlt(item: CategoryItem, locale: Locale): string {
   return getImageAlt(item.assetPath, locale);
+}
+
+export function getCategoryDocumentDownloadName(item: CategoryItem): string {
+  if (!item.pdfAssetPath) return 'document.pdf';
+  return item.pdfAssetPath.split('/').pop() ?? 'document.pdf';
 }
 
 export function getProjectPath(slug: string, locale: Locale): string {
