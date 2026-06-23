@@ -11,18 +11,18 @@ Use `\n` inside a cell for an intentional line break in titles (each language ca
 | nav.work-case-studies | Projetos | Projects |
 | nav.what-we-do | O Que Fazemos | What We Do |
 | nav.about | Sobre | About |
-| nav.contact | Contacto | Contact |
+| nav.contact | Contacto | Contacts |
 | nav.menu_open | Abrir menu | Open menu |
 | nav.menu_close | Fechar menu | Close menu |
-| home.hero_title | Do conceito\nao produto. | Concept\nto product. |
+| home.hero_title | Do conceito\nao produto. | From concept\nto product. |
 | home.hero_subtitle | Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores para transformar ideias em objetos com rigor e intenção. | End-to-end product development studio. We work with brands, institutions and creators to transform ideas into objects with rigour and intention. |
 | home.hero_cta | Iniciar um projeto | Start a project |
 | home.work_title | Projetos | Projects |
-| home.work_cta | Todos os projectos | All projects |
-| home.categories_title | O que fazemos | What we develop |
+| home.work_cta | Todos os projectos | View all |
+| home.categories_title | O que fazemos | What we do |
 | home.categories_cta | Todas as categorias | All categories |
 | home.process_title | Como trabalhamos | How we work |
-| home.process_subtitle | Um processo integrado que acompanha cada projeto da estratégia à implementação. | An integrated process that accompanies each project from strategy to implementation. |
+| home.process_subtitle | Um processo integrado que acompanha cada projeto da estratégia à implementação. | An integrated process that guides each project from strategy to implementation. |
 | home.cta_title | Tem um projeto em mente? | Have a project in mind? |
 | home.cta_button | Fale connosco | Let's talk |
 | work.title | Trabalho | Work |

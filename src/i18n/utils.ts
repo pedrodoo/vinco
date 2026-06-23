@@ -32,7 +32,7 @@ const routeMap = {
     work: '/en/work',
     whatWeDo: '/en/what-we-do',
     about: '/en/about',
-    contact: '/en/contact',
+    contact: '/en/contacts',
   },
 } as const;
 
@@ -45,7 +45,7 @@ const pathPairs: [string, string][] = [
   ['/trabalho', '/en/work'],
   ['/o-que-fazemos', '/en/what-we-do'],
   ['/sobre', '/en/about'],
-  ['/contacto', '/en/contact'],
+  ['/contacto', '/en/contacts'],
 ];
 
 export function getAlternateLocalePath(pathname: string, locale: Locale): string {

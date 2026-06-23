@@ -60,7 +60,7 @@ const PROJECT_DEFS: ProjectDef[] = [
   {
     client: 'Fundação Oceano Azul',
     tags: [
-      { pt: 'Farda institucional', en: 'Institutional uniform' },
+      { pt: 'Farda institucional', en: 'Branded uniform' },
       { pt: 'Vestuário', en: 'Apparel' },
       { pt: 'Desenvolvimento de Produto', en: 'Product development' },
       { pt: 'Acessórios', en: 'Accessories' },
@@ -78,7 +78,7 @@ const PROJECT_DEFS: ProjectDef[] = [
   {
     client: 'Sociedade Francisco Manuel dos Santos',
     tags: [
-      { pt: 'Gifting institucional', en: 'Institutional gifting' },
+      { pt: 'Gifting institucional', en: 'Corporate gifting' },
       { pt: 'Consultoria', en: 'Consulting' },
       { pt: 'Coordenação', en: 'Coordination' },
       { pt: 'Luxo', en: 'Luxury' },
