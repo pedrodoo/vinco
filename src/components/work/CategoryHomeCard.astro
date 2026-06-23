@@ -12,9 +12,7 @@ interface Props {
 const { category, locale } = Astro.props;
 const label = category.label[locale];
 const href = getCategoryPath(category.slug, locale);
-const previewImages = getCategoryPreviewImages(category.slug, 3);
-const stackImages = previewImages;
-const primaryImage = previewImages[0];
+const stackImages = getCategoryPreviewImages(category.slug, 3);
 ---
 
 <a
@@ -23,54 +21,37 @@ const primaryImage = previewImages[0];
          text-vinco-cream px-6 py-8 hover:z-10 hover:bg-vinco-cream/5 transition-colors duration-150"
   aria-label={label}
 >
-  <div class="category-home-card-row relative flex items-center min-h-28 overflow-visible gap-6">
+  <div class="category-home-card-row relative flex items-center md:min-h-28 overflow-visible gap-6">
     <p class="text-sm shrink-0">{label}</p>
-  {
-    primaryImage && (
-      <>
-        <div class="ml-auto shrink-0 md:hidden w-28 aspect-square self-center overflow-hidden bg-vinco-cream/5">
-          <OptimizedImage
-            src={primaryImage}
-            alt={label}
-            class="w-full h-full object-cover"
-            sizes="112px"
-            widths={[112, 224]}
-            loading="lazy"
-          />
+    {
+      stackImages.length > 0 && (
+        <div
+          class="category-home-card-media hidden md:block flex-1 min-w-0 relative self-stretch min-h-28"
+          style={`--stack-count: ${stackImages.length}`}
+        >
+          <div class="category-stack absolute inset-0 overflow-visible pointer-events-none">
+            {stackImages.map((src, index) => {
+              const depth = stackImages.length - 1 - index;
+              return (
+                <div
+                  class="category-stack-square absolute overflow-hidden bg-vinco-cream/5 shadow-sm"
+                  style={`--stack-depth: ${depth}; --stack-z: ${index + 1};`}
+                >
+                  <OptimizedImage
+                    src={src}
+                    alt={depth === 0 ? label : ''}
+                    class="w-full h-full object-cover"
+                    sizes="112px"
+                    widths={[112, 224]}
+                    loading="lazy"
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
-
-        {
-          stackImages.length > 0 && (
-            <div
-              class="category-home-card-media hidden md:block flex-1 min-w-0 relative self-stretch min-h-28"
-              style={`--stack-count: ${stackImages.length}`}
-            >
-              <div class="category-stack absolute inset-0 overflow-visible pointer-events-none">
-                {stackImages.map((src, index) => {
-                  const depth = stackImages.length - 1 - index;
-                  return (
-                    <div
-                      class="category-stack-square absolute overflow-hidden bg-vinco-cream/5 shadow-sm"
-                      style={`--stack-depth: ${depth}; --stack-z: ${index + 1};`}
-                    >
-                      <OptimizedImage
-                        src={src}
-                        alt={depth === 0 ? label : ''}
-                        class="w-full h-full object-cover"
-                        sizes="112px"
-                        widths={[112, 224]}
-                        loading="lazy"
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )
-        }
-      </>
-    )
-  }
+      )
+    }
   </div>
 </a>
 

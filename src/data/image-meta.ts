@@ -64,7 +64,7 @@ const CATEGORY_LABELS: Record<string, { pt: string; en: string }> = {
   vestuario: { pt: 'Vestuário', en: 'Apparel' },
   swimwear: { pt: 'Swimwear', en: 'Swimwear' },
   acessorios: { pt: 'Acessórios', en: 'Accessories' },
-  ceramica: { pt: 'Cerâmica', en: 'Ceramics' },
+  ceramica: { pt: 'Cerâmica e Vidro', en: 'Ceramics and Glass' },
   papelaria: { pt: 'Papelaria', en: 'Stationery' },
   'textil-lar': { pt: 'Têxtil-lar', en: 'Home textiles' },
   uniformes: { pt: 'Uniformes', en: 'Uniforms' },

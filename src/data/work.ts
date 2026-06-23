@@ -122,7 +122,7 @@ export const categories: Category[] = [
   { slug: 'vestuario', label: { pt: 'Vestuário', en: 'Apparel' } },
   { slug: 'swimwear', label: { pt: 'Swimwear', en: 'Swimwear' } },
   { slug: 'acessorios', label: { pt: 'Acessórios', en: 'Accessories' } },
-  { slug: 'ceramica', label: { pt: 'Cerâmica', en: 'Ceramics' } },
+  { slug: 'ceramica-vidro', label: { pt: 'Cerâmica e Vidro', en: 'Ceramics and Glass' } },
   { slug: 'papelaria', label: { pt: 'Papelaria', en: 'Stationery' } },
   { slug: 'textil-lar', label: { pt: 'Têxtil-lar', en: 'Home textiles' } },
   { slug: 'uniformes', label: { pt: 'Uniformes', en: 'Uniforms' } },
