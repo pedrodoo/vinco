@@ -66,7 +66,7 @@ const PROJECT_DEFS: ProjectDef[] = [
       { pt: 'Acessórios', en: 'Accessories' },
       { pt: 'Sourcing', en: 'Sourcing' },
     ],
-    period: { type: 'single', year: '2024' },
+    period: { type: 'single', year: '2024 - 2025' },
     slug: 'fundacao-oceano-azul',
     featured: true,
     caseStudyGalleryFiles: [
@@ -112,7 +112,7 @@ const PROJECT_DEFS: ProjectDef[] = [
       { pt: 'Shooting', en: 'Photo shoot' },
       { pt: 'Packaging', en: 'Packaging' },
     ],
-    period: { type: 'since', year: '2024' },
+    period: { type: 'since', year: '2025' },
     slug: 'lx3',
     featured: false,
   },

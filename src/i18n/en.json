@@ -23,7 +23,7 @@
   },
   "work": {
     "title": "Work",
-    "intro": "At Vinco Studio, each project is a journey - from concept to execution./nWe work side by side with brands and creatives, tailoring our approach to their specific needs.",
+    "intro": "At Vinco Studio, each project is a journey - from concept to execution. We work side by side with brands and creatives, tailoring our approach to their specific needs.",
     "categories_intro": "Browse results by product category.",
     "cases": {
       "oceanario": {
@@ -53,18 +53,18 @@
   },
   "about": {
     "title": "About",
-    "intro": "Vinco is a creative and strategic consulting studio specializing in the comprehensive development of products. It partners with brands, institutions, and creators seeking to transform concepts into tangible, efficient, and sustainable solutions.",
+    "intro": "Vinco is an end-to-end product development studio.\nWe work with brands, institutions and creatives to take concepts from strategic definition through to production and final communication.",
     "meta_description": "Meet Vinco Studio — end-to-end product development for brands, institutions and creators.",
     "studio_title": "The studio",
-    "studio_body": "Vinco is an end-to-end product development studio. We work with brands, institutions and creators to take concepts from strategic definition through to production and final communication.\n\nWe believe every object should be conceived with intention — in its form, materials, process and the way it reaches the world. Our work spans apparel, accessories, ceramics, stationery, home textiles, uniforms and institutional merchandising.\n\nWe oversee every phase of the project without delegating responsibility: strategic definition, formal development, material selection, sourcing, production oversight and brand communication.",
+    "studio_body": "We believe every object should be designed with intention: from form to materials, from process to the way it reaches the world.\n\nOur work spans diverse categories including apparel, accessories, stationery and institutional merchandising. We oversee each project stage, maintaining control across all phases: strategic definition, formal development, material selection, sourcing, production management and brand communication.\n\nThe result is a fully coordinated project: each product reflects your vision, while we manage all operational complexities, allowing you to focus exclusively on what matters.",
     "founder_name": "Sara Vicente",
     "founder_role": "Founder, Vinco Studio",
-    "founder_bio": "The path begun in communication, but fashion defined her path. After graduating in Social Communication from the Catholic University, she moved to Paris, where she completed a Master's degree in Fashion Marketing & Management at ISEM. For ten years she worked for internationally renowned brands such as Joseph and Yves Saint Laurent, where she learned that rigor, detail, and coherence between concept and execution are fundamental.\n\nIn 2019, she joined Burberry in London before returning to Portugal in 2021, where she began providing independent consulting in product development.\n\nIn 2026, she formalized this practice with the creation of Vinco Studio – to transform ideas into products that work, with method, clarity, and intention.",
+    "founder_bio": "She started in communication, but fashion defined her path. After graduating in Social Communication from Universidade Católica, she moved to Paris, where she completed a Master's in Fashion Marketing & Management at ISEM. For ten years she worked at international reference brands including Joseph and Yves Saint Laurent, where she learned that rigour, detail and coherence between concept and execution are fundamental.\n\nIn 2019, she joined Burberry in London before returning to Portugal in 2021, where she began providing independent consulting in product development.\n\nIn 2026, she formalized this practice with the creation of Vinco Studio - to transform ideas into products that work, with method, clarity and intention.",
     "founder_photo_alt": "Portrait of the founder of Vinco Studio"
   },
   "contact": {
     "title": "Contact",
-    "intro": "Have a project in mind? Send us a message or reach us directly by email.",
+    "intro": "Have a project in mind? Send us a message or contact us directly by email.",
     "meta_description": "Contact Vinco Studio — send a message or email hello@vinco-studio.com.",
     "form_contact_label": "Email or phone",
     "form_contact_placeholder": "your@email.com or +351 ...",

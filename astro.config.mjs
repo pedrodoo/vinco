@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://vinco-studio.com',
+  redirects: {
+    '/en/contact': '/en/contacts',
+  },
   vite: {
     plugins: [tailwindcss()]
   },
