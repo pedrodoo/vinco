@@ -64,5 +64,5 @@ Use `\n` inside a cell for an intentional line break in titles (each language ca
 | footer.tagline | Design to Production Studio\nPerfection is personal | Design to Production Studio\nPerfection is personal |
 | footer.rights | © 2026 Vinco Estúdio. Todos os direitos reservados. | © 2026 Vinco Studio. All rights reserved. |
 | footer.email | hello@vinco-studio.com | hello@vinco-studio.com |
-| footer.social.instagram | https://instagram.com/vincostudio | https://instagram.com/vincostudio |
+| footer.social.instagram | https://instagram.com/_vincostudio | https://instagram.com/_vincostudio |
 | footer.social.linkedin | https://linkedin.com/company/vincostudio | https://linkedin.com/company/vincostudio |

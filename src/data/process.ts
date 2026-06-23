@@ -13,7 +13,7 @@ const processSteps: Record<Locale, ProcessStep[]> = {
     },
     {
       name: 'Desenvolvimento formal',
-      desc: 'Conceito, forma e função tomam forma através de iteração rigorosa.',
+      desc: 'Desenvolvemos conceito, forma e função com rigor, testando e refinando até ganhar consistência.',
     },
     {
       name: 'Seleção de materiais',
@@ -21,11 +21,11 @@ const processSteps: Record<Locale, ProcessStep[]> = {
     },
     {
       name: 'Sourcing',
-      desc: 'Identificamos e validamos os parceiros de produção certos para cada projeto.',
+      desc: 'Identificamos e validamos os parceiros certos para cada projeto.',
     },
     {
-      name: 'Acompanhamento de produção',
-      desc: 'Gerimos o processo produtivo do início ao fim, sem delegação de responsabilidade.',
+      name: 'Produção',
+      desc: 'Acompanhamos a produção do início ao fim, assegurando prazos e a conformidade do resultado.',
     },
     {
       name: 'Comunicação de marca',
