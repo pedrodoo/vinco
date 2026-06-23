@@ -45,7 +45,7 @@ const PROJECT_DEFS: ProjectDef[] = [
     client: 'Oceanário de Lisboa',
     tags: [
       { pt: 'Merchandising', en: 'Merchandising' },
-      { pt: 'Desenvolvimento de produto', en: 'Product development' },
+      { pt: 'Desenvolvimento de produto', en: 'Product Development' },
       { pt: 'Design', en: 'Design' },
       { pt: 'Produção', en: 'Production' },
       { pt: 'Sustentável', en: 'Sustainable' },
@@ -60,9 +60,9 @@ const PROJECT_DEFS: ProjectDef[] = [
   {
     client: 'Fundação Oceano Azul',
     tags: [
-      { pt: 'Farda institucional', en: 'Branded uniform' },
+      { pt: 'Farda institucional', en: 'Institutional uniform' },
       { pt: 'Vestuário', en: 'Apparel' },
-      { pt: 'Desenvolvimento de Produto', en: 'Product development' },
+      { pt: 'Desenvolvimento de Produto', en: 'Product Development' },
       { pt: 'Acessórios', en: 'Accessories' },
       { pt: 'Sourcing', en: 'Sourcing' },
     ],
@@ -78,7 +78,7 @@ const PROJECT_DEFS: ProjectDef[] = [
   {
     client: 'Sociedade Francisco Manuel dos Santos',
     tags: [
-      { pt: 'Gifting institucional', en: 'Corporate gifting' },
+      { pt: 'Gifting institucional', en: 'Institutional Gifting' },
       { pt: 'Consultoria', en: 'Consulting' },
       { pt: 'Coordenação', en: 'Coordination' },
       { pt: 'Luxo', en: 'Luxury' },
@@ -92,10 +92,10 @@ const PROJECT_DEFS: ProjectDef[] = [
     client: 'SEATHEFUTURE',
     tags: [
       { pt: 'Vestuário', en: 'Apparel' },
-      { pt: 'Comunicação de Marca', en: 'Brand communication' },
+      { pt: 'Comunicação de Marca', en: 'Brand Communication' },
       { pt: 'Produção', en: 'Production' },
-      { pt: 'Desenvolvimento de Produto', en: 'Product development' },
-      { pt: 'Shooting', en: 'Photo shoot' },
+      { pt: 'Desenvolvimento de Produto', en: 'Product Development' },
+      { pt: 'Shooting', en: 'Photo Shoot' },
       { pt: 'Packaging', en: 'Packaging' },
     ],
     period: { type: 'single', year: '2023 - 2025' },
@@ -105,14 +105,14 @@ const PROJECT_DEFS: ProjectDef[] = [
   {
     client: 'LX3',
     tags: [
-      { pt: 'Desenvolvimento de Produto', en: 'Product development' },
+      { pt: 'Desenvolvimento de Produto', en: 'Product Development' },
       { pt: 'Sourcing', en: 'Sourcing' },
       { pt: 'Produção', en: 'Production' },
       { pt: 'Swimwear', en: 'Swimwear' },
       { pt: 'Shooting', en: 'Photo shoot' },
       { pt: 'Packaging', en: 'Packaging' },
     ],
-    period: { type: 'single', year: '2024' },
+    period: { type: 'since', year: '2024' },
     slug: 'lx3',
     featured: false,
   },
