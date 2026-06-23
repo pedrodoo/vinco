@@ -124,10 +124,10 @@ export const categories: Category[] = [
   { slug: 'acessorios', label: { pt: 'Acessórios', en: 'Accessories' } },
   { slug: 'ceramica-vidro', label: { pt: 'Cerâmica e Vidro', en: 'Ceramics and Glass' } },
   { slug: 'papelaria', label: { pt: 'Papelaria', en: 'Stationery' } },
-  { slug: 'textil-lar', label: { pt: 'Têxtil-lar', en: 'Home textiles' } },
+  { slug: 'textil-lar', label: { pt: 'Têxtil-lar', en: 'Kitchen linens' } },
   { slug: 'uniformes', label: { pt: 'Uniformes', en: 'Uniforms' } },
   { slug: 'merchandising', label: { pt: 'Merchandising', en: 'Merchandising' } },
-  { slug: 'outros', label: { pt: 'Sessão Fotográfica', en: 'Photo shoot' } },
+  { slug: 'outros', label: { pt: 'Sessão Fotográfica', en: 'Photography' } },
   { slug: 'design-grafico', label: { pt: 'Design Gráfico', en: 'Graphic design' } },
   { slug: 'packaging', label: { pt: 'Packaging', en: 'Packaging' } },
 ];

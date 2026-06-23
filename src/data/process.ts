@@ -35,23 +35,23 @@ const processSteps: Record<Locale, ProcessStep[]> = {
   en: [
     {
       name: 'Strategic definition',
-      desc: 'We clarify the problem, context and objectives before any formal decision.',
+      desc: 'We clarify the problem, context and objectives before any action.',
     },
     {
       name: 'Formal development',
-      desc: 'Concept, form and function take shape through rigorous iteration.',
+      desc: 'We develop concept, form and function with rigour, testing and refining until we achieve consistency.',
     },
     {
-      name: 'Material selection',
-      desc: 'We choose materials with care — quality, origin and impact.',
+      name: 'Production Management',
+      desc: 'We manage the production process from start to finish without delegating responsibility.',
     },
     {
       name: 'Sourcing',
-      desc: 'We identify and validate the right production partners for each project.',
+      desc: 'We identify and validate the right partners for each project.',
     },
     {
-      name: 'Production oversight',
-      desc: 'We manage the production process from start to finish, without delegating responsibility.',
+      name: 'Production',
+      desc: 'We oversee production from start to finish, ensuring timelines and conformity of the result.',
     },
     {
       name: 'Brand communication',

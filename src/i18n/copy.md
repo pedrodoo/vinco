@@ -20,7 +20,7 @@ Use `\n` inside a cell for an intentional line break in titles (each language ca
 | home.work_title | Projetos | Projects |
 | home.work_cta | Todos os projectos | View all |
 | home.categories_title | O que fazemos | What we do |
-| home.categories_cta | Todas as categorias | All categories |
+| home.categories_cta | Todas as categorias | View all |
 | home.process_title | Como trabalhamos | How we work |
 | home.process_subtitle | Um processo integrado que acompanha cada projeto da estratégia à implementação. | An integrated process that guides each project from strategy to implementation. |
 | home.cta_title | Tem um projeto em mente? | Have a project in mind? |
