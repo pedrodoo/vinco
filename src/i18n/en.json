@@ -15,36 +15,36 @@
     "work_title": "Projects",
     "work_cta": "View all",
     "categories_title": "What we do",
-    "categories_cta": "All categories",
+    "categories_cta": "View all",
     "process_title": "How we work",
     "process_subtitle": "An integrated process that guides each project from strategy to implementation.",
     "cta_title": "Have a project in mind?",
-    "cta_button": "Let's talk"
+    "cta_button": "Contact us"
   },
   "work": {
     "title": "Work",
-    "intro": "At Studio Vinco, every project is a journey — from concept to execution.\nWe work side-by-side with brands and creators, tailoring our approach to their specific needs.",
+    "intro": "At Vinco Studio, each project is a journey - from concept to execution./nWe work side by side with brands and creatives, tailoring our approach to their specific needs.",
     "categories_intro": "Browse results by product category.",
     "cases": {
       "oceanario": {
         "title": "OCEANÁRIO DE LISBOA",
-        "description": "Since 2021, we have developed and managed the merchandising offer at the Oceanário de Lisboa store. A portfolio of around 800 references across multiple categories — from stationery, textiles to souvenirs and gifting.\n\nA long-term project that demands both creative vision and operational rigour: from product conception to lifecycle management of each reference, with a commitment to sustainable practices. From the very beginning, Vinco has contributed to the steady growth of the business — which in 2025 surpassed 2 million euros in annual sales."
+        "description": "Since 2021, we develop and manage the merchandising offering for Oceanário de Lisboa’s store. A portfolio of approximately 800 products, distributed across multiple categories: from stationery, textiles, souvenirs to gifting. A long-term project that demands both creative vision and operational rigour: from product conception to lifecycle management of each item, with a commitment to sustainable practices. Since the beginning, Vinco has contributed to continuous business growth - which in 2025 exceeded 2 million euros in annual sales."
       },
       "foa": {
         "title": "FUNDAÇÃO OCEANO AZUL",
-        "description": "Design and production of a versatile unisex uniform, developed to accompany the diversity of contexts in which the Foundation operates — from international United Nations commissions and conferences such as the United Nations Ocean Conference, to maritime missions and explorations like the Goringe expedition.\n\nVinco managed the entire process as the single point of contact between design teams, suppliers and logistics partners — preventing information loss, ensuring quality control and reactive responses, with a final result that met expectations and was delivered within the required timelines."
+        "description": "Design and production of a unisex, multipurpose uniform developed to support the Foundation's diverse contexts—from UN international commissions and conferences including the United Nations Ocean Conference, to maritime missions and expeditions such as Gorringe. Vinco managed the end-to-end process as the sole intermediary between design teams, suppliers and logistics partners, preventing information loss, ensuring quality control and responsive delivery, with results meeting expectations and strict timelines."
       },
       "sfms": {
         "title": "SOCIEDADE FRANCISCO MANUEL DOS SANTOS",
-        "description": "Product development and institutional gifting consultancy for the SFMS. Conception, development and coordination of gifts intended for senior dignitaries and representatives of national and international organisations, with curation of partnerships tailored to the diplomatic and institutional context.\n\nVinco took full ownership of the project, acting as the central point of contact between all parties involved - from production to delivery - translating the Society's vision into objects worthy of the occasions and those who receive them."
+        "description": "Consulting on product development and institutional gifting for SFMS. Design, development and coordination of gifts for high-ranking dignitaries and representatives of national and international organisations, with partnerships curated to the diplomatic and institutional context. Vinco assumed full project management - the central point of contact among all stakeholders, from production to delivery - translating the Company's vision into objects worthy of the occasions"
       },
       "seathefuture": {
         "title": "SEATHEFUTURE",
-        "description": "Product development and brand image consultancy for SEATHEFUTURE. In addition to creating an apparel capsule, Vinco coordinated the direction and production of the photo shoot, equally contributing to the construction of the brand's visual identity and communication."
+        "description": "Consulting on product development and brand image for SeaTheFuture. In addition to creating a clothing capsule, Vinco coordinated the direction and production of the photoshoot, and participated equally in building the brand's visual identity and communications."
       },
       "lx3": {
         "title": "LX3",
-        "description": "Product development and brand image consultancy for LX3 at the moment of its relaunch. A cross-category approach to the brand: bath collection, complementary apparel, packaging and brand materials, with art direction and oversight of the photo shoot.\n\nVinco acted as the operational arm of the founder — absorbing the brand's creative direction and translating it into coherent product, packaging and visual language across categories, managing all development and logistics so she could focus entirely on design."
+        "description": "Vinco served as the operational arm of LX3, a swimwear and beachwear brand, allowing the founder to dedicate herself entirely to design and creative direction. We coordinated the entire process- sourcing, product development, packaging, production, logistics and photoshoot - ensuring alignment with creative direction across all categories."
       }
     },
     "categories_all": "View all",
