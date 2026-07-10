@@ -1,5 +1,4 @@
 import type { ImageMetadata } from 'astro';
-import { siteName } from '../config/site';
 import { useTranslations, type Locale } from '../i18n/utils';
 import { getCaseStudyCopyKey } from './work';
 import brandOgImage from '../assets/og/og-brand.jpg';
@@ -12,14 +11,13 @@ export function sanitizeMetaDescription(description: string): string {
 
 export function getPageSeo(locale: Locale, page: PageKey, projectSlug?: string) {
   const t = useTranslations(locale);
-  const name = siteName(locale);
 
   if (page === 'project' && projectSlug) {
     const copyKey = getCaseStudyCopyKey(projectSlug);
     const caseCopy = copyKey ? t.work.cases[copyKey as keyof typeof t.work.cases] : undefined;
 
     return {
-      title: `${caseCopy?.title ?? projectSlug} — ${name}`,
+      title: caseCopy?.meta_title ?? caseCopy?.title ?? projectSlug,
       description: sanitizeMetaDescription(caseCopy?.meta_description ?? ''),
     };
   }
@@ -37,22 +35,22 @@ export function getPageSeo(locale: Locale, page: PageKey, projectSlug?: string) 
       };
     case 'whatWeDo':
       return {
-        title: `${t.home.categories_title} | ${name}`,
+        title: t.work.categories_meta_title,
         description: sanitizeMetaDescription(t.work.categories_meta_description),
       };
     case 'about':
       return {
-        title: `${t.about.title} | ${name}`,
+        title: t.about.meta_title,
         description: sanitizeMetaDescription(t.about.meta_description),
       };
     case 'contact':
       return {
-        title: `${t.contact.title} | ${name}`,
+        title: t.contact.meta_title,
         description: sanitizeMetaDescription(t.contact.meta_description),
       };
     default:
       return {
-        title: name,
+        title: t.home.meta_title,
         description: sanitizeMetaDescription(t.home.meta_description),
       };
   }

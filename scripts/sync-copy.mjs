@@ -10,15 +10,38 @@ const copyPath = path.join(rootDir, 'src', 'i18n', 'copy.md');
 const ptPath = path.join(rootDir, 'src', 'i18n', 'pt.json');
 const enPath = path.join(rootDir, 'src', 'i18n', 'en.json');
 
+function splitTableColumns(line) {
+  const columns = [];
+  let current = '';
+
+  for (let index = 0; index < line.length; index += 1) {
+    const char = line[index];
+
+    if (char === '\\' && line[index + 1] === '|') {
+      current += '|';
+      index += 1;
+      continue;
+    }
+
+    if (char === '|') {
+      columns.push(current);
+      current = '';
+      continue;
+    }
+
+    current += char;
+  }
+
+  columns.push(current);
+  return columns.slice(1, -1).map((column) => column.trim());
+}
+
 function parseTableRow(line) {
   if (!line.trim().startsWith('|') || !line.trim().endsWith('|')) {
     return null;
   }
 
-  const columns = line
-    .split('|')
-    .slice(1, -1)
-    .map((column) => column.trim());
+  const columns = splitTableColumns(line);
 
   if (columns.length !== 3) {
     return null;
@@ -32,7 +55,7 @@ function parseTableRow(line) {
 }
 
 function parseCopyValue(value) {
-  return value.replace(/\\n/g, '\n');
+  return value.replace(/\\n/g, '\n').replace(/\\\|/g, '|');
 }
 
 function setByDottedPath(target, dottedKey, value) {
