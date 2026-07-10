@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHero from './PageHero.astro';
 import { useTranslations, type Locale } from '../i18n/utils';
+import { getContactPageSchemas } from '../data/schema';
 
 interface Props {
   locale: Locale;
@@ -17,6 +18,7 @@ const contactLabel = locale === 'pt' ? 'Contacto' : 'Contact';
   title={`${t.contact.title} | ${siteName}`}
   description={t.contact.meta_description}
   locale={locale}
+  jsonLd={getContactPageSchemas(locale)}
 >
   <PageHero title={t.contact.title} intro={t.contact.intro} />
 

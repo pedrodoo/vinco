@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHero from './PageHero.astro';
 import MultilineText from './MultilineText.astro';
 import OptimizedImage from './OptimizedImage.astro';
+import { getImage } from 'astro:assets';
 import founderPhoto from '../assets/about/fundadora.jpg';
 import {
   useTranslations,
@@ -10,6 +11,7 @@ import {
   splitCopyParagraphs,
   type Locale,
 } from '../i18n/utils';
+import { getAboutPageSchemas } from '../data/schema';
 
 interface Props {
   locale: Locale;
@@ -23,12 +25,20 @@ const siteName = locale === 'pt' ? 'Vinco Estúdio' : 'Vinco Studio';
 const introParagraphs = splitCopyParagraphs(t.about.intro);
 const studioParagraphs = splitCopyParagraphs(t.about.studio_body);
 const founderParagraphs = splitCopyParagraphs(t.about.founder_bio);
+
+const founderImage = await getImage({
+  src: founderPhoto,
+  width: 800,
+  format: 'jpg',
+});
+const founderImageUrl = new URL(founderImage.src, Astro.site ?? 'https://vinco-studio.com').href;
 ---
 
 <Base
   title={`${t.about.title} | ${siteName}`}
   description={t.about.meta_description}
   locale={locale}
+  jsonLd={getAboutPageSchemas(locale, founderImageUrl)}
 >
   <PageHero title={t.about.title} intro={introParagraphs} />
 

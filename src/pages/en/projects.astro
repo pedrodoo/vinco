@@ -4,11 +4,17 @@ import PageHero from '../../components/PageHero.astro';
 import CaseStudySection from '../../components/work/CaseStudySection.astro';
 import { useTranslations } from '../../i18n/utils';
 import { getCaseStudies, getCaseStudyCopyKey, getCaseStudyGallery, formatProjectPeriod, getDefaultOgImage } from '../../data/work';
+import { getProjectsPageSchemas } from '../../data/schema';
 
 const locale = 'en';
 const t = useTranslations(locale);
 const caseStudies = getCaseStudies();
 const caseCopyByKey = t.work.cases;
+const projectNames = caseStudies.map((project) => {
+  const copyKey = getCaseStudyCopyKey(project.slug);
+  const caseCopy = copyKey ? caseCopyByKey[copyKey as keyof typeof caseCopyByKey] : undefined;
+  return caseCopy?.title ?? project.client;
+});
 ---
 
 <Base
@@ -16,6 +22,7 @@ const caseCopyByKey = t.work.cases;
   description={t.work.intro}
   locale={locale}
   ogImage={getDefaultOgImage()}
+  jsonLd={getProjectsPageSchemas(locale, projectNames)}
 >
   <PageHero title={t.home.work_title} intro={t.work.intro} />
 

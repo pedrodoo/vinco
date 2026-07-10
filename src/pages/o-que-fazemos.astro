@@ -5,6 +5,7 @@ import CategoryNav from '../components/work/CategoryNav.astro';
 import CategorySection from '../components/work/CategorySection.astro';
 import { useTranslations } from '../i18n/utils';
 import { categories, getCategoryItems } from '../data/work';
+import { getWhatWeDoPageSchemas } from '../data/schema';
 
 const locale = 'pt';
 const t = useTranslations(locale);
@@ -14,6 +15,7 @@ const t = useTranslations(locale);
   title={`${t.home.categories_title} | Vinco Estúdio`}
   description={t.work.categories_meta_description}
   locale={locale}
+  jsonLd={getWhatWeDoPageSchemas(locale)}
 >
   <PageHero
     title={t.home.categories_title}

@@ -7,6 +7,7 @@ import ProcessSection from '../../components/home/ProcessSection.astro';
 import { useTranslations, getNavLinks } from '../../i18n/utils';
 import { getFeaturedProjects, getDefaultOgImage } from '../../data/work';
 import { getProcessSteps } from '../../data/process';
+import { getHomePageSchemas } from '../../data/schema';
 
 const locale = 'en';
 const t = useTranslations(locale);
@@ -19,13 +20,7 @@ const projects = getFeaturedProjects();
   description="End-to-end product development studio. We work with brands, institutions and creators."
   locale="en"
   ogImage={getDefaultOgImage()}
-  jsonLd={{
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Vinco Studio',
-    url: 'https://vinco-studio.com',
-    description: 'End-to-end product development studio.',
-  }}
+  jsonLd={getHomePageSchemas(locale)}
 >
   <!-- HERO -->
   <section class="bg-vinco-cream relative overflow-hidden">
