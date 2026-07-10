@@ -340,7 +340,7 @@ export function getCategoryDocumentDownloadName(item: CategoryItem): string {
 }
 
 export function getProjectPath(slug: string, locale: Locale): string {
-  return locale === 'pt' ? `/trabalho#${slug}` : `/en/work#${slug}`;
+  return locale === 'pt' ? `/projetos#${slug}` : `/en/projects#${slug}`;
 }
 
 export function getCategoryPath(slug: string, locale: Locale): string {

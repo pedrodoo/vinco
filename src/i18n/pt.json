@@ -22,9 +22,10 @@
     "cta_button": "Fale connosco"
   },
   "work": {
-    "title": "Trabalho",
-    "intro": "No Estúdio Vinco, cada projeto é uma viagem — do conceito à execução.\nTrabalhamos lado a lado com marcas e criadores, ajustando a nossa abordagem às suas necessidades específicas.",
-    "categories_intro": "Explore os resultados por categoria de produto.",
+    "title": "Projetos",
+    "intro": "No Estúdio Vinco, cada projeto é uma viagem, do conceito à execução.\nTrabalhamos lado a lado com marcas e criadores, ajustando-nos às suas necessidades.",
+    "categories_intro": "Trabalhamos com diversas categorias — vestuário, roupa de praia, acessórios, papelaria e merchandising — com método, rigor e precisão.\n\nO objetivo é assegurar que cada produto mantém, na execução, a intenção original com que foi concebido.",
+    "categories_meta_description": "Trabalhamos com diversas categorias — vestuário, roupa de praia, acessórios, papelaria e merchandising — com método, rigor e precisão.",
     "cases": {
       "oceanario": {
         "title": "OCEANÁRIO DE LISBOA",

@@ -22,9 +22,10 @@
     "cta_button": "Contact us"
   },
   "work": {
-    "title": "Work",
-    "intro": "At Vinco Studio, each project is a journey - from concept to execution. We work side by side with brands and creatives, tailoring our approach to their specific needs.",
-    "categories_intro": "Browse results by product category.",
+    "title": "Projects",
+    "intro": "At Vinco Studio, every project is a journey, from concept to execution. We work side by side with brands and creators, tailoring our approach to their needs.",
+    "categories_intro": "We work across a wide range of categories — apparel, swimwear, accessories, stationery and merchandising — with method, rigour and precision.\n\nThe goal is to ensure that every product retains, through execution, the original intention behind its conception.",
+    "categories_meta_description": "We work across a wide range of categories — apparel, swimwear, accessories, stationery and merchandising — with method, rigour and precision.",
     "cases": {
       "oceanario": {
         "title": "OCEANÁRIO DE LISBOA",

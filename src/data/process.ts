@@ -42,8 +42,8 @@ const processSteps: Record<Locale, ProcessStep[]> = {
       desc: 'We develop concept, form and function with rigour, testing and refining until we achieve consistency.',
     },
     {
-      name: 'Production Management',
-      desc: 'We manage the production process from start to finish without delegating responsibility.',
+      name: 'Material Selection',
+      desc: 'Every material is chosen deliberately — for its quality, origin, and impact.',
     },
     {
       name: 'Sourcing',

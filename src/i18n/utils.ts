@@ -22,14 +22,14 @@ export function splitCopyParagraphs(text: string): string[] {
 const routeMap = {
   pt: {
     home: '/',
-    work: '/trabalho',
+    work: '/projetos',
     whatWeDo: '/o-que-fazemos',
     about: '/sobre',
     contact: '/contacto',
   },
   en: {
     home: '/en/',
-    work: '/en/work',
+    work: '/en/projects',
     whatWeDo: '/en/what-we-do',
     about: '/en/about',
     contact: '/en/contacts',
@@ -42,7 +42,7 @@ export function getNavLinks(locale: Locale) {
 
 const pathPairs: [string, string][] = [
   ['/', '/en/'],
-  ['/trabalho', '/en/work'],
+  ['/projetos', '/en/projects'],
   ['/o-que-fazemos', '/en/what-we-do'],
   ['/sobre', '/en/about'],
   ['/contacto', '/en/contacts'],

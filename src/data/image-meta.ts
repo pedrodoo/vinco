@@ -50,6 +50,18 @@ export const imageAlt: Record<string, { pt: string; en: string }> = {
     pt: 'Packaging SEATHEFUTURE — header para porta-chaves',
     en: 'SEATHEFUTURE packaging — keychain header card',
   },
+  'categories/vestuario/img-1439.jpg': {
+    pt: 'T-shirts e Sweatshirts algodão reciclado',
+    en: 'T-shirts and sweatshirts in recycled cotton',
+  },
+  'categories/ceramica-vidro/dscf8170.jpg': {
+    pt: 'Canecas personalizadas',
+    en: 'Custom mugs',
+  },
+  'categories/uniformes/oceanario-chatgpt-image-apr-24-2026-at-11-52-02-am.jpg': {
+    pt: 'Fardas Institucionais sustentáveis personalizadas',
+    en: 'Custom sustainable institutional uniforms',
+  },
 };
 
 const PROJECT_LABELS: Record<string, { pt: string; en: string }> = {
