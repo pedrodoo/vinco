@@ -42,7 +42,7 @@ const processSteps: Record<Locale, ProcessStep[]> = {
       desc: 'We develop concept, form and function with rigour, testing and refining until we achieve consistency.',
     },
     {
-      name: 'Material Selection',
+      name: 'Material selection',
       desc: 'Every material is chosen deliberately — for its quality, origin, and impact.',
     },
     {

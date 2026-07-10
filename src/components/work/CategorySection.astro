@@ -1,7 +1,7 @@
 ---
 import OptimizedImage from '../OptimizedImage.astro';
 import type { CategoryItem } from '../../data/work';
-import { getCategoryItemAlt, getCategoryDocumentDownloadName } from '../../data/work';
+import { getCategoryItemAlt, getCategoryDocumentDownloadName, getCategoryAnchorSlug } from '../../data/work';
 import { useTranslations } from '../../i18n/utils';
 import type { Locale } from '../../i18n/utils';
 
@@ -14,10 +14,11 @@ interface Props {
 
 const { slug, label, items, locale } = Astro.props;
 const t = useTranslations(locale);
+const anchorId = getCategoryAnchorSlug(slug, locale);
 ---
 
 <section
-  id={slug}
+  id={anchorId}
   class="scroll-mt-16 pt-16 md:pt-24 first:pt-0"
 >
   <h2 class="font-display text-vinco-cream mb-8">{label}</h2>

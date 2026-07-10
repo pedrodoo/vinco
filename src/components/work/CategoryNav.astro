@@ -1,5 +1,6 @@
 ---
 import type { Category } from '../../data/work';
+import { getCategoryAnchorSlug } from '../../data/work';
 import type { Locale } from '../../i18n/utils';
 
 interface Props {
@@ -17,7 +18,7 @@ const linkClass = theme === 'light'
 
 <nav class="flex flex-wrap gap-2 mb-12" aria-label={locale === 'pt' ? 'Categorias' : 'Categories'}>
   {categories.map((cat) => (
-    <a href={`#${cat.slug}`} class={linkClass}>
+    <a href={`#${getCategoryAnchorSlug(cat.slug, locale)}`} class={linkClass}>
       {cat.label[locale]}
     </a>
   ))}

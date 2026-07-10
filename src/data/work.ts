@@ -20,6 +20,7 @@ export interface Project {
 
 export interface Category {
   slug: string;
+  anchor: { pt: string; en: string };
   label: { pt: string; en: string };
 }
 
@@ -119,17 +120,17 @@ const PROJECT_DEFS: ProjectDef[] = [
 ];
 
 export const categories: Category[] = [
-  { slug: 'vestuario', label: { pt: 'Vestuário', en: 'Apparel' } },
-  { slug: 'swimwear', label: { pt: 'Swimwear', en: 'Swimwear' } },
-  { slug: 'acessorios', label: { pt: 'Acessórios', en: 'Accessories' } },
-  { slug: 'ceramica-vidro', label: { pt: 'Cerâmica e Vidro', en: 'Ceramics and Glass' } },
-  { slug: 'papelaria', label: { pt: 'Papelaria', en: 'Stationery' } },
-  { slug: 'textil-lar', label: { pt: 'Têxtil-lar', en: 'Kitchen linens' } },
-  { slug: 'uniformes', label: { pt: 'Uniformes', en: 'Uniforms' } },
-  { slug: 'merchandising', label: { pt: 'Merchandising', en: 'Merchandising' } },
-  { slug: 'outros', label: { pt: 'Sessão Fotográfica', en: 'Photography' } },
-  { slug: 'design-grafico', label: { pt: 'Design Gráfico', en: 'Graphic design' } },
-  { slug: 'packaging', label: { pt: 'Packaging', en: 'Packaging' } },
+  { slug: 'vestuario', anchor: { pt: 'vestuario', en: 'apparel' }, label: { pt: 'Vestuário', en: 'Apparel' } },
+  { slug: 'swimwear', anchor: { pt: 'swimwear', en: 'swimwear' }, label: { pt: 'Swimwear', en: 'Swimwear' } },
+  { slug: 'acessorios', anchor: { pt: 'acessorios', en: 'accessories' }, label: { pt: 'Acessórios', en: 'Accessories' } },
+  { slug: 'ceramica-vidro', anchor: { pt: 'ceramica-vidro', en: 'ceramics-glass' }, label: { pt: 'Cerâmica e Vidro', en: 'Ceramics and Glass' } },
+  { slug: 'papelaria', anchor: { pt: 'papelaria', en: 'stationery' }, label: { pt: 'Papelaria', en: 'Stationery' } },
+  { slug: 'textil-lar', anchor: { pt: 'textil-lar', en: 'kitchen-linens' }, label: { pt: 'Têxtil-lar', en: 'Kitchen linens' } },
+  { slug: 'uniformes', anchor: { pt: 'uniformes', en: 'uniforms' }, label: { pt: 'Uniformes', en: 'Uniforms' } },
+  { slug: 'merchandising', anchor: { pt: 'merchandising', en: 'merchandising' }, label: { pt: 'Merchandising', en: 'Merchandising' } },
+  { slug: 'outros', anchor: { pt: 'outros', en: 'photography' }, label: { pt: 'Sessão Fotográfica', en: 'Photography' } },
+  { slug: 'design-grafico', anchor: { pt: 'design-grafico', en: 'graphic-design' }, label: { pt: 'Design Gráfico', en: 'Graphic design' } },
+  { slug: 'packaging', anchor: { pt: 'packaging', en: 'packaging' }, label: { pt: 'Packaging', en: 'Packaging' } },
 ];
 
 const projectModules = import.meta.glob<{ default: ImageMetadata }>(
@@ -343,8 +344,14 @@ export function getProjectPath(slug: string, locale: Locale): string {
   return locale === 'pt' ? `/projetos#${slug}` : `/en/projects#${slug}`;
 }
 
+export function getCategoryAnchorSlug(slug: string, locale: Locale): string {
+  const category = categoryBySlug.get(slug);
+  return category?.anchor[locale] ?? slug;
+}
+
 export function getCategoryPath(slug: string, locale: Locale): string {
-  return locale === 'pt' ? `/o-que-fazemos#${slug}` : `/en/what-we-do#${slug}`;
+  const anchor = getCategoryAnchorSlug(slug, locale);
+  return locale === 'pt' ? `/o-que-fazemos#${anchor}` : `/en/what-we-do#${anchor}`;
 }
 
 export function getCategoryPreviewImages(slug: string, limit = 5): ImageMetadata[] {

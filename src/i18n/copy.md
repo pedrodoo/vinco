@@ -11,14 +11,14 @@ Use `\n` inside a cell for an intentional line break in titles (each language ca
 | nav.work-case-studies | Projetos | Projects |
 | nav.what-we-do | O Que Fazemos | What We Do |
 | nav.about | Sobre | About |
-| nav.contact | Contacto | Contacts |
+| nav.contact | Contacto | Contact |
 | nav.menu_open | Abrir menu | Open menu |
 | nav.menu_close | Fechar menu | Close menu |
 | home.hero_title | Do conceito\nao produto. | From concept\nto product. |
 | home.hero_subtitle | Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores para transformar ideias em objetos com rigor e intenção. | End-to-end product development studio. We work with brands, institutions and creators to transform ideas into objects with rigour and intention. |
 | home.hero_cta | Iniciar um projeto | Start a project |
 | home.work_title | Projetos | Projects |
-| home.work_cta | Todos os projectos | View all |
+| home.work_cta | Todos os projetos | View all |
 | home.categories_title | O que fazemos | What we do |
 | home.categories_cta | Todas as categorias | View all |
 | home.process_title | Como trabalhamos | How we work |
