@@ -12,6 +12,7 @@ export interface Project {
   tags: { pt: string; en: string }[];
   period: ProjectPeriod;
   slug: string;
+  seoSlug: { pt: string; en: string };
   featured: boolean;
   image?: ImageMetadata;
   gallery?: ImageMetadata[];
@@ -37,6 +38,7 @@ interface ProjectDef {
   tags: { pt: string; en: string }[];
   period: ProjectPeriod;
   slug: string;
+  seoSlug: { pt: string; en: string };
   featured: boolean;
   caseStudyGalleryFiles?: string[];
 }
@@ -56,6 +58,7 @@ const PROJECT_DEFS: ProjectDef[] = [
     ],
     period: { type: 'since', year: '2021' },
     slug: 'oceanario',
+    seoSlug: { pt: 'oceanario-de-lisboa', en: 'lisbon-oceanarium' },
     featured: true,
   },
   {
@@ -69,6 +72,7 @@ const PROJECT_DEFS: ProjectDef[] = [
     ],
     period: { type: 'single', year: '2024 - 2025' },
     slug: 'fundacao-oceano-azul',
+    seoSlug: { pt: 'fundacao-oceano-azul', en: 'blue-ocean-foundation' },
     featured: true,
     caseStudyGalleryFiles: [
       'gallery-01-chatgpt-image-apr-24-2026-at-01-30-23-pm.jpg',
@@ -87,6 +91,7 @@ const PROJECT_DEFS: ProjectDef[] = [
     ],
     period: { type: 'since', year: '2023' },
     slug: 'sfms',
+    seoSlug: { pt: 'sociedade-francisco-manuel-dos-santos', en: 'sfms' },
     featured: true,
   },
   {
@@ -101,6 +106,7 @@ const PROJECT_DEFS: ProjectDef[] = [
     ],
     period: { type: 'single', year: '2023 - 2025' },
     slug: 'seathefuture',
+    seoSlug: { pt: 'seathefuture', en: 'seathefuture' },
     featured: false,
   },
   {
@@ -115,6 +121,7 @@ const PROJECT_DEFS: ProjectDef[] = [
     ],
     period: { type: 'since', year: '2025' },
     slug: 'lx3',
+    seoSlug: { pt: 'lx3', en: 'lx3' },
     featured: false,
   },
 ];
@@ -340,8 +347,35 @@ export function getCategoryDocumentDownloadName(item: CategoryItem): string {
   return item.pdfAssetPath.split('/').pop() ?? 'document.pdf';
 }
 
+export function getProjectSeoSlug(projectOrSlug: Project | string, locale: Locale): string {
+  const project =
+    typeof projectOrSlug === 'string'
+      ? projects.find((entry) => entry.slug === projectOrSlug)
+      : projectOrSlug;
+
+  return project?.seoSlug[locale] ?? (typeof projectOrSlug === 'string' ? projectOrSlug : '');
+}
+
 export function getProjectPath(slug: string, locale: Locale): string {
-  return locale === 'pt' ? `/projetos#${slug}` : `/en/projects#${slug}`;
+  const seoSlug = getProjectSeoSlug(slug, locale);
+  return locale === 'pt' ? `/projetos/${seoSlug}` : `/en/projects/${seoSlug}`;
+}
+
+export function getProjectBySeoSlug(seoSlug: string, locale: Locale): Project | undefined {
+  return projects.find((project) => project.seoSlug[locale] === seoSlug);
+}
+
+export function getProjectLocalePathPairs(): [string, string][] {
+  return projects.map((project) => [
+    `/projetos/${project.seoSlug.pt}`,
+    `/en/projects/${project.seoSlug.en}`,
+  ]);
+}
+
+export function getLegacyProjectHashRedirects(): Record<string, string> {
+  return Object.fromEntries(
+    projects.map((project) => [project.slug, getProjectPath(project.slug, 'pt')]),
+  );
 }
 
 export function getCategoryAnchorSlug(slug: string, locale: Locale): string {
@@ -352,6 +386,10 @@ export function getCategoryAnchorSlug(slug: string, locale: Locale): string {
 export function getCategoryPath(slug: string, locale: Locale): string {
   const anchor = getCategoryAnchorSlug(slug, locale);
   return locale === 'pt' ? `/o-que-fazemos#${anchor}` : `/en/what-we-do#${anchor}`;
+}
+
+export function getCategoryPreviewItems(slug: string, limit = 5): CategoryItem[] {
+  return getCategoryItems(slug).slice(0, limit);
 }
 
 export function getCategoryPreviewImages(slug: string, limit = 5): ImageMetadata[] {

@@ -26,6 +26,66 @@ export const imageAlt: Record<string, { pt: string; en: string }> = {
     pt: 'Coleção LX3 — desenvolvimento de produto',
     en: 'LX3 collection — product development',
   },
+  'projects/oceanario/gallery-01-mg-1311.jpg': {
+    pt: 'Oceanário de Lisboa — merchandising têxtil',
+    en: 'Oceanário de Lisboa — textile merchandising',
+  },
+  'projects/oceanario/gallery-02-mg-1344.jpg': {
+    pt: 'Oceanário de Lisboa — produtos de papelaria',
+    en: 'Oceanário de Lisboa — stationery products',
+  },
+  'projects/oceanario/gallery-03-img-1439.jpg': {
+    pt: 'Oceanário de Lisboa — vestuário sustentável',
+    en: 'Oceanário de Lisboa — sustainable apparel',
+  },
+  'projects/oceanario/gallery-04-chatgpt-image-apr-24-2026-at-03-43-12-pm.jpg': {
+    pt: 'Oceanário de Lisboa — cerâmica e vidro',
+    en: 'Oceanário de Lisboa — ceramics and glass',
+  },
+  'projects/fundacao-oceano-azul/gallery-01-chatgpt-image-apr-24-2026-at-01-30-23-pm.jpg': {
+    pt: 'Fundação Oceano Azul — farda institucional',
+    en: 'Fundação Oceano Azul — institutional uniform',
+  },
+  'projects/fundacao-oceano-azul/gallery-02-chatgpt-image-apr-24-2026-at-03-04-02-pm.jpg': {
+    pt: 'Fundação Oceano Azul — detalhe da farda',
+    en: 'Fundação Oceano Azul — uniform detail',
+  },
+  'projects/fundacao-oceano-azul/gallery-03-chatgpt-image-apr-24-2026-at-03-14-38-pm.jpg': {
+    pt: 'Fundação Oceano Azul — farda em contexto',
+    en: 'Fundação Oceano Azul — uniform in context',
+  },
+  'projects/fundacao-oceano-azul/gallery-04-chatgpt-image-apr-24-2026-at-03-32-41-pm.jpg': {
+    pt: 'Fundação Oceano Azul — farda em evento internacional',
+    en: 'Fundação Oceano Azul — uniform at international event',
+  },
+  'projects/fundacao-oceano-azul/gallery-05-chatgpt-image-apr-24-2026-at-03-36-41-pm.jpg': {
+    pt: 'Fundação Oceano Azul — detalhe de acabamento',
+    en: 'Fundação Oceano Azul — finishing detail',
+  },
+  'projects/sfms/gallery-01-chatgpt-image-jun-16-2026-at-03-50-52-pm.jpg': {
+    pt: 'SFMS — gifting institucional',
+    en: 'SFMS — institutional gifting',
+  },
+  'projects/sfms/gallery-02-chatgpt-image-jun-16-2026-at-03-53-54-pm.jpg': {
+    pt: 'SFMS — detalhe de presente institucional',
+    en: 'SFMS — institutional gift detail',
+  },
+  'projects/seathefuture/gallery-01-stf-421.jpg': {
+    pt: 'SEATHEFUTURE — cápsula de vestuário',
+    en: 'SEATHEFUTURE — apparel capsule',
+  },
+  'projects/seathefuture/gallery-02-stf-432.jpg': {
+    pt: 'SEATHEFUTURE — shooting de marca',
+    en: 'SEATHEFUTURE — brand photoshoot',
+  },
+  'projects/lx3/gallery-01-20260423-lx3-197.jpg': {
+    pt: 'LX3 — coleção swimwear',
+    en: 'LX3 — swimwear collection',
+  },
+  'projects/lx3/gallery-02-20260423-lx3-632.jpg': {
+    pt: 'LX3 — detalhe de roupa de praia',
+    en: 'LX3 — beachwear detail',
+  },
   'categories/design-grafico/stf-catalog.preview.jpg': {
     pt: 'Catálogo STF',
     en: 'STF Catalog',
@@ -96,14 +156,34 @@ function humanizeFilename(filename: string): string {
     .join(' ');
 }
 
+function isWeakAlt(text: string): boolean {
+  return /chatgpt|dscf|img-\d|mg-\d|shooting-/i.test(text);
+}
+
+function projectGalleryAlt(projectSlug: string, assetPath: string, locale: Locale): string | undefined {
+  const label = PROJECT_LABELS[projectSlug];
+  if (!label) return undefined;
+
+  if (assetPath.endsWith('/hero.jpg')) {
+    return label[locale];
+  }
+
+  const galleryMatch = assetPath.match(/gallery-(\d+)/);
+  const index = galleryMatch?.[1] ?? '1';
+
+  return locale === 'pt'
+    ? `${label.pt} — vista ${index}`
+    : `${label.en} — view ${index}`;
+}
+
 export function getImageAlt(assetPath: string, locale: Locale, fallback?: string): string {
   const entry = imageAlt[assetPath];
   if (entry) return entry[locale];
 
   const projectMatch = assetPath.match(/^projects\/([^/]+)\//);
   if (projectMatch) {
-    const label = PROJECT_LABELS[projectMatch[1]];
-    if (label) return label[locale];
+    const projectAlt = projectGalleryAlt(projectMatch[1], assetPath, locale);
+    if (projectAlt) return projectAlt;
   }
 
   const categoryMatch = assetPath.match(/^categories\/([^/]+)\/(.+)$/);
@@ -111,12 +191,16 @@ export function getImageAlt(assetPath: string, locale: Locale, fallback?: string
     const [, categorySlug, filename] = categoryMatch;
     const category = CATEGORY_LABELS[categorySlug];
     const detail = humanizeFilename(filename);
-    if (category) {
+    if (category && !isWeakAlt(detail)) {
       return locale === 'pt'
         ? `${category.pt} — ${detail}`
         : `${category.en} — ${detail}`;
     }
+    if (category) {
+      return category[locale];
+    }
   }
 
-  return fallback ?? humanizeFilename(assetPath.split('/').pop() ?? 'Product');
+  const fallbackText = fallback ?? humanizeFilename(assetPath.split('/').pop() ?? 'Product');
+  return isWeakAlt(fallbackText) ? (fallback ?? 'Product') : fallbackText;
 }

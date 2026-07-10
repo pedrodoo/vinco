@@ -1,6 +1,6 @@
 ---
 import OptimizedImage from '../OptimizedImage.astro';
-import { getCategoryPath, getCategoryPreviewImages } from '../../data/work';
+import { getCategoryPath, getCategoryPreviewItems, getCategoryItemAlt } from '../../data/work';
 import type { Category } from '../../data/work';
 import type { Locale } from '../../i18n/utils';
 
@@ -12,7 +12,7 @@ interface Props {
 const { category, locale } = Astro.props;
 const label = category.label[locale];
 const href = getCategoryPath(category.slug, locale);
-const stackImages = getCategoryPreviewImages(category.slug, 3);
+const stackItems = getCategoryPreviewItems(category.slug, 3);
 ---
 
 <a
@@ -24,22 +24,23 @@ const stackImages = getCategoryPreviewImages(category.slug, 3);
   <div class="category-home-card-row relative flex items-center md:min-h-28 overflow-visible gap-6">
     <p class="text-sm shrink-0">{label}</p>
     {
-      stackImages.length > 0 && (
+      stackItems.length > 0 && (
         <div
           class="category-home-card-media hidden md:block flex-1 min-w-0 relative self-stretch min-h-28"
-          style={`--stack-count: ${stackImages.length}`}
+          style={`--stack-count: ${stackItems.length}`}
         >
           <div class="category-stack absolute inset-0 overflow-visible pointer-events-none">
-            {stackImages.map((src, index) => {
-              const depth = stackImages.length - 1 - index;
+            {stackItems.map((item, index) => {
+              const depth = stackItems.length - 1 - index;
+              const imageAlt = getCategoryItemAlt(item, locale);
               return (
                 <div
                   class="category-stack-square absolute overflow-hidden bg-vinco-cream/5 shadow-sm"
                   style={`--stack-depth: ${depth}; --stack-z: ${index + 1};`}
                 >
                   <OptimizedImage
-                    src={src}
-                    alt={depth === 0 ? label : ''}
+                    src={item.src}
+                    alt={depth === 0 ? imageAlt : ''}
                     class="w-full h-full object-cover"
                     sizes="112px"
                     widths={[112, 224]}

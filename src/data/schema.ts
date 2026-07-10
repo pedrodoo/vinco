@@ -1,5 +1,9 @@
 import { getNavLinks, useTranslations, type Locale } from '../i18n/utils';
 import { SITE_URL } from '../config/site';
+import {
+  getProjectPath,
+  type Project,
+} from './work';
 
 const SITE = SITE_URL;
 const ORGANIZATION_ID = `${SITE}/#organization`;
@@ -23,6 +27,17 @@ function organizationDescription(locale: Locale): string {
     : 'End-to-end product development studio.';
 }
 
+function projectPeriodYear(period: Project['period']): string | undefined {
+  switch (period.type) {
+    case 'single':
+      return period.year;
+    case 'since':
+      return period.year;
+    case 'range':
+      return period.from;
+  }
+}
+
 export function getOrganizationSchema(locale: Locale): JsonLd {
   const t = useTranslations(locale);
   const name = siteName(locale);
@@ -38,7 +53,10 @@ export function getOrganizationSchema(locale: Locale): JsonLd {
     description: organizationDescription(locale),
     email: t.footer.email,
     foundingDate: '2026',
-    areaServed: 'PT',
+    areaServed: [
+      { '@type': 'Country', name: 'Portugal' },
+      { '@type': 'Place', name: 'Europe' },
+    ],
     knowsAbout: [
       'Product development',
       'Merchandising',
@@ -124,7 +142,10 @@ export function getAboutPageSchemas(locale: Locale, founderImageUrl?: string): J
   ];
 }
 
-export function getProjectsPageSchemas(locale: Locale, projectNames: string[]): JsonLd[] {
+export function getProjectsPageSchemas(
+  locale: Locale,
+  items: { name: string; path: string }[],
+): JsonLd[] {
   const t = useTranslations(locale);
   const nav = getNavLinks(locale);
 
@@ -141,14 +162,52 @@ export function getProjectsPageSchemas(locale: Locale, projectNames: string[]): 
       mainEntity: {
         '@type': 'ItemList',
         name: t.work.title,
-        itemListElement: projectNames.map((name, index) => ({
+        itemListElement: items.map((item, index) => ({
           '@type': 'ListItem',
           position: index + 1,
-          name,
+          name: item.name,
+          url: pageUrl(item.path),
         })),
       },
     },
   ];
+}
+
+export function getProjectPageSchemas(
+  locale: Locale,
+  project: Project,
+  title: string,
+  description: string,
+  heroImageUrl?: string,
+): JsonLd[] {
+  const summary = description.replace(/\s+/g, ' ').trim().slice(0, 300);
+  const projectPath = getProjectPath(project.slug, locale);
+  const dateCreated = projectPeriodYear(project.period);
+
+  const creativeWork: JsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: title,
+    description: summary,
+    url: pageUrl(projectPath),
+    creator: { '@id': ORGANIZATION_ID },
+    about: {
+      '@type': 'Organization',
+      name: project.client,
+    },
+    inLanguage: locale === 'pt' ? 'pt-PT' : 'en',
+    isPartOf: { '@id': WEBSITE_ID },
+  };
+
+  if (heroImageUrl) {
+    creativeWork.image = heroImageUrl;
+  }
+
+  if (dateCreated) {
+    creativeWork.dateCreated = dateCreated;
+  }
+
+  return [getOrganizationSchema(locale), creativeWork];
 }
 
 export function getWhatWeDoPageSchemas(locale: Locale): JsonLd[] {

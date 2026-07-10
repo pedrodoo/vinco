@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import CaseStudySection from './work/CaseStudySection.astro';
+import { getImage } from 'astro:assets';
+import { getBrandOgImage } from '../data/seo';
+import { getProjectPageSchemas } from '../data/schema';
+import { getPageSeo } from '../data/seo';
+import {
+  formatProjectPeriod,
+  getCaseStudyCopyKey,
+  getCaseStudyGallery,
+  type Project,
+} from '../data/work';
+import { useTranslations, type Locale } from '../i18n/utils';
+import { SITE_URL } from '../config/site';
+
+interface Props {
+  project: Project;
+  locale: Locale;
+}
+
+const { project, locale } = Astro.props;
+const t = useTranslations(locale);
+const copyKey = getCaseStudyCopyKey(project.slug);
+const caseCopy = copyKey ? t.work.cases[copyKey as keyof typeof t.work.cases] : undefined;
+const seo = getPageSeo(locale, 'project', project.slug);
+const title = caseCopy?.title ?? project.client;
+const description = caseCopy?.description ?? '';
+const gallery = getCaseStudyGallery(project);
+const ogImage = project.image ?? getBrandOgImage();
+
+let heroImageUrl: string | undefined;
+if (project.image) {
+  const optimized = await getImage({
+    src: project.image,
+    width: 1200,
+    height: 630,
+    fit: 'cover',
+    format: 'jpg',
+  });
+  heroImageUrl = new URL(optimized.src, Astro.site ?? SITE_URL).href;
+}
+---
+
+<Base
+  title={seo.title}
+  description={seo.description}
+  locale={locale}
+  ogImage={ogImage}
+  jsonLd={getProjectPageSchemas(locale, project, title, description, heroImageUrl)}
+>
+  <section class="bg-vinco-cream border-t border-vinco-brown-1/20 px-8 py-24">
+    <div class="max-w-[1440px] mx-auto">
+      <CaseStudySection
+        title={title}
+        tags={project.tags.map((tag) => tag[locale])}
+        period={formatProjectPeriod(project.period, locale)}
+        description={description}
+        gallery={gallery}
+        imageAlt={title}
+      />
+    </div>
+  </section>
+</Base>

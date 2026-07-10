@@ -1,0 +1,20 @@
+---
+import ProjectPage from '../../components/ProjectPage.astro';
+import { getCaseStudies, getProjectBySeoSlug } from '../../data/work';
+
+export function getStaticPaths() {
+  return getCaseStudies().map((project) => ({
+    params: { slug: project.seoSlug.pt },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const resolved = getProjectBySeoSlug(Astro.params.slug!, 'pt');
+
+if (!resolved || resolved.slug !== project.slug) {
+  return Astro.redirect('/projetos');
+}
+---
+
+<ProjectPage project={project} locale="pt" />

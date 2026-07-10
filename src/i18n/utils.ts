@@ -1,5 +1,6 @@
 import pt from './pt.json';
 import en from './en.json';
+import { getProjectLocalePathPairs } from '../data/work';
 
 const translations = { pt, en } as const;
 
@@ -48,12 +49,43 @@ const pathPairs: [string, string][] = [
   ['/contacto', '/en/contact'],
 ];
 
-export function getLocalePaths(pathname: string): { pt: string; en: string } {
+function getAllPathPairs(): [string, string][] {
+  return [...pathPairs, ...getProjectLocalePathPairs()];
+}
+
+function findPathPair(pathname: string): { pt: string; en: string } | undefined {
   const normalized = pathname.endsWith('/') && pathname !== '/'
     ? pathname.slice(0, -1)
     : pathname;
 
-  const sortedPairs = [...pathPairs].sort(
+  const sortedPairs = getAllPathPairs().sort(
+    (a, b) => Math.max(b[0].length, b[1].length) - Math.max(a[0].length, a[1].length),
+  );
+
+  for (const [ptPath, enPath] of sortedPairs) {
+    const enBase = enPath.replace(/\/$/, '');
+
+    if (normalized === ptPath) {
+      return { pt: ptPath, en: enPath };
+    }
+
+    if (normalized === enBase || normalized === enPath) {
+      return { pt: ptPath, en: enPath };
+    }
+  }
+
+  return undefined;
+}
+
+export function getLocalePaths(pathname: string): { pt: string; en: string } {
+  const exactPair = findPathPair(pathname);
+  if (exactPair) return exactPair;
+
+  const normalized = pathname.endsWith('/') && pathname !== '/'
+    ? pathname.slice(0, -1)
+    : pathname;
+
+  const sortedPairs = getAllPathPairs().sort(
     (a, b) => Math.max(b[0].length, b[1].length) - Math.max(a[0].length, a[1].length),
   );
 
@@ -81,24 +113,6 @@ export function getLocalePaths(pathname: string): { pt: string; en: string } {
 }
 
 export function getAlternateLocalePath(pathname: string, locale: Locale): string {
-  const normalized = pathname.endsWith('/') && pathname !== '/'
-    ? pathname.slice(0, -1)
-    : pathname;
-
-  for (const [ptPath, enPath] of [...pathPairs].sort(
-    (a, b) => Math.max(b[0].length, b[1].length) - Math.max(a[0].length, a[1].length),
-  )) {
-    if (locale === 'pt') {
-      if (normalized === ptPath || normalized.startsWith(`${ptPath}/`)) {
-        return normalized.replace(ptPath, enPath.replace(/\/$/, '')) || enPath;
-      }
-    } else {
-      const enBase = enPath.replace(/\/$/, '');
-      if (normalized === enBase || normalized.startsWith(`${enBase}/`)) {
-        return normalized.replace(enBase, ptPath) || '/';
-      }
-    }
-  }
-
-  return locale === 'pt' ? '/en/' : '/';
+  const paths = getLocalePaths(pathname);
+  return locale === 'pt' ? paths.en : paths.pt;
 }
