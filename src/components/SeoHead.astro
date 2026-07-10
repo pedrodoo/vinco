@@ -1,7 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { SITE_URL, hreflangCode, ogLocale, siteName } from '../config/site';
+import { absoluteSeoUrl, SITE_URL, hreflangCode, ogLocale, siteName } from '../config/site';
 import { sanitizeMetaDescription } from '../data/seo';
 import { getLocalePaths, type Locale } from '../i18n/utils';
 
@@ -16,11 +16,12 @@ interface Props {
 const { title, description, locale, ogImage, jsonLd } = Astro.props;
 
 const metaDescription = sanitizeMetaDescription(description);
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? SITE_URL).href;
+const siteBase = Astro.site ?? SITE_URL;
 const localePaths = getLocalePaths(Astro.url.pathname);
-const ptUrl = new URL(localePaths.pt, Astro.site ?? SITE_URL).href;
-const enUrl = new URL(localePaths.en, Astro.site ?? SITE_URL).href;
-const xDefaultUrl = new URL('/', Astro.site ?? SITE_URL).href;
+const canonicalURL = absoluteSeoUrl(Astro.url.pathname, siteBase);
+const ptUrl = absoluteSeoUrl(localePaths.pt, siteBase);
+const enUrl = absoluteSeoUrl(localePaths.en, siteBase);
+const xDefaultUrl = absoluteSeoUrl('/', siteBase);
 const currentOgLocale = ogLocale(locale);
 const alternateOgLocale = locale === 'pt' ? ogLocale('en') : ogLocale('pt');
 const brandName = siteName(locale);

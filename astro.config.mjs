@@ -21,6 +21,7 @@ function normalizeSitemapPath(pathname) {
 
 export default defineConfig({
   site: 'https://vinco-studio.com',
+  trailingSlash: 'always',
   integrations: [
     sitemap({
       serialize(item) {

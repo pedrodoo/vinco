@@ -1,5 +1,5 @@
 import { getNavLinks, useTranslations, type Locale } from '../i18n/utils';
-import { SITE_URL } from '../config/site';
+import { absoluteSeoUrl, SITE_URL } from '../config/site';
 import {
   getProjectPath,
   type Project,
@@ -11,11 +11,6 @@ const WEBSITE_ID = `${SITE}/#website`;
 const FOUNDER_ID = `${SITE}/#founder`;
 
 type JsonLd = Record<string, unknown>;
-
-function pageUrl(path: string): string {
-  const normalized = path === '/' ? '/' : path.replace(/\/?$/, '/');
-  return new URL(normalized, SITE).href;
-}
 
 function siteName(locale: Locale): string {
   return locale === 'pt' ? 'Vinco Estúdio' : 'Vinco Studio';
@@ -101,7 +96,7 @@ export function getContactPageSchemas(locale: Locale): JsonLd[] {
       '@context': 'https://schema.org',
       '@type': 'ContactPage',
       name: t.contact.title,
-      url: pageUrl(nav.contact),
+      url: absoluteSeoUrl(nav.contact),
       description: t.contact.meta_description,
       isPartOf: { '@id': WEBSITE_ID },
       mainEntity: { '@id': ORGANIZATION_ID },
@@ -134,7 +129,7 @@ export function getAboutPageSchemas(locale: Locale, founderImageUrl?: string): J
       '@context': 'https://schema.org',
       '@type': 'AboutPage',
       name: t.about.title,
-      url: pageUrl(nav.about),
+      url: absoluteSeoUrl(nav.about),
       description: t.about.meta_description,
       isPartOf: { '@id': WEBSITE_ID },
       about: [{ '@id': ORGANIZATION_ID }, { '@id': FOUNDER_ID }],
@@ -155,7 +150,7 @@ export function getProjectsPageSchemas(
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: t.work.title,
-      url: pageUrl(nav.work),
+      url: absoluteSeoUrl(nav.work),
       description: t.work.meta_description,
       isPartOf: { '@id': WEBSITE_ID },
       about: { '@id': ORGANIZATION_ID },
@@ -166,7 +161,7 @@ export function getProjectsPageSchemas(
           '@type': 'ListItem',
           position: index + 1,
           name: item.name,
-          url: pageUrl(item.path),
+          url: absoluteSeoUrl(item.path),
         })),
       },
     },
@@ -189,7 +184,7 @@ export function getProjectPageSchemas(
     '@type': 'CreativeWork',
     name: title,
     description: summary,
-    url: pageUrl(projectPath),
+    url: absoluteSeoUrl(projectPath),
     creator: { '@id': ORGANIZATION_ID },
     about: {
       '@type': 'Organization',
@@ -220,7 +215,7 @@ export function getWhatWeDoPageSchemas(locale: Locale): JsonLd[] {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       name: t.home.categories_title,
-      url: pageUrl(nav.whatWeDo),
+      url: absoluteSeoUrl(nav.whatWeDo),
       description: t.work.categories_meta_description,
       isPartOf: { '@id': WEBSITE_ID },
       about: { '@id': ORGANIZATION_ID },

@@ -2,6 +2,15 @@ import type { Locale } from '../i18n/utils';
 
 export const SITE_URL = 'https://vinco-studio.com';
 
+export function normalizeSeoPath(path: string): string {
+  if (!path || path === '/') return '/';
+  return path.replace(/\/?$/, '/');
+}
+
+export function absoluteSeoUrl(path: string, base: string = SITE_URL): string {
+  return new URL(normalizeSeoPath(path), base).href;
+}
+
 export function siteName(locale: Locale): string {
   return locale === 'pt' ? 'Vinco Estúdio' : 'Vinco Studio';
 }
