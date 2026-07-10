@@ -14,6 +14,8 @@ Use `\n` inside a cell for an intentional line break in titles (each language ca
 | nav.contact | Contacto | Contact |
 | nav.menu_open | Abrir menu | Open menu |
 | nav.menu_close | Fechar menu | Close menu |
+| home.meta_title | Vinco Estúdio — Do conceito ao produto | Vinco Studio — Concept to product |
+| home.meta_description | Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores. | End-to-end product development studio. We work with brands, institutions and creators. |
 | home.hero_title | Do conceito\nao produto. | From concept\nto product. |
 | home.hero_subtitle | Estúdio de desenvolvimento de produto end-to-end. Trabalhamos com marcas, instituições e criadores para transformar ideias em objetos com rigor e intenção. | End-to-end product development studio. We work with brands, institutions and creators to transform ideas into objects with rigour and intention. |
 | home.hero_cta | Iniciar um projeto | Start a project |
@@ -26,6 +28,8 @@ Use `\n` inside a cell for an intentional line break in titles (each language ca
 | home.cta_title | Tem um projeto em mente? | Have a project in mind? |
 | home.cta_button | Fale connosco | Contact us |
 | work.title | Projetos | Projects |
+| work.meta_title | Projetos — Vinco Estúdio | Projects — Vinco Studio |
+| work.meta_description | Case studies de desenvolvimento de produto — do conceito à produção, com marcas e criadores. | Product development case studies — from concept to production, with brands and creators. |
 | work.intro | No Estúdio Vinco, cada projeto é uma viagem, do conceito à execução.\nTrabalhamos lado a lado com marcas e criadores, ajustando-nos às suas necessidades. | At Vinco Studio, every project is a journey, from concept to execution. We work side by side with brands and creators, tailoring our approach to their needs. |
 | work.categories_intro | Trabalhamos com diversas categorias — vestuário, roupa de praia, acessórios, papelaria e merchandising — com método, rigor e precisão.\n\nO objetivo é assegurar que cada produto mantém, na execução, a intenção original com que foi concebido. | We work across a wide range of categories — apparel, swimwear, accessories, stationery and merchandising — with method, rigour and precision.\n\nThe goal is to ensure that every product retains, through execution, the original intention behind its conception. |
 | work.categories_meta_description | Trabalhamos com diversas categorias — vestuário, roupa de praia, acessórios, papelaria e merchandising — com método, rigor e precisão. | We work across a wide range of categories — apparel, swimwear, accessories, stationery and merchandising — with method, rigour and precision. |

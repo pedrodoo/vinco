@@ -1,6 +1,7 @@
 import { getNavLinks, useTranslations, type Locale } from '../i18n/utils';
+import { SITE_URL } from '../config/site';
 
-const SITE = 'https://vinco-studio.com';
+const SITE = SITE_URL;
 const ORGANIZATION_ID = `${SITE}/#organization`;
 const WEBSITE_ID = `${SITE}/#website`;
 const FOUNDER_ID = `${SITE}/#founder`;
@@ -134,7 +135,7 @@ export function getProjectsPageSchemas(locale: Locale, projectNames: string[]): 
       '@type': 'CollectionPage',
       name: t.work.title,
       url: pageUrl(nav.work),
-      description: t.work.intro,
+      description: t.work.meta_description,
       isPartOf: { '@id': WEBSITE_ID },
       about: { '@id': ORGANIZATION_ID },
       mainEntity: {

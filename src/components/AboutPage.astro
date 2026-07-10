@@ -12,6 +12,8 @@ import {
   type Locale,
 } from '../i18n/utils';
 import { getAboutPageSchemas } from '../data/schema';
+import { getPageSeo } from '../data/seo';
+import { SITE_URL } from '../config/site';
 
 interface Props {
   locale: Locale;
@@ -20,7 +22,7 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 const nav = getNavLinks(locale);
-const siteName = locale === 'pt' ? 'Vinco Estúdio' : 'Vinco Studio';
+const seo = getPageSeo(locale, 'about');
 
 const introParagraphs = splitCopyParagraphs(t.about.intro);
 const studioParagraphs = splitCopyParagraphs(t.about.studio_body);
@@ -31,12 +33,12 @@ const founderImage = await getImage({
   width: 800,
   format: 'jpg',
 });
-const founderImageUrl = new URL(founderImage.src, Astro.site ?? 'https://vinco-studio.com').href;
+const founderImageUrl = new URL(founderImage.src, Astro.site ?? SITE_URL).href;
 ---
 
 <Base
-  title={`${t.about.title} | ${siteName}`}
-  description={t.about.meta_description}
+  title={seo.title}
+  description={seo.description}
   locale={locale}
   jsonLd={getAboutPageSchemas(locale, founderImageUrl)}
 >

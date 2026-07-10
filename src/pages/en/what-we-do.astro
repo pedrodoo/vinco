@@ -6,14 +6,16 @@ import CategorySection from '../../components/work/CategorySection.astro';
 import { useTranslations } from '../../i18n/utils';
 import { categories, getCategoryItems } from '../../data/work';
 import { getWhatWeDoPageSchemas } from '../../data/schema';
+import { getPageSeo } from '../../data/seo';
 
 const locale = 'en';
 const t = useTranslations(locale);
+const seo = getPageSeo(locale, 'whatWeDo');
 ---
 
 <Base
-  title={`${t.home.categories_title} | Vinco Studio`}
-  description={t.work.categories_meta_description}
+  title={seo.title}
+  description={seo.description}
   locale={locale}
   jsonLd={getWhatWeDoPageSchemas(locale)}
 >

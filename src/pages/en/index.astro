@@ -5,21 +5,22 @@ import ProjectCard from '../../components/work/ProjectCard.astro';
 import CategoryHomeGrid from '../../components/work/CategoryHomeGrid.astro';
 import ProcessSection from '../../components/home/ProcessSection.astro';
 import { useTranslations, getNavLinks } from '../../i18n/utils';
-import { getFeaturedProjects, getDefaultOgImage } from '../../data/work';
+import { getFeaturedProjects } from '../../data/work';
 import { getProcessSteps } from '../../data/process';
 import { getHomePageSchemas } from '../../data/schema';
+import { getPageSeo } from '../../data/seo';
 
 const locale = 'en';
 const t = useTranslations(locale);
 const nav = getNavLinks(locale);
 const projects = getFeaturedProjects();
+const seo = getPageSeo(locale, 'home');
 ---
 
 <Base
-  title="Vinco Studio — Concept to product"
-  description="End-to-end product development studio. We work with brands, institutions and creators."
+  title={seo.title}
+  description={seo.description}
   locale="en"
-  ogImage={getDefaultOgImage()}
   jsonLd={getHomePageSchemas(locale)}
 >
   <!-- HERO -->

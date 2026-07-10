@@ -3,11 +3,13 @@ import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CaseStudySection from '../../components/work/CaseStudySection.astro';
 import { useTranslations } from '../../i18n/utils';
-import { getCaseStudies, getCaseStudyCopyKey, getCaseStudyGallery, formatProjectPeriod, getDefaultOgImage } from '../../data/work';
+import { getCaseStudies, getCaseStudyCopyKey, getCaseStudyGallery, formatProjectPeriod } from '../../data/work';
 import { getProjectsPageSchemas } from '../../data/schema';
+import { getPageSeo } from '../../data/seo';
 
 const locale = 'en';
 const t = useTranslations(locale);
+const seo = getPageSeo(locale, 'work');
 const caseStudies = getCaseStudies();
 const caseCopyByKey = t.work.cases;
 const projectNames = caseStudies.map((project) => {
@@ -18,10 +20,9 @@ const projectNames = caseStudies.map((project) => {
 ---
 
 <Base
-  title={`${t.work.title} | Vinco Studio`}
-  description={t.work.intro}
+  title={seo.title}
+  description={seo.description}
   locale={locale}
-  ogImage={getDefaultOgImage()}
   jsonLd={getProjectsPageSchemas(locale, projectNames)}
 >
   <PageHero title={t.home.work_title} intro={t.work.intro} />

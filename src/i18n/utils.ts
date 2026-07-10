@@ -48,6 +48,38 @@ const pathPairs: [string, string][] = [
   ['/contacto', '/en/contact'],
 ];
 
+export function getLocalePaths(pathname: string): { pt: string; en: string } {
+  const normalized = pathname.endsWith('/') && pathname !== '/'
+    ? pathname.slice(0, -1)
+    : pathname;
+
+  const sortedPairs = [...pathPairs].sort(
+    (a, b) => Math.max(b[0].length, b[1].length) - Math.max(a[0].length, a[1].length),
+  );
+
+  for (const [ptPath, enPath] of sortedPairs) {
+    const enBase = enPath.replace(/\/$/, '');
+
+    if (normalized === ptPath || normalized.startsWith(`${ptPath}/`)) {
+      const suffix = normalized.slice(ptPath.length);
+      return {
+        pt: `${ptPath}${suffix}` || '/',
+        en: `${enBase}${suffix}` || enPath,
+      };
+    }
+
+    if (normalized === enBase || normalized.startsWith(`${enBase}/`)) {
+      const suffix = normalized.slice(enBase.length);
+      return {
+        pt: `${ptPath}${suffix}` || '/',
+        en: `${enBase}${suffix}` || enPath,
+      };
+    }
+  }
+
+  return { pt: '/', en: '/en/' };
+}
+
 export function getAlternateLocalePath(pathname: string, locale: Locale): string {
   const normalized = pathname.endsWith('/') && pathname !== '/'
     ? pathname.slice(0, -1)

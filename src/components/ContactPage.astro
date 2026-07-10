@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHero from './PageHero.astro';
 import { useTranslations, type Locale } from '../i18n/utils';
 import { getContactPageSchemas } from '../data/schema';
+import { getPageSeo } from '../data/seo';
 
 interface Props {
   locale: Locale;
@@ -10,13 +11,13 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const siteName = locale === 'pt' ? 'Vinco Estúdio' : 'Vinco Studio';
+const seo = getPageSeo(locale, 'contact');
 const contactLabel = locale === 'pt' ? 'Contacto' : 'Contact';
 ---
 
 <Base
-  title={`${t.contact.title} | ${siteName}`}
-  description={t.contact.meta_description}
+  title={seo.title}
+  description={seo.description}
   locale={locale}
   jsonLd={getContactPageSchemas(locale)}
 >

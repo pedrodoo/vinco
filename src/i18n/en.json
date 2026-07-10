@@ -9,6 +9,8 @@
     "menu_close": "Close menu"
   },
   "home": {
+    "meta_title": "Vinco Studio — Concept to product",
+    "meta_description": "End-to-end product development studio. We work with brands, institutions and creators.",
     "hero_title": "From concept\nto product.",
     "hero_subtitle": "End-to-end product development studio. We work with brands, institutions and creators to transform ideas into objects with rigour and intention.",
     "hero_cta": "Start a project",
@@ -23,6 +25,8 @@
   },
   "work": {
     "title": "Projects",
+    "meta_title": "Projects — Vinco Studio",
+    "meta_description": "Product development case studies — from concept to production, with brands and creators.",
     "intro": "At Vinco Studio, every project is a journey, from concept to execution. We work side by side with brands and creators, tailoring our approach to their needs.",
     "categories_intro": "We work across a wide range of categories — apparel, swimwear, accessories, stationery and merchandising — with method, rigour and precision.\n\nThe goal is to ensure that every product retains, through execution, the original intention behind its conception.",
     "categories_meta_description": "We work across a wide range of categories — apparel, swimwear, accessories, stationery and merchandising — with method, rigour and precision.",
